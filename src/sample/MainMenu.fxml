@@ -8,19 +8,19 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="599.0" prefWidth="525.0" style="-fx-background-color: #272727;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainMenuController">
+<AnchorPane fx:id="pane" prefHeight="599.0" prefWidth="525.0" style="-fx-background-color: #272727;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainMenuController">
    <children>
-      <Button layoutX="121.0" layoutY="268.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="282.0" text="New Game">
+      <Button fx:id="newGame" layoutX="121.0" layoutY="268.0" mnemonicParsing="false" onMouseClicked="#startNewGame" prefHeight="63.0" prefWidth="282.0" text="New Game">
          <font>
             <Font name="System Bold" size="26.0" />
          </font>
       </Button>
-      <Button layoutX="121.0" layoutY="359.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="282.0" text="Resume Game">
+      <Button fx:id="resumeGame" layoutX="121.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#resumeOldGame" prefHeight="63.0" prefWidth="282.0" text="Resume Game">
          <font>
             <Font name="System Bold" size="26.0" />
          </font>
       </Button>
-      <Button layoutX="121.0" layoutY="448.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="282.0" text="Exit">
+      <Button fx:id="exitt" layoutX="121.0" layoutY="448.0" mnemonicParsing="false" onMouseClicked="#exitGame" prefHeight="63.0" prefWidth="282.0" text="Exit">
          <font>
             <Font name="System Bold" size="26.0" />
          </font>
@@ -35,7 +35,7 @@
             <Font size="56.0" />
          </font>
       </Label>
-      <Group fx:id="group2" layoutX="319.0" layoutY="80.0">
+      <Group fx:id="circle1" layoutX="319.0" layoutY="80.0">
          <children>
             <Arc fill="#ff0181" length="90.0" radiusX="24.0" radiusY="24.0" startAngle="180.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
             <Arc fill="#32dbf0" length="90.0" radiusX="24.0" radiusY="24.0" startAngle="270.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
@@ -44,7 +44,7 @@
             <Circle centerY="0.1" fill="#090909" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </Group>
-      <Group fx:id="group1" layoutX="239.0" layoutY="80.0">
+      <Group fx:id="circle2" layoutX="239.0" layoutY="80.0">
          <children>
             <Arc fill="#ff0181" length="90.0" radiusX="24.0" radiusY="24.0" startAngle="180.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
             <Arc fill="#32dbf0" length="90.0" radiusX="24.0" radiusY="24.0" startAngle="270.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
