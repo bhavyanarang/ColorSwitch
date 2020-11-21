@@ -1,31 +1,24 @@
 package sample;
-import javafx.animation.AnimationTimer;
-import javafx.application.Application;
+import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.paint.Color;
 import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.util.Duration;
-
-import java.awt.event.MouseEvent;
-import java.io.IOException;
 
 public class Ball {
     Pane pane=new Pane();
-//    AnimationTimer t1=new AnimationTimer() {
-//        @Override
-//        public void handle(long l) {
-//            jump();
-//        }
-//    };
+    ImageView img=new ImageView("assets/pause.png");
+    Button button=new Button();
+    //unable to add graphic
+
     TranslateTransition translate=new TranslateTransition();
     Circle ball;
     private double velocity=-100;                           //only in +y direction (in pixels/s)
-    private final double max_velocity=-400;         //maximum velocity
+    private final double max_velocity=-400;                 //maximum velocity
     double y_coordinate=3;
-    private final double centre_x=250;    //middle of pane
+    private final double centre_x=250;                      //middle of pane
     private double centre_y=500;
     private final double radius=10;
     private final double gravity=5.0;
