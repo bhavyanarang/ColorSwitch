@@ -26,7 +26,7 @@ public class Ball {
     private final double max_velocity=-400;         //maximum velocity
     double y_coordinate=3;
     private final double centre_x=250;    //middle of pane
-    private double centre_y=750;
+    private double centre_y=500;
     private final double radius=10;
     private final double gravity=5.0;
     int color=0;                //ranges from 0 to 3
@@ -36,6 +36,7 @@ public class Ball {
         ball=new Circle(centre_x,centre_y,radius,colors[color]);
         ball.setOpacity(0.8);
         jump();
+        display();
         changeColor();
     }
     void changeColor(){
@@ -52,8 +53,8 @@ public class Ball {
     }
     public void display(){
         TranslateTransition transition = new TranslateTransition();
-        transition.setByY(-40);     //upward pixels
-        transition.setDuration(Duration.millis(100));   //time in ms
+        transition.setByY(-100);     //upward pixels
+        transition.setDuration(Duration.millis(500));   //time in ms
         transition.setNode(ball);
         transition.play();
     }

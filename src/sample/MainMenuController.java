@@ -19,6 +19,9 @@ public class MainMenuController {
 
     @FXML private Group circle1;
     @FXML private Group circle2;
+    @FXML private Group circle3;
+    @FXML private Group circle4;
+    @FXML private Group circle5;
     @FXML private AnchorPane pane;
     @FXML private Button newGame;
     @FXML private Button resumeGame;
@@ -26,6 +29,9 @@ public class MainMenuController {
 
     Rotate rotate1=new Rotate();
     Rotate rotate2=new Rotate();
+    Rotate rotate3=new Rotate();
+    Rotate rotate4=new Rotate();
+    Rotate rotate5=new Rotate();
 
     public void rotate(){
 
@@ -38,6 +44,21 @@ public class MainMenuController {
         rotate2.setPivotY(0);
         rotate2.setAngle(-5);
         circle2.getTransforms().addAll(rotate2);
+
+        rotate3.setPivotX(0);
+        rotate3.setPivotY(0);
+        rotate3.setAngle(10);
+        circle3.getTransforms().addAll(rotate3);
+
+        rotate4.setPivotX(0);
+        rotate4.setPivotY(0);
+        rotate4.setAngle(-10);
+        circle4.getTransforms().addAll(rotate4);
+
+        rotate5.setPivotX(0);
+        rotate5.setPivotY(0);
+        rotate5.setAngle(-10);
+        circle5.getTransforms().addAll(rotate5);
     }
     @FXML
     void startNewGame(MouseEvent event) throws IOException {
