@@ -6,12 +6,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.transform.Rotate;
+import javafx.scene.Scene;
 
+import java.awt.event.MouseListener;
 import java.io.IOException;
 
 public class MainMenuController {
-
 
     @FXML private Group circle1;
     @FXML private Group circle2;
@@ -37,7 +41,8 @@ public class MainMenuController {
     }
     @FXML
     void startNewGame(MouseEvent event) throws IOException {
-        System.out.println("New game");
+        Ball b1=new Ball();
+        pane.getChildren().setAll(b1.getBall());
     }
     @FXML
     void resumeOldGame(MouseEvent event) throws IOException {
@@ -47,8 +52,6 @@ public class MainMenuController {
     void exitGame(MouseEvent event) throws IOException {
         System.exit(0);
     }
-
-
 
     AnimationTimer t1=new AnimationTimer() {
         @Override
