@@ -36,66 +36,66 @@ public class Obstacle3 {
 
     Obstacle3() {
 
-        line11.setStartX(1200);
-        line11.setStartY(200);
-        line11.setEndX(1200);
-        line11.setEndY(100);
+        line11.setStartX(1200-100);
+        line11.setStartY(180);
+        line11.setEndX(1200-100);
+        line11.setEndY(120);
         line11.setStrokeType(StrokeType.CENTERED);
         line11.setStroke(Color.RED);
         line11.setStrokeWidth(10);
 
-        line12.setStartX(1100);
-        line12.setStartY(200);
-        line12.setEndX(1100);
-        line12.setEndY(100);
+        line12.setStartX(1100-100);
+        line12.setStartY(180);
+        line12.setEndX(1100-100);
+        line12.setEndY(120);
         line12.setStrokeType(StrokeType.CENTERED);
         line12.setStroke(Color.BLUE);
         line12.setStrokeWidth(10);
 
-        line13.setStartX(1000);
-        line13.setStartY(200);
-        line13.setEndX(1000);
-        line13.setEndY(100);
+        line13.setStartX(1000-100);
+        line13.setStartY(180);
+        line13.setEndX(1000-100);
+        line13.setEndY(120);
         line13.setStrokeType(StrokeType.CENTERED);
         line13.setStroke(Color.VIOLET);
         line13.setStrokeWidth(10);
 
-        line14.setStartX(900);
-        line14.setStartY(200);
-        line14.setEndX(900);
-        line14.setEndY(100);
+        line14.setStartX(900-100);
+        line14.setStartY(180);
+        line14.setEndX(900-100);
+        line14.setEndY(120);
         line14.setStrokeType(StrokeType.CENTERED);
         line14.setStroke(Color.YELLOW);
         line14.setStrokeWidth(10);
 
-        line15.setStartX(800);
-        line15.setStartY(200);
-        line15.setEndX(800);
-        line15.setEndY(100);
+        line15.setStartX(800-100);
+        line15.setStartY(180);
+        line15.setEndX(800-100);
+        line15.setEndY(120);
         line15.setStrokeType(StrokeType.CENTERED);
         line15.setStroke(Color.RED);
         line15.setStrokeWidth(10);
 
-        line16.setStartX(700);
-        line16.setStartY(200);
-        line16.setEndX(700);
-        line16.setEndY(100);
+        line16.setStartX(700-100);
+        line16.setStartY(180);
+        line16.setEndX(700-100);
+        line16.setEndY(120);
         line16.setStrokeType(StrokeType.CENTERED);
         line16.setStroke(Color.BLUE);
         line16.setStrokeWidth(10);
 
-        line17.setStartX(600);
-        line17.setStartY(200);
-        line17.setEndX(600);
-        line17.setEndY(100);
+        line17.setStartX(600-100);
+        line17.setStartY(180);
+        line17.setEndX(600-100);
+        line17.setEndY(120);
         line17.setStrokeType(StrokeType.CENTERED);
         line17.setStroke(Color.VIOLET);
         line17.setStrokeWidth(10);
 
-        line18.setStartX(500);
-        line18.setStartY(200);
-        line18.setEndX(500);
-        line18.setEndY(100);
+        line18.setStartX(500-100);
+        line18.setStartY(180);
+        line18.setEndX(500-100);
+        line18.setEndY(120);
         line18.setStrokeType(StrokeType.CENTERED);
         line18.setStroke(Color.YELLOW);
         line18.setStrokeWidth(10);
@@ -168,10 +168,10 @@ public class Obstacle3 {
         Group group1=new Group();
         group1.getChildren().addAll(line11,line12,line13,line14,line16,line15,line17,line18);
         //group.setTranslateX(10);
-        translate1.setByX(-900);
+        translate1.setByX(-800);
 
         //setting the duration for the Translate transition
-        translate1.setDuration(Duration.millis(5000));
+        translate1.setDuration(Duration.millis(8000));
 
         //setting cycle count for the Translate transition
         translate1.setCycleCount(500);
@@ -188,10 +188,10 @@ public class Obstacle3 {
         Group group2=new Group();
         group2.getChildren().addAll(line21,line22,line23,line24,line25,line26,line27,line28);
         //group.setTranslateX(10);
-        translate2.setByX(900);
+        translate2.setByX(800);
 
         //setting the duration for the Translate transition
-        translate2.setDuration(Duration.millis(5000));
+        translate2.setDuration(Duration.millis(8000));
 
         //setting cycle count for the Translate transition
         translate2.setCycleCount(500);
@@ -201,6 +201,8 @@ public class Obstacle3 {
 
         //setting Circle as the node onto which the transition will be applied
         translate2.setNode(group2);
+
+        translate2.playFrom(Duration.millis(4000));
 
         //playing the transition
         translate2.play();
