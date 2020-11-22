@@ -12,7 +12,25 @@
 
 <AnchorPane fx:id="pane" prefHeight="599.0" prefWidth="558.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainMenuController">
    <children>
-      <Group fx:id="circle6" layoutX="270.0" layoutY="260.0" scaleX="0.6" scaleY="0.6">
+      <Group fx:id="circle7" layoutX="270.0" layoutY="459.0" scaleX="0.6" scaleY="0.6">
+         <children>
+            <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#900dff" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="270.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#32dbf0" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="180.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle radius="100.0" scaleX="0.7" scaleY="0.7" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </Group>
+      <Group fx:id="circle5" layoutX="270.0" layoutY="280.0" scaleX="0.85" scaleY="0.85">
+         <children>
+            <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#900dff" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="270.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Arc fill="#32dbf0" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="180.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle radius="100.0" scaleX="0.7" scaleY="0.7" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </Group>
+      <Group fx:id="circle4" layoutX="270.0" layoutY="280.0" scaleX="0.6" scaleY="0.6">
          <children>
             <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
             <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
@@ -49,7 +67,7 @@
             <Circle radius="100.0" scaleX="0.7" scaleY="0.7" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </Group>
-      <Group fx:id="circle3" layoutX="269.0" layoutY="260.0" scaleX="0.4" scaleY="0.4">
+      <Group fx:id="circle3" layoutX="269.0" layoutY="280.0" scaleX="0.4" scaleY="0.4">
          <children>
             <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
             <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
@@ -58,7 +76,7 @@
             <Circle radius="100.0" scaleX="0.7" scaleY="0.7" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </Group>
-      <Group fx:id="circle4" layoutX="270.0" layoutY="485.0" scaleX="0.4" scaleY="0.4">
+      <Group fx:id="circle8" layoutX="270.0" layoutY="459.0" scaleX="0.4" scaleY="0.4">
          <children>
             <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
             <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
@@ -67,7 +85,7 @@
             <Circle radius="100.0" scaleX="0.7" scaleY="0.7" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </Group>
-      <Group fx:id="circle5" layoutX="461.0" layoutY="501.0" scaleX="0.4" scaleY="0.4">
+      <Group fx:id="circle9" layoutX="461.0" layoutY="501.0" scaleX="0.4" scaleY="0.4">
          <children>
             <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
             <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
@@ -76,11 +94,11 @@
             <Circle radius="100.0" scaleX="0.7" scaleY="0.7" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </Group>
-      <Button fx:id="resumeGame" layoutX="187.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#resumeOldGame" prefHeight="124.0" prefWidth="161.0" scaleX="0.25" scaleY="0.25" style="-fx-shape: &quot;        M 100, 100        m -75, 0        a 75,75 0 1,0 150,0        a 75,75 0 1,0 -150,0        &quot;;">
+      <Button fx:id="resumeGame" layoutX="187.0" layoutY="380.0" mnemonicParsing="false" onMouseClicked="#resumeOldGame" prefHeight="124.0" prefWidth="161.0" scaleX="0.25" scaleY="0.25" style="-fx-shape: &quot;        M 100, 100        m -75, 0        a 75,75 0 1,0 150,0        a 75,75 0 1,0 -150,0        &quot;;">
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Assets/resumeGame1.png" />
+                  <Image url="@../Assets/Ajay/playPause.png" />
                </image>
             </ImageView>
          </graphic>
@@ -94,7 +112,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="newGame" layoutX="216.0" layoutY="211.0" mnemonicParsing="false" onMouseClicked="#startNewGame" scaleX="0.5" scaleY="0.5" style="-fx-shape: &quot;        M 100, 100        m -75, 0        a 75,75 0 1,0 150,0        a 75,75 0 1,0 -150,0        &quot;; -fx-background-color: #000000;">
+      <Button fx:id="newGame" layoutX="216.0" layoutY="229.0" mnemonicParsing="false" onMouseClicked="#startNewGame" scaleX="0.5" scaleY="0.5" style="-fx-shape: &quot;        M 100, 100        m -75, 0        a 75,75 0 1,0 150,0        a 75,75 0 1,0 -150,0        &quot;; -fx-background-color: #000000;">
          <graphic>
             <ImageView fitHeight="90.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -103,7 +121,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Group fx:id="circle51" layoutX="131.0" layoutY="501.0" scaleX="0.4" scaleY="0.4">
+      <Group fx:id="circle6" layoutX="106.0" layoutY="501.0" scaleX="0.4" scaleY="0.4">
          <children>
             <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
             <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
@@ -112,7 +130,7 @@
             <Circle radius="100.0" scaleX="0.7" scaleY="0.7" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </Group>
-      <Button fx:id="exitt1" layoutX="100.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#exitGame" prefHeight="40.0" prefWidth="60.0" scaleX="0.8" scaleY="0.8" style="-fx-background-color: #ffffff; -fx-shape: &quot;        M 100, 100        m -75, 0        a 75,75 0 1,0 150,0        a 75,75 0 1,0 -150,0        &quot;;" textFill="#010101">
+      <Button fx:id="exitt1" layoutX="76.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#exitGame" prefHeight="40.0" prefWidth="60.0" scaleX="0.8" scaleY="0.8" style="-fx-background-color: #ffffff; -fx-shape: &quot;        M 100, 100        m -75, 0        a 75,75 0 1,0 150,0        a 75,75 0 1,0 -150,0        &quot;;" textFill="#010101">
          <graphic>
             <ImageView fitHeight="47.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
                <image>
