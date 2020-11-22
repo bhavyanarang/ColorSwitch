@@ -85,7 +85,7 @@
             <Circle radius="100.0" scaleX="0.7" scaleY="0.7" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </Group>
-      <Group fx:id="circle9" layoutX="461.0" layoutY="501.0" scaleX="0.4" scaleY="0.4">
+      <Group fx:id="circle9" layoutX="434.0" layoutY="501.0" scaleX="0.4" scaleY="0.4">
          <children>
             <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
             <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
@@ -103,7 +103,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="exitt" layoutX="378.0" layoutY="422.0" mnemonicParsing="false" onMouseClicked="#exitGame" scaleX="0.25" scaleY="0.25" style="-fx-background-color: #ffffff; -fx-shape: &quot;        M 100, 100        m -75, 0        a 75,75 0 1,0 150,0        a 75,75 0 1,0 -150,0        &quot;;" textFill="#010101">
+      <Button fx:id="exitt" layoutX="350.0" layoutY="422.0" mnemonicParsing="false" onMouseClicked="#exitGame" scaleX="0.25" scaleY="0.25" style="-fx-background-color: #ffffff; -fx-shape: &quot;        M 100, 100        m -75, 0        a 75,75 0 1,0 150,0        a 75,75 0 1,0 -150,0        &quot;;" textFill="#010101">
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
