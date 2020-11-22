@@ -1,8 +1,11 @@
 package sample;
 import javafx.animation.AnimationTimer;
+import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -17,11 +20,16 @@ import javafx.scene.shape.Circle;
 import javafx.scene.transform.Rotate;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLOutput;
+import java.util.ResourceBundle;
 
-public class MainMenuController {
+public class MainMenuController implements Initializable{
+
 
     @FXML private Group circle1;
     @FXML private Group circle2;
@@ -37,6 +45,7 @@ public class MainMenuController {
     @FXML private Button newGame;
     @FXML private Button resumeGame;
     @FXML private Button exitt;
+    @FXML private Button help;
 
     Button button=new Button();
     Rotate rotate1=new Rotate();
@@ -48,6 +57,8 @@ public class MainMenuController {
     Rotate rotate7=new Rotate();
     Rotate rotate8=new Rotate();
     Rotate rotate9=new Rotate();
+    private boolean isb1=true;
+    //double maxScale1=newGame.getScaleX()+0.3;
 
     public void rotate(){
 
@@ -121,16 +132,47 @@ public class MainMenuController {
             }
         });
     }
+    void addScaleTransition() {
+        ScaleTransition st1 = new ScaleTransition(Duration.millis(500),newGame);
+        ScaleTransition st2 = new ScaleTransition(Duration.millis(1000), resumeGame);
+        ScaleTransition st3 = new ScaleTransition(Duration.millis(1000), help);
+        ScaleTransition st4 = new ScaleTransition(Duration.millis(1000), exitt);
 
+        st1.setByY(0.05);
+        st1.setByX(0.05);
+        st1.setCycleCount(Timeline.INDEFINITE);
+        st1.setAutoReverse(true);
+        st1.play();
+        st2.setByY(0.05);
+        st2.setByX(0.05);
+        st2.setCycleCount(Timeline.INDEFINITE);
+        st2.setAutoReverse(true);
+        st2.play();
+        st3.setByY(0.05);
+        st3.setByX(0.05);
+        st3.setCycleCount(Timeline.INDEFINITE);
+        st3.setAutoReverse(true);
+        st3.play();
+        st4.setByY(0.05);
+        st4.setByX(0.05);
+        st4.setCycleCount(Timeline.INDEFINITE);
+        st4.setAutoReverse(true);
+        st4.play();
+
+
+    }
     @FXML
     void startNewGame(MouseEvent event) {
         pause();
         Scorecard scorecard=new Scorecard();
+        scorecard.getLabel().setScaleX(scorecard.getLabel().getScaleX()+2);
+        scorecard.getLabel().setScaleY(scorecard.getLabel().getScaleY()+2);
+        scorecard.getLabel().setLayoutX(scorecard.getLabel().getLayoutX()+60);
+        scorecard.getLabel().setLayoutY(scorecard.getLabel().getLayoutY()+60);
+
         Ball b1=new Ball();
         pane.getChildren().setAll(b1.getBall(),button,scorecard.getLabel());
     }
-
-
 
     @FXML
     void resumeOldGame(MouseEvent event) throws IOException {
@@ -149,6 +191,11 @@ public class MainMenuController {
     };
     public MainMenuController(){
         t1.start();
+
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        addScaleTransition();
+    }
 }

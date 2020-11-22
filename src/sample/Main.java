@@ -10,7 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("ObstacleHitMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("PauseMenu.fxml"));
         primaryStage.setTitle("Color Switch");
         primaryStage.setScene(new Scene(root, 550, 600));
         primaryStage.show();

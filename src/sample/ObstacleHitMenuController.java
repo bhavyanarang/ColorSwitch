@@ -7,6 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.transform.Rotate;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class ObstacleHitMenuController {
@@ -14,6 +15,8 @@ public class ObstacleHitMenuController {
     @FXML private Group circle1;
     @FXML private Group circle2;
     @FXML private AnchorPane pane;
+    //@FXML private Button back;
+    //@FXML private Button replay;
 
     Rotate rotate1=new Rotate();
     Rotate rotate2=new Rotate();

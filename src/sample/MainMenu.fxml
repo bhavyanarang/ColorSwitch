@@ -130,7 +130,7 @@
             <Circle radius="100.0" scaleX="0.7" scaleY="0.7" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </Group>
-      <Button fx:id="exitt1" layoutX="76.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#exitGame" prefHeight="40.0" prefWidth="60.0" scaleX="0.8" scaleY="0.8" style="-fx-background-color: #ffffff; -fx-shape: &quot;        M 100, 100        m -75, 0        a 75,75 0 1,0 150,0        a 75,75 0 1,0 -150,0        &quot;;" textFill="#010101">
+      <Button fx:id="help" layoutX="76.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#exitGame" prefHeight="40.0" prefWidth="60.0" scaleX="0.8" scaleY="0.8" style="-fx-background-color: #ffffff; -fx-shape: &quot;        M 100, 100        m -75, 0        a 75,75 0 1,0 150,0        a 75,75 0 1,0 -150,0        &quot;;" textFill="#010101">
          <graphic>
             <ImageView fitHeight="47.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
                <image>
