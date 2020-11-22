@@ -165,13 +165,19 @@ public class MainMenuController implements Initializable{
     void startNewGame(MouseEvent event) {
         pause();
         Scorecard scorecard=new Scorecard();
+        Star star=new Star();
         scorecard.getLabel().setScaleX(scorecard.getLabel().getScaleX()+2);
         scorecard.getLabel().setScaleY(scorecard.getLabel().getScaleY()+2);
         scorecard.getLabel().setLayoutX(scorecard.getLabel().getLayoutX()+60);
         scorecard.getLabel().setLayoutY(scorecard.getLabel().getLayoutY()+60);
 
+        star.getImg().setX(275);
+        star.getImg().setY(325);
+        star.getImg().setFitWidth(40);
+        star.getImg().setPreserveRatio(true);
+
         Ball b1=new Ball();
-        pane.getChildren().setAll(b1.getBall(),button,scorecard.getLabel());
+        pane.getChildren().setAll(b1.getBall(),button,scorecard.getLabel(),star.getImg());
     }
 
     @FXML
