@@ -11,9 +11,8 @@ import java.io.IOException;
 
 public class PauseMenuController {
     @FXML private AnchorPane pane;
-    @FXML private SVGPath home;
-    @FXML private SVGPath save;
-    @FXML private Group resume;
+    @FXML private Button play;
+    @FXML private Button home;
 
     @FXML
     void home(MouseEvent event) throws IOException {

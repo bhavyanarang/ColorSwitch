@@ -1,26 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="pane" prefHeight="598.0" prefWidth="493.0" style="-fx-background-color: #272727;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PauseMenuController">
     <children>
-        <SVGPath fx:id="home" accessibleRole="BUTTON" content="M18.121,9.88l-7.832-7.836c-0.155-0.158-0.428-0.155-0.584,0L1.842,9.913c-0.262,0.263-0.073,0.705,0.292,0.705h2.069v7.042c0,0.227,0.187,0.414,0.414,0.414h3.725c0.228,0,0.414-0.188,0.414-0.414v-3.313h2.483v3.313c0,0.227,0.187,0.414,0.413,0.414h3.726c0.229,0,0.414-0.188,0.414-0.414v-7.042h2.068h0.004C18.331,10.617,18.389,10.146,18.121,9.88 M14.963,17.245h-2.896v-3.313c0-0.229-0.186-0.415-0.414-0.415H8.342c-0.228,0-0.414,0.187-0.414,0.415v3.313H5.032v-6.628h9.931V17.245z M3.133,9.79l6.864-6.868l6.867,6.868H3.133z" fill="#ddd6d6" layoutX="84.0" layoutY="77.0" onMouseClicked="#home" scaleX="5.0" scaleY="5.0" />
-        <Label layoutX="179.0" layoutY="152.0" text="PAUSE" textFill="#eae5e5">
+      <Button fx:id="play" layoutX="169.0" layoutY="249.0" mnemonicParsing="false" onMouseClicked="#resumeGame" scaleX="0.5" scaleY="0.5" style="-fx-shape: &quot;        M 100, 100        m -75, 0        a 75,75 0 1,0 150,0        a 75,75 0 1,0 -150,0        &quot;;">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/play.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+        <Label layoutX="156.0" layoutY="152.0" text="PAUSE" textFill="#eae5e5">
             <font>
                 <Font name="System Bold" size="49.0" />
             </font>
         </Label>
         <SVGPath fx:id="save" accessibleRole="BUTTON" content="M17.064,4.656l-2.05-2.035C14.936,2.544,14.831,2.5,14.721,2.5H3.854c-0.229,0-0.417,0.188-0.417,0.417v14.167c0,0.229,0.188,0.417,0.417,0.417h12.917c0.229,0,0.416-0.188,0.416-0.417V4.952C17.188,4.84,17.144,4.733,17.064,4.656M6.354,3.333h7.917V10H6.354V3.333z M16.354,16.667H4.271V3.333h1.25v7.083c0,0.229,0.188,0.417,0.417,0.417h8.75c0.229,0,0.416-0.188,0.416-0.417V3.886l1.25,1.239V16.667z M13.402,4.688v3.958c0,0.229-0.186,0.417-0.417,0.417c-0.229,0-0.417-0.188-0.417-0.417V4.688c0-0.229,0.188-0.417,0.417-0.417C13.217,4.271,13.402,4.458,13.402,4.688" fill="#fffafa" layoutX="242.0" layoutY="469.0" onMouseClicked="#saveGame" scaleX="5.0" scaleY="5.0" />
-        <Group fx:id="resume" accessibleRole="BUTTON" layoutX="243.0" layoutY="306.0" onMouseClicked="#resumeGame">
-            <children>
-                <SVGPath accessibleRole="TEXT" content="M14.989,9.491L6.071,0.537C5.78,0.246,5.308,0.244,5.017,0.535c-0.294,0.29-0.294,0.763-0.003,1.054l8.394,8.428L5.014,18.41c-0.291,0.291-0.291,0.763,0,1.054c0.146,0.146,0.335,0.218,0.527,0.218c0.19,0,0.382-0.073,0.527-0.218l8.918-8.919C15.277,10.254,15.277,9.784,14.989,9.491z" fill="#e20c0c" scaleX="3.0" scaleY="3.0" />
-                <Circle accessibleRole="TEXT" fill="#eff2f5" layoutX="3.0" layoutY="10.0" opacity="0.22" radius="100.0" scaleX="0.6" scaleY="0.6" stroke="BLACK" strokeType="INSIDE" />
-            </children>
-        </Group>
+        <Group fx:id="resume" accessibleRole="BUTTON" layoutX="243.0" layoutY="306.0" onMouseClicked="#resumeGame" />
+      <Button fx:id="home" mnemonicParsing="false" onMouseClicked="#home" scaleX="0.5" scaleY="0.5" style="-fx-shape: &quot;        M 100, 100        m -75, 0        a 75,75 0 1,0 150,0        a 75,75 0 1,0 -150,0        &quot;;">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/home.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
     </children>
 </AnchorPane>
