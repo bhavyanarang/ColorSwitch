@@ -9,13 +9,13 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" prefHeight="598.0" prefWidth="493.0" style="-fx-background-color: #272727;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PauseMenuController">
+<AnchorPane fx:id="pane" prefHeight="598.0" prefWidth="493.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PauseMenuController">
     <children>
-      <Button fx:id="play" layoutX="169.0" layoutY="249.0" mnemonicParsing="false" onMouseClicked="#resumeGame" scaleX="0.5" scaleY="0.5" style="-fx-shape: &quot;        M 100, 100        m -75, 0        a 75,75 0 1,0 150,0        a 75,75 0 1,0 -150,0        &quot;;">
+      <Button fx:id="play" layoutX="169.0" layoutY="249.0" mnemonicParsing="false" onMouseClicked="#resumeGame" scaleX="0.5" scaleY="0.5" style="-fx-background-color: #000000;">
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Assets/play.png" />
+                  <Image url="@../Assets/Ajay/play.png" />
                </image>
             </ImageView>
          </graphic>
