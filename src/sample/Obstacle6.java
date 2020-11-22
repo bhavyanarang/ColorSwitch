@@ -70,7 +70,7 @@ public class Obstacle6 {
         line22.setEndX(410);
         line22.setEndY(100);
         line22.setStrokeType(StrokeType.CENTERED);
-        line22.setStroke(Color.YELLOW);
+        line22.setStroke(Color.BLUE);
         line22.setStrokeWidth(10);
 
         line23.setStartX(410);
@@ -86,7 +86,7 @@ public class Obstacle6 {
         line24.setEndX(410);
         line24.setEndY(300);
         line24.setStrokeType(StrokeType.CENTERED);
-        line24.setStroke(Color.BLUE);
+        line24.setStroke(Color.YELLOW);
         line24.setStrokeWidth(10);
 
         Group group1=new Group();
@@ -98,7 +98,7 @@ public class Obstacle6 {
         rotate1.setDuration(Duration.millis(6000));
         rotate1.setAutoReverse(false);
         rotate1.setNode(group1);
-        rotate1.play();
+        rotate1.playFrom(Duration.millis(1000));//delay in time
 
         Group group2=new Group();
         group2.getChildren().addAll(line21,line22,line23,line24);
