@@ -98,7 +98,7 @@
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Assets/Ajay/playPause.png" />
+                  <Image url="@../Assets/playPause.png" />
                </image>
             </ImageView>
          </graphic>
@@ -134,7 +134,7 @@
          <graphic>
             <ImageView fitHeight="47.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Assets/Ajay/help.png" />
+                  <Image url="@../Assets/help.png" />
                </image>
             </ImageView>
          </graphic>

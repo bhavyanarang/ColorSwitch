@@ -72,7 +72,7 @@
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Assets/Ajay/back.png" />
+                  <Image url="@../Assets/back.png" />
                </image>
             </ImageView>
          </graphic>
