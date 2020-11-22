@@ -28,6 +28,8 @@ public class MainMenuController {
     @FXML private Group circle3;
     @FXML private Group circle4;
     @FXML private Group circle5;
+    @FXML private Group circle6;
+
     @FXML private AnchorPane pane;
     @FXML private Button newGame;
     @FXML private Button resumeGame;
@@ -39,6 +41,7 @@ public class MainMenuController {
     Rotate rotate3=new Rotate();
     Rotate rotate4=new Rotate();
     Rotate rotate5=new Rotate();
+    Rotate rotate6=new Rotate();
 
     public void rotate(){
 
@@ -54,18 +57,23 @@ public class MainMenuController {
 
         rotate3.setPivotX(0);
         rotate3.setPivotY(0);
-        rotate3.setAngle(10);
+        rotate3.setAngle(5);
         circle3.getTransforms().addAll(rotate3);
 
         rotate4.setPivotX(0);
         rotate4.setPivotY(0);
-        rotate4.setAngle(-10);
+        rotate4.setAngle(-5);
         circle4.getTransforms().addAll(rotate4);
 
         rotate5.setPivotX(0);
         rotate5.setPivotY(0);
-        rotate5.setAngle(-10);
+        rotate5.setAngle(5);
         circle5.getTransforms().addAll(rotate5);
+
+        rotate6.setPivotX(0);
+        rotate6.setPivotY(0);
+        rotate6.setAngle(-5);
+        circle6.getTransforms().addAll(rotate6);
     }
 
     @FXML
