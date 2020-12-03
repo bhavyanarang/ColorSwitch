@@ -57,8 +57,6 @@ public class MainMenuController implements Initializable{
     Rotate rotate7=new Rotate();
     Rotate rotate8=new Rotate();
     Rotate rotate9=new Rotate();
-    private boolean isb1=true;
-    //double maxScale1=newGame.getScaleX()+0.3;
 
     public void rotate(){
 
