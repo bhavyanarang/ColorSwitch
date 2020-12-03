@@ -1,20 +1,24 @@
 package sample;
 
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+
 import java.util.ArrayList;
 
 public class Game {
+    AnchorPane pane;
     private Scorecard scorecard;
     private Star star;
     private Ball ball;
-    private PauseMenuController pause;
+    private PauseMenuController pauseMenuController;
     private ColorSwitcher colorSwitcher;
+    private Pause pause;
     private Player player;
-
     public void initialize(){
 
     }
-    public void startGame(){
-
+    public void startNewGame(){
+        this.pane.getChildren().setAll(ball.getBall(), pause.getPauseButton(),scorecard.getLabel(),star.getImg());
     }
     private boolean didHit(){
         return false;
@@ -24,6 +28,16 @@ public class Game {
     }
     private boolean didHitStar(){
         return false;
+    }
+    public Game(AnchorPane p){
+        this.pane=p;
+        scorecard=new Scorecard();
+        star=new Star();
+        ball=new Ball();
+        pauseMenuController=new PauseMenuController();
+        colorSwitcher=new ColorSwitcher();
+        pause=new Pause();
+        player=new Player();
     }
 
 

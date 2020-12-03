@@ -18,6 +18,7 @@ public class Pause {
         button =new Button();
         img= new Image("Assets/pause.png");
         view = new ImageView(img);
+        addButton();
     }
     public void addButton(){
         view.setScaleX(view.getScaleX()*1);

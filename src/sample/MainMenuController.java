@@ -39,7 +39,8 @@ public class MainMenuController implements Initializable{
     @FXML private Button exitt;
     @FXML private Button help;
 
-    Button button=new Button();
+    private Game game;
+
     Rotate rotate1=new Rotate();
     Rotate rotate2=new Rotate();
     Rotate rotate3=new Rotate();
@@ -124,28 +125,16 @@ public class MainMenuController implements Initializable{
         st4.setAutoReverse(true);
         st4.play();
 
-
+    }
+    @FXML
+    void initializeGame(){
+        game=new Game(pane);
     }
     @FXML
     void startNewGame(MouseEvent event) {
-        Pause pause=new Pause();
-        pause.addButton();
-        Scorecard scorecard=new Scorecard();
-        Star star=new Star();
-        scorecard.getLabel().setScaleX(scorecard.getLabel().getScaleX()+2);
-        scorecard.getLabel().setScaleY(scorecard.getLabel().getScaleY()+2);
-        scorecard.getLabel().setLayoutX(scorecard.getLabel().getLayoutX()+60);
-        scorecard.getLabel().setLayoutY(scorecard.getLabel().getLayoutY()+60);
-
-        star.getImg().setX(275);
-        star.getImg().setY(325);
-        star.getImg().setFitWidth(40);
-        star.getImg().setPreserveRatio(true);
-
-        Ball b1=new Ball();
-        pane.getChildren().setAll(b1.getBall(), pause.getPauseButton(),scorecard.getLabel(),star.getImg());
+        initializeGame();
+        game.startNewGame();
     }
-
     @FXML
     void resumeOldGame(MouseEvent event) throws IOException {
         System.out.println("Resume game");
@@ -154,7 +143,6 @@ public class MainMenuController implements Initializable{
     void exitGame(MouseEvent event) throws IOException {
         System.exit(0);
     }
-
     AnimationTimer t1=new AnimationTimer() {
         @Override
         public void handle(long l) {
@@ -163,7 +151,6 @@ public class MainMenuController implements Initializable{
     };
     public MainMenuController(){
         t1.start();
-
     }
 
     @Override
