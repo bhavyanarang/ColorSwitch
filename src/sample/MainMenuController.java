@@ -14,22 +14,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.transform.Rotate;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLOutput;
 import java.util.ResourceBundle;
-
 public class MainMenuController implements Initializable{
-
 
     @FXML private Group circle1;
     @FXML private Group circle2;
@@ -105,31 +97,6 @@ public class MainMenuController implements Initializable{
         rotate9.setAngle(-5);
         circle9.getTransforms().addAll(rotate9);
     }
-    void pause(){
-        Image img = new Image("Assets/pause.png");
-        ImageView view = new ImageView(img);
-        view.setScaleX(view.getScaleX()*1);
-        view.setScaleY(view.getScaleY()*1);
-        button.setGraphic(view);
-        button.setScaleX(view.getScaleX()*0.05);
-        button.setScaleY(view.getScaleY()*0.05);
-        button.setLayoutX(button.getLayoutX()+50);
-        button.setLayoutY(button.getLayoutY()-350);
-        button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Stage newStage=(Stage) button.getScene().getWindow();
-                Parent root = null;
-                try {
-                    root = FXMLLoader.load(getClass().getResource("PauseMenu.fxml"));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                newStage.setScene(new Scene(root,550,600));
-                newStage.show();
-            }
-        });
-    }
     void addScaleTransition() {
         ScaleTransition st1 = new ScaleTransition(Duration.millis(500),newGame);
         ScaleTransition st2 = new ScaleTransition(Duration.millis(1000), resumeGame);
@@ -161,7 +128,8 @@ public class MainMenuController implements Initializable{
     }
     @FXML
     void startNewGame(MouseEvent event) {
-        pause();
+        Pause pause=new Pause();
+        pause.addButton();
         Scorecard scorecard=new Scorecard();
         Star star=new Star();
         scorecard.getLabel().setScaleX(scorecard.getLabel().getScaleX()+2);
@@ -175,7 +143,7 @@ public class MainMenuController implements Initializable{
         star.getImg().setPreserveRatio(true);
 
         Ball b1=new Ball();
-        pane.getChildren().setAll(b1.getBall(),button,scorecard.getLabel(),star.getImg());
+        pane.getChildren().setAll(b1.getBall(), pause.getPauseButton(),scorecard.getLabel(),star.getImg());
     }
 
     @FXML
