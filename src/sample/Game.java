@@ -21,6 +21,7 @@ public class Game {
         this.pane.getChildren().setAll(ball.getBall(), pause.getPauseButton(),scorecard.getLabel(),star.getImg());
     }
     private boolean didHit(){
+
         return false;
     }
     private boolean didPause(){

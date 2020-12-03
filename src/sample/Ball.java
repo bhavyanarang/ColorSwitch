@@ -8,17 +8,13 @@ import javafx.animation.TranslateTransition;
 import javafx.util.Duration;
 
 public class Ball {
-    Pane pane=new Pane();
-    ImageView img=new ImageView("assets/pause.png");
-    Button button=new Button();
-    //unable to add graphic
 
     TranslateTransition translate=new TranslateTransition();
     Circle ball;
     private double velocity=-100;                           //only in +y direction (in pixels/s)
     private final double max_velocity=-400;                 //maximum velocity
     double y_coordinate=3;
-    private final double centre_x=250;                      //middle of pane
+    private final double centre_x=200;                      //middle of pane
     private double centre_y=500;
     private final double radius=10;
     private final double gravity=5.0;
@@ -46,6 +42,7 @@ public class Ball {
     }
     public void display(){
         TranslateTransition transition = new TranslateTransition();
+        //transition.setByX(-100);
         transition.setByY(-100);     //upward pixels
         transition.setDuration(Duration.millis(500));   //time in ms
         transition.setNode(ball);

@@ -12,7 +12,7 @@ public class Star {
         starPosition();
     }
     public void starPosition(){
-        view.setX(275);
+        view.setX(180);
         view.setY(325);
         view.setFitWidth(40);
         view.setPreserveRatio(true);

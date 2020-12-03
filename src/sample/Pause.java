@@ -26,7 +26,7 @@ public class Pause {
         button.setGraphic(view);
         button.setScaleX(view.getScaleX()*0.05);
         button.setScaleY(view.getScaleY()*0.05);
-        button.setLayoutX(button.getLayoutX()+50);
+        button.setLayoutX(button.getLayoutX()-100);
         button.setLayoutY(button.getLayoutY()-350);
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -38,7 +38,7 @@ public class Pause {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                newStage.setScene(new Scene(root,550,600));
+                newStage.setScene(new Scene(root,400,600));
                 newStage.show();
             }
         });

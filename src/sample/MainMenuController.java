@@ -2,21 +2,13 @@ package sample;
 import javafx.animation.AnimationTimer;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.transform.Rotate;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
@@ -40,7 +32,6 @@ public class MainMenuController implements Initializable{
     @FXML private Button help;
 
     private Game game;
-
     Rotate rotate1=new Rotate();
     Rotate rotate2=new Rotate();
     Rotate rotate3=new Rotate();
@@ -52,7 +43,6 @@ public class MainMenuController implements Initializable{
     Rotate rotate9=new Rotate();
 
     public void rotate(){
-
         rotate1.setPivotX(0);
         rotate1.setPivotY(0);
         rotate1.setAngle(5);

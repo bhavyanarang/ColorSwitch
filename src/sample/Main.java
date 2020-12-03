@@ -12,7 +12,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         primaryStage.setTitle("Color Switch");
-        primaryStage.setScene(new Scene(root, 550, 600));
+        primaryStage.setScene(new Scene(root, 400, 600));
         primaryStage.show();
     }
 
