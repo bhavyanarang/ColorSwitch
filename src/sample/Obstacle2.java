@@ -10,7 +10,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.StrokeType;
 import javafx.util.Duration;
 
-public class Obstacle2 {
+public class Obstacle2 extends Obstacle {
     Pane pane=new Pane();
     TranslateTransition translate1=new TranslateTransition();
     Line line11=new Line();
@@ -32,7 +32,52 @@ public class Obstacle2 {
     Line line27=new Line();
     Line line28=new Line();
 
-    Obstacle2(){
+    @Override
+    public void move(){
+        Group group1=new Group();
+        group1.getChildren().addAll(line11,line12,line13,line14,line15,line16,line17,line18);
+        //group.setTranslateX(10);
+        translate1.setByX(400);
+
+        //setting the duration for the Translate transition
+        translate1.setDuration(Duration.millis(6000));
+
+        //setting cycle count for the Translate transition
+        translate1.setCycleCount(500);
+
+        //the transition will set to be auto reversed by setting this to true
+        translate1.setAutoReverse(false);
+
+        //setting Circle as the node onto which the transition will be applied
+        translate1.setNode(group1);
+
+        //playing the transition
+        translate1.play();
+
+        Group group2=new Group();
+        group2.getChildren().addAll(line21,line22,line23,line24,line25,line26,line27,line28);
+        //group.setTranslateX(10);
+        translate2.setByX(-400);
+
+        //setting the duration for the Translate transition
+        translate2.setDuration(Duration.millis(4000));
+
+        //setting cycle count for the Translate transition
+        translate2.setCycleCount(500);
+
+        //the transition will set to be auto reversed by setting this to true
+        translate2.setAutoReverse(false);
+
+        //setting Circle as the node onto which the transition will be applied
+        translate2.setNode(group2);
+
+        //playing the transition
+        translate2.play();
+
+        pane.getChildren().addAll(group1,group2);
+    }
+    Obstacle2(int centerX,int centerY){
+        super(centerX,centerY);
         line11.setStartX(-400);
         line11.setStartY(200);
         line11.setEndX(-300);
@@ -161,47 +206,7 @@ public class Obstacle2 {
         line28.setStroke(Color.YELLOW);
         line28.setStrokeWidth(10);
 
+        move();
 
-        Group group1=new Group();
-        group1.getChildren().addAll(line11,line12,line13,line14,line15,line16,line17,line18);
-        //group.setTranslateX(10);
-        translate1.setByX(400);
-
-        //setting the duration for the Translate transition
-        translate1.setDuration(Duration.millis(6000));
-
-        //setting cycle count for the Translate transition
-        translate1.setCycleCount(500);
-
-        //the transition will set to be auto reversed by setting this to true
-        translate1.setAutoReverse(false);
-
-        //setting Circle as the node onto which the transition will be applied
-        translate1.setNode(group1);
-
-        //playing the transition
-        translate1.play();
-
-        Group group2=new Group();
-        group2.getChildren().addAll(line21,line22,line23,line24,line25,line26,line27,line28);
-        //group.setTranslateX(10);
-        translate2.setByX(-400);
-
-        //setting the duration for the Translate transition
-        translate2.setDuration(Duration.millis(4000));
-
-        //setting cycle count for the Translate transition
-        translate2.setCycleCount(500);
-
-        //the transition will set to be auto reversed by setting this to true
-        translate2.setAutoReverse(false);
-
-        //setting Circle as the node onto which the transition will be applied
-        translate2.setNode(group2);
-
-        //playing the transition
-        translate2.play();
-
-        pane.getChildren().addAll(group1,group2);
     }
 }
