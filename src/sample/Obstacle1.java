@@ -21,7 +21,6 @@ public class Obstacle1 extends Obstacle {
 
     @Override
     public void move(){
-        Group group=new Group();
         group.getChildren().addAll(line1,line2,line3,line4);
 
         rotate.setAxis(Rotate.Z_AXIS);
@@ -33,36 +32,42 @@ public class Obstacle1 extends Obstacle {
         rotate.play();
         pane.getChildren().add(group);
     }
+
     Obstacle1(int centerX,int centerY){
         super(centerX,centerY);
+        components.add(line1);
+        components.add(line2);
+        components.add(line3);
+        components.add(line4);
+
         line1.setStartX(centerX);
         line1.setStartY(centerY);
-        line1.setEndX(300);
-        line1.setEndY(200);
+        line1.setEndX(centerX+100);
+        line1.setEndY(centerY);
         line1.setStrokeType(StrokeType.CENTERED);
         line1.setStroke(Color.RED);
         line1.setStrokeWidth(10);
 
         line2.setStartX(centerX);
         line2.setStartY(centerY);
-        line2.setEndX(200);
-        line2.setEndY(100);
+        line2.setEndX(centerX);
+        line2.setEndY(centerY-100);
         line2.setStrokeType(StrokeType.CENTERED);
         line2.setStroke(Color.BLUE);
         line2.setStrokeWidth(10);
 
         line3.setStartX(centerX);
         line3.setStartY(centerY);
-        line3.setEndX(100);
-        line3.setEndY(200);
+        line3.setEndX(centerX-100);
+        line3.setEndY(centerY);
         line3.setStrokeType(StrokeType.CENTERED);
         line3.setStroke(Color.VIOLET);
         line3.setStrokeWidth(10);
 
         line4.setStartX(centerX);
         line4.setStartY(centerY);
-        line4.setEndX(200);
-        line4.setEndY(300);
+        line4.setEndX(centerX);
+        line4.setEndY(centerY+100);
         line4.setStrokeType(StrokeType.CENTERED);
         line4.setStroke(Color.YELLOW);
         line4.setStrokeWidth(10);

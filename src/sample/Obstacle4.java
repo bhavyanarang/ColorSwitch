@@ -19,7 +19,6 @@ public class Obstacle4 extends Obstacle {
 
     @Override
     public void move(){
-        Group group=new Group();
         group.getChildren().addAll(arc1,arc2,arc3,arc4);
 
         rotate.setAxis(Rotate.Z_AXIS);
@@ -32,8 +31,14 @@ public class Obstacle4 extends Obstacle {
 
         pane.getChildren().addAll(group);
     }
+
     Obstacle4(int centerX,int centerY){
         super(centerX,centerY);
+        components.add(arc1);
+        components.add(arc2);
+        components.add(arc3);
+        components.add(arc4);
+
         arc1.setCenterX(centerX);
         arc1.setCenterY(centerY);
         arc1.setRadiusX(90.0f);

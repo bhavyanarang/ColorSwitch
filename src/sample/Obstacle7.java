@@ -14,6 +14,7 @@ public class Obstacle7 extends Obstacle {
     Pane pane=new Pane();
     RotateTransition rotate1=new RotateTransition();
     RotateTransition rotate2=new RotateTransition();
+    Group group2=new Group();
 
     Arc arc11 = new Arc();
     Arc arc12 = new Arc();
@@ -27,21 +28,19 @@ public class Obstacle7 extends Obstacle {
     Arc arc24 = new Arc();
 
     @Override
-            public void move(){
-        Group group1=new Group();
-        group1.getChildren().addAll(arc11,arc12,arc13,arc14);
+    public void move(){
+
+        group.getChildren().addAll(arc11,arc12,arc13,arc14);
 
         rotate1.setAxis(Rotate.Z_AXIS);
         rotate1.setToAngle(720);
         rotate1.setCycleCount(Timeline.INDEFINITE);
         rotate1.setDuration(Duration.millis(6000));
         rotate1.setAutoReverse(false);
-        rotate1.setNode(group1);
+        rotate1.setNode(group);
         rotate1.playFrom(Duration.millis(3000));
         rotate1.play();
 
-
-        Group group2=new Group();
         group2.getChildren().addAll(arc21,arc22,arc23,arc24);
 
         rotate2.setAxis(Rotate.Z_AXIS);
@@ -52,10 +51,24 @@ public class Obstacle7 extends Obstacle {
         rotate2.setNode(group2);
         rotate2.play();
 
-        pane.getChildren().addAll(group1,group2);
+        pane.getChildren().addAll(group,group2);
+    }
+    @Override
+    public Group returnObstacle2(){
+        return group2;
     }
     Obstacle7(int centerX,int centerY){
         super(centerX,centerY);
+        components.add(arc11);
+        components.add(arc12);
+        components.add(arc13);
+        components.add(arc14);
+
+        components.add(arc21);
+        components.add(arc22);
+        components.add(arc23);
+        components.add(arc24);
+
         arc11.setCenterX(centerX);
         arc11.setCenterY(centerY-105);
         arc11.setRadiusX(100.0f);

@@ -13,6 +13,9 @@ import javafx.util.Duration;
 public class Obstacle2 extends Obstacle {
     Pane pane=new Pane();
     TranslateTransition translate1=new TranslateTransition();
+
+    Group group2=new Group();
+
     Line line11=new Line();
     Line line12=new Line();
     Line line13=new Line();
@@ -33,9 +36,14 @@ public class Obstacle2 extends Obstacle {
     Line line28=new Line();
 
     @Override
+    public Group returnObstacle2(){
+        return group2;
+    }
+
+    @Override
     public void move(){
-        Group group1=new Group();
-        group1.getChildren().addAll(line11,line12,line13,line14,line15,line16,line17,line18);
+
+        group.getChildren().addAll(line11,line12,line13,line14,line15,line16,line17,line18);
         //group.setTranslateX(10);
         translate1.setByX(400);
 
@@ -49,12 +57,12 @@ public class Obstacle2 extends Obstacle {
         translate1.setAutoReverse(false);
 
         //setting Circle as the node onto which the transition will be applied
-        translate1.setNode(group1);
+        translate1.setNode(group);
 
         //playing the transition
         translate1.play();
 
-        Group group2=new Group();
+
         group2.getChildren().addAll(line21,line22,line23,line24,line25,line26,line27,line28);
         //group.setTranslateX(10);
         translate2.setByX(-400);
@@ -74,10 +82,32 @@ public class Obstacle2 extends Obstacle {
         //playing the transition
         translate2.play();
 
-        pane.getChildren().addAll(group1,group2);
+        pane.getChildren().addAll(group,group2);
+        //group.getChildren().addAll(line11,line12,line13,line14,line15,line16,line17,line18,line21,line22,line23,line24,line25,line26,line27,line28);
+
     }
+
     Obstacle2(int centerX,int centerY){
         super(centerX,centerY);
+
+        components.add(line11);
+        components.add(line12);
+        components.add(line13);
+        components.add(line14);
+        components.add(line15);
+        components.add(line16);
+        components.add(line17);
+        components.add(line18);
+
+        components.add(line21);
+        components.add(line22);
+        components.add(line23);
+        components.add(line24);
+        components.add(line25);
+        components.add(line26);
+        components.add(line27);
+        components.add(line28);
+
         line11.setStartX(-400);
         line11.setStartY(200);
         line11.setEndX(-300);

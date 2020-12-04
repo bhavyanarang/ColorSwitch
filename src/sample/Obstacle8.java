@@ -13,6 +13,7 @@ import javafx.util.Duration;
 
 public class Obstacle8 extends Obstacle{
     Pane pane=new Pane();
+    Group group2=new Group();
     RotateTransition rotate1=new RotateTransition();
     Line line11=new Line();
     Line line12=new Line();
@@ -34,20 +35,19 @@ public class Obstacle8 extends Obstacle{
     Line line28=new Line();
 
     @Override
-            public void move(){
-        Group group1=new Group();
-        group1.getChildren().addAll(line11,line12,line13,line14);
+    public void move(){
+        group.getChildren().addAll(line11,line12,line13,line14);
 
         rotate1.setAxis(Rotate.Z_AXIS);
         rotate1.setToAngle(720);
         rotate1.setCycleCount(Timeline.INDEFINITE);
         rotate1.setDuration(Duration.millis(12000));
         rotate1.setAutoReverse(false);
-        rotate1.setNode(group1);
+        rotate1.setNode(group);
         //rotate1.playFrom(Duration.millis(1000));//delay in time
         rotate1.play();
 
-        Group group2=new Group();
+
         group2.getChildren().addAll(line21,line22,line23,line24);
 
         rotate2.setAxis(Rotate.Z_AXIS);
@@ -59,10 +59,32 @@ public class Obstacle8 extends Obstacle{
         rotate2.play();
 
 
-        pane.getChildren().addAll(group1,group2);
+        pane.getChildren().addAll(group,group2);
+    }
+    @Override
+    public Group returnObstacle2(){
+        return group2;
     }
     Obstacle8(int centerX,int centerY){
         super(centerX,centerY);
+        components.add(line11);
+        components.add(line12);
+        components.add(line13);
+        components.add(line14);
+        components.add(line15);
+        components.add(line16);
+        components.add(line17);
+        components.add(line18);
+
+        components.add(line21);
+        components.add(line22);
+        components.add(line23);
+        components.add(line24);
+        components.add(line25);
+        components.add(line26);
+        components.add(line27);
+        components.add(line28);
+
         line11.setStartX(centerX-100);
         line11.setStartY(centerY);
         line11.setEndX(centerX);
