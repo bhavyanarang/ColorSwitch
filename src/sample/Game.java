@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.animation.AnimationTimer;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Shape;
@@ -10,6 +12,8 @@ import java.util.Random;
 
 public class Game {
     Pane pane;
+    boolean starHit=false;
+    boolean colorSwitcherHit=false;
     private Scorecard scorecard;
     private Star star;
     private Ball ball;
@@ -19,39 +23,61 @@ public class Game {
     private Player player;
     private ArrayList<Obstacle> Obstacles;
     public void initialize(){
+        colorSwitcher.getColorSwitcher().setLayoutX(0);
+        colorSwitcher.getColorSwitcher().setLayoutY(80);
+        colorSwitcher.getColorSwitcher().setScaleX(0.5);
+        colorSwitcher.getColorSwitcher().setScaleY(0.5);
 
     }
     public void startNewGame() {
         int Obstaclenumber=new Random().nextInt(8-1)+1;
         Obstacle presentOb=Obstacles.get(Obstaclenumber-1);
         //if(Obstaclenumber==2 || Obstaclenumber==3 || Obstaclenumber==5 || Obstaclenumber==6 || Obstaclenumber==7 || Obstaclenumber==8){
-            this.pane.getChildren().setAll(ball.getBall(), pause.getPauseButton(), scorecard.getLabel(), star.getImg(),presentOb.returnObstacle(),presentOb.returnObstacle2());
+            this.pane.getChildren().setAll(colorSwitcher.getColorSwitcher(),ball.getBall(), pause.getPauseButton(), scorecard.getLabel(), star.getImg(),presentOb.returnObstacle(),presentOb.returnObstacle2());
         //}
-        pane.setOnMouseClicked(event->{
-            ball.jump();
-        });
+
     }
+
     private boolean didHit(Obstacle presentOb){
         for (Shape shape:presentOb.components){
             Shape intersect = Shape.intersect(shape, ball.getBall());
             if (intersect.getBoundsInLocal().getWidth() != -1) {
-                System.out.println("OOps");
+                System.out.println("Oops");
                 return true;
             }
         }
         return false;
     }
+    private void didHitGeneral(Group group){
+        System.out.println(ball.getYCoordinate());
+        System.out.println(group.getLayoutY());
+        if(ball.getYCoordinate()-group.getLayoutY()-200<=0){
+            Pane variable= (Pane) group.getParent();
+            variable.getChildren().remove(group);
+            colorSwitcherHit=true;
+            ball.changeColor();
+        }
+    }
 
     private boolean didPause(){
+
         return false;
     }
-    private boolean didHitStar(){
-        return false;
+    private void didHitStar(){
+//        System.out.println(ball.getYCoordinate());
+//        System.out.println(star.getImg().getY());
+        if(ball.getYCoordinate()-star.getImg().getY()<=0){
+            Pane variable= (Pane) star.getImg().getParent();
+            variable.getChildren().remove(this.star.getImg());
+            starHit=true;
+        }
     }
     AnimationTimer t1=new AnimationTimer() {
         @Override
         public void handle(long l) {
             ball.addGravity();
+            if(!starHit)    didHitStar();
+            if(!colorSwitcherHit)   didHitGeneral(colorSwitcher.getColorSwitcher());
         }
     };
     public Game(Pane p){
@@ -63,6 +89,9 @@ public class Game {
         colorSwitcher=new ColorSwitcher();
         pause=new Pause();
         player=new Player();
+        colorSwitcher=new ColorSwitcher();
+        initialize();
+
         Obstacles=new ArrayList<Obstacle>(0);
         Obstacles.add(new Obstacle1(200,200));
         Obstacles.add(new Obstacle2(200,200));
@@ -74,7 +103,9 @@ public class Game {
         Obstacles.add(new Obstacle8(200,200));
 
         t1.start();
-
+        pane.setOnMouseClicked(event->{
+            ball.jump();
+        });
     }
 
 }

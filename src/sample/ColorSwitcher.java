@@ -15,7 +15,7 @@ import java.awt.*;
 public class ColorSwitcher {
     Pane pane=new Pane();
     RotateTransition rotate=new RotateTransition();
-
+    Group group;
     Arc arc1=new Arc();
     Arc arc2=new Arc();
     Arc arc3=new Arc();
@@ -65,7 +65,7 @@ public class ColorSwitcher {
         arc4.setStrokeWidth(0);
         arc4.setType(ArcType.ROUND);
 
-        Group group=new Group();
+        group=new Group();
         group.getChildren().addAll(arc1,arc2,arc3,arc4);
 
         rotate.setAxis(Rotate.Z_AXIS);
@@ -76,7 +76,10 @@ public class ColorSwitcher {
         rotate.setNode(group);
         rotate.play();
 
-
         pane.getChildren().add(group);
+    }
+
+    public Group getColorSwitcher() {
+        return this.group;
     }
 }

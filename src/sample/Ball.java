@@ -27,42 +27,49 @@ public class Ball {
 
     public Ball(){
         ball=new Circle(centre_x,centre_y,radius,colors[color]);
-        ball.setOpacity(0.8);
+        ball.setOpacity(1);
         changeColor();
     }
     public void changeColor(){
-        if(this.getColor()!=3){
-            this.color+=1;
+        int newColor= rand.nextInt(4);
+        while(this.getColor()==newColor){
+            newColor= rand.nextInt(4);
         }
-        else{
-            this.color=0;
-        }
-        ball.setFill(colors[color]);
+        color=newColor;
+        ball.setFill(colors[newColor]);
     }
     public void addGravity(){
 
         if(!flag) {
             TranslateTransition transition = new TranslateTransition();
-            transition.setByY(+80);                        //upward pixels
-            transition.setDuration(Duration.millis(300));   //time in ms
+            transition.setByY(20);                        //upward pixels
+            transition.setDuration(Duration.millis(400));   //time in ms
             transition.setNode(ball);
-            //transition.play();
+            transition.play();
+            centre_y+=20/400;
         }
         //jump();
     }
     public Circle getBall(){
+
         return this.ball;
     }
     public void jump(){
         flag=false;
         TranslateTransition transition = new TranslateTransition();
-        transition.setByY(-2000);                        //upward pixels
+        transition.setByY(-1000);                        //upward pixels
         transition.setDuration(Duration.millis(100));   //time in ms
         transition.setNode(ball);
         transition.play();
+        centre_y-=10;
 
     }
+    public double getYCoordinate(){
+
+        return this.centre_y;
+    }
     public int getColor(){
+
         return this.color;
     }
     public void setVelocity(double x){

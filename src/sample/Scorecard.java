@@ -22,7 +22,7 @@ public class Scorecard {
         label.setLayoutY(label.getLayoutY()+60);
     }
     public Scorecard(){
-        label=new Label("10");
+        label=new Label("0");
         modifyLabel();
     }
 }
