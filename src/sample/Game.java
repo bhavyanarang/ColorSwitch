@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.AnimationTimer;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Shape;
@@ -26,7 +27,9 @@ public class Game {
         //if(Obstaclenumber==2 || Obstaclenumber==3 || Obstaclenumber==5 || Obstaclenumber==6 || Obstaclenumber==7 || Obstaclenumber==8){
             this.pane.getChildren().setAll(ball.getBall(), pause.getPauseButton(), scorecard.getLabel(), star.getImg(),presentOb.returnObstacle(),presentOb.returnObstacle2());
         //}
-
+        pane.setOnMouseClicked(event->{
+            ball.jump();
+        });
     }
     private boolean didHit(Obstacle presentOb){
         for (Shape shape:presentOb.components){
@@ -38,12 +41,19 @@ public class Game {
         }
         return false;
     }
+
     private boolean didPause(){
         return false;
     }
     private boolean didHitStar(){
         return false;
     }
+    AnimationTimer t1=new AnimationTimer() {
+        @Override
+        public void handle(long l) {
+            ball.addGravity();
+        }
+    };
     public Game(Pane p){
         this.pane=p;
         scorecard=new Scorecard();
@@ -62,9 +72,9 @@ public class Game {
         Obstacles.add(new Obstacle6(200,200));
         Obstacles.add(new Obstacle7(200,200));
         Obstacles.add(new Obstacle8(200,200));
+
+        t1.start();
+
     }
-
-
-    
 
 }
