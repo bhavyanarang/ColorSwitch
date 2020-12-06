@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Shape;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
@@ -32,6 +33,7 @@ public class Obstacle1 extends Obstacle {
         rotate.play();
         pane.getChildren().add(group);
     }
+
 
     Obstacle1(int centerX,int centerY){
         super(centerX,centerY);
