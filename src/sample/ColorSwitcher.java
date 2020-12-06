@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
+import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
@@ -81,5 +82,19 @@ public class ColorSwitcher {
 
     public Group getColorSwitcher() {
         return this.group;
+    }
+    public Shape getArc(int n){
+        if(n==1){
+            return arc1;
+        }
+        else if(n==2){
+            return arc2;
+        }
+        else if(n==3){
+            return arc3;
+        }
+        else{
+            return arc4;
+        }
     }
 }

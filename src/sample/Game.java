@@ -5,6 +5,8 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.FillRule;
 import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
@@ -57,6 +59,21 @@ public class Game {
             colorSwitcherHit=true;
             ball.changeColor();
         }
+
+        //Shape intersect=Shape.intersect(colorSwitcher.getColorSwitcher().getChildren(),ball.getBall());
+    }
+    private void didHitColorSwitcher(){
+        if(!colorSwitcherHit)
+        for(int i=1;i<=4;i++){
+            Shape shape=Shape.intersect(ball.getBall(),colorSwitcher.getArc(i));
+            System.out.println(shape);
+            if(shape.getBoundsInParent().getHeight()>=0) {
+                Pane variable= (Pane) colorSwitcher.getColorSwitcher().getParent();
+                variable.getChildren().remove(colorSwitcher.getColorSwitcher());
+                colorSwitcherHit=true;
+                ball.changeColor();
+            }
+        }
     }
 
     private boolean didPause(){
@@ -64,8 +81,7 @@ public class Game {
         return false;
     }
     private void didHitStar(){
-//        System.out.println(ball.getYCoordinate());
-//        System.out.println(star.getImg().getY());
+
         if(ball.getYCoordinate()-star.getImg().getY()<=0){
             Pane variable= (Pane) star.getImg().getParent();
             variable.getChildren().remove(this.star.getImg());
@@ -77,7 +93,8 @@ public class Game {
         public void handle(long l) {
             ball.addGravity();
             if(!starHit)    didHitStar();
-            if(!colorSwitcherHit)   didHitGeneral(colorSwitcher.getColorSwitcher());
+            if(!colorSwitcherHit)   didHitColorSwitcher();
+            //if(!colorSwitcherHit)    didHitGeneral(colorSwitcher.getColorSwitcher());
         }
     };
     public Game(Pane p){
