@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Group;
@@ -55,6 +56,7 @@ public class Obstacle2 extends Obstacle {
 
         //the transition will set to be auto reversed by setting this to true
         translate1.setAutoReverse(false);
+        translate1.setInterpolator(Interpolator.LINEAR);
 
         //setting Circle as the node onto which the transition will be applied
         translate1.setNode(group);
@@ -75,6 +77,7 @@ public class Obstacle2 extends Obstacle {
 
         //the transition will set to be auto reversed by setting this to true
         translate2.setAutoReverse(false);
+        translate2.setInterpolator(Interpolator.LINEAR);
 
         //setting Circle as the node onto which the transition will be applied
         translate2.setNode(group2);

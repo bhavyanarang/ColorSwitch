@@ -1,6 +1,7 @@
 package sample;
 
 import com.sun.prism.paint.Paint;
+import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
@@ -30,6 +31,7 @@ public class Obstacle1 extends Obstacle {
         rotate.setDuration(Duration.millis(6000));
         rotate.setAutoReverse(false);
         rotate.setNode(group);
+        rotate.setInterpolator(Interpolator.LINEAR);
         rotate.play();
         pane.getChildren().add(group);
     }

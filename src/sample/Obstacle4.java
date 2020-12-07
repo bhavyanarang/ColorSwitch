@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
@@ -26,6 +27,7 @@ public class Obstacle4 extends Obstacle {
         rotate.setCycleCount(Timeline.INDEFINITE);
         rotate.setDuration(Duration.millis(6000));
         rotate.setAutoReverse(false);
+        rotate.setInterpolator(Interpolator.LINEAR);
         rotate.setNode(group);
         rotate.play();
 
