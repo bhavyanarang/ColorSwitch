@@ -45,8 +45,9 @@ public class Game {
             Shape intersection=Shape.intersect(shape,ball.getBall());
 
             if(intersection.getBoundsInParent().getHeight()>=0){
-                if(shape.getFill()== ball.getBall().getFill()){
-                    System.out.println(intersection.getFill());
+                if(shape.getFill()!= ball.getBall().getFill()){
+                    System.out.println(shape);
+                    System.out.println(ball.getBall().getFill());
                     AnchorPane pane1= FXMLLoader.load(getClass().getResource("ObstacleHitMenu.fxml"));
                     pane.getChildren().setAll(pane1);
                 }

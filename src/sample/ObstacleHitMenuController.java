@@ -1,11 +1,16 @@
 package sample;
 
+import javafx.animation.AnimationTimer;
+import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
 
 import java.awt.*;
 import java.io.IOException;
@@ -32,6 +37,13 @@ public class ObstacleHitMenuController {
         rotate2.setPivotY(0);
         rotate2.setAngle(-5);
         circle2.getTransforms().addAll(rotate2);
+
+//        ScaleTransition st1 = new ScaleTransition(Duration.millis(500), (Node)replay);
+//        st1.setByY(0.05);
+//        st1.setByX(0.05);
+//        st1.setCycleCount(Timeline.INDEFINITE);
+//        st1.setAutoReverse(true);
+//        st1.play();
     }
     @FXML
     void goToHome(MouseEvent event) throws IOException {
@@ -43,5 +55,15 @@ public class ObstacleHitMenuController {
         Ball b1=new Ball();
         pane.getChildren().setAll(b1.getBall());
     }
+    AnimationTimer t1=new AnimationTimer() {
+        @Override
+        public void handle(long l) {
+            rotate();
+        }
+    };
+    public ObstacleHitMenuController(){
+        t1.start();
+    }
+
 
 }

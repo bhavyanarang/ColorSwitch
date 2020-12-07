@@ -51,7 +51,6 @@ public class Ball {
         //jump();
     }
     public Circle getBall(){
-
         return this.ball;
     }
     public void jump(){
