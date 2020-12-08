@@ -23,6 +23,8 @@ public class Game {
     private Player player;
     private ArrayList<Obstacle> Obstacles;
     private Obstacle nakliObstacle;
+    private boolean jumpPressed=false;
+    private int jumpCount=0;
     public void initialize(){
         colorSwitcher.getColorSwitcher().setLayoutX(0);
         colorSwitcher.getColorSwitcher().setLayoutY(80);
@@ -32,6 +34,9 @@ public class Game {
     }
     public void startNewGame() {
         int Obstaclenumber=new Random().nextInt(8-1)+1;
+        while(Obstaclenumber==6){
+            Obstaclenumber=new Random().nextInt(8-1)+1;
+        }
         Obstacle presentOb=Obstacles.get(Obstaclenumber-1);
         nakliObstacle=presentOb;
         //if(Obstaclenumber==2 || Obstaclenumber==3 || Obstaclenumber==5 || Obstaclenumber==6 || Obstaclenumber==7 || Obstaclenumber==8){
@@ -44,10 +49,11 @@ public class Game {
         for(Shape shape:presentObstacle.components){
             Shape intersection=Shape.intersect(shape,ball.getBall());
 
-            if(intersection.getBoundsInParent().getHeight()>=0){
-                if(shape.getFill()!= ball.getBall().getFill()){
-                    System.out.println(shape);
-                    System.out.println(ball.getBall().getFill());
+            if(intersection.getBoundsInParent().getHeight()>0){
+                System.out.println(shape.getStroke());
+                System.out.println(ball.getBall().getFill());
+                if(shape.getStroke()!=ball.getBall().getFill()){
+                    System.out.println("hit");
                     AnchorPane pane1= FXMLLoader.load(getClass().getResource("ObstacleHitMenu.fxml"));
                     pane.getChildren().setAll(pane1);
                 }
@@ -98,8 +104,20 @@ public class Game {
                     e.printStackTrace();
                 }
             }
+            if(jumpPressed){
+                if(jumpCount>10){
+                    jumpPressed=false;
+                    jumpCount=0;
+                }
+                else{
+                    ball.jump();
+                    jumpCount++;
+                }
+            }
         }
+
     };
+
     public Game(Pane p){
         this.pane=p;
         scorecard=new Scorecard();
@@ -124,7 +142,7 @@ public class Game {
 
         t1.start();
         pane.setOnMouseClicked(event->{
-            ball.jump();
+            jumpPressed=true;
         });
     }
 

@@ -50,6 +50,7 @@ public class Obstacle1 extends Obstacle {
         line1.setEndY(centerY);
         line1.setStrokeType(StrokeType.CENTERED);
         line1.setStroke(Color.RED);
+        //line1.setFill(Color.RED);
         line1.setStrokeWidth(10);
 
         line2.setStartX(centerX);

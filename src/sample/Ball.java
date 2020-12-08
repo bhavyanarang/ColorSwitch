@@ -42,11 +42,11 @@ public class Ball {
 
         if(!flag) {
             TranslateTransition transition = new TranslateTransition();
-            transition.setByY(20);                        //upward pixels
-            transition.setDuration(Duration.millis(400));   //time in ms
+            transition.setByY(100);                        //upward pixels
+            //transition.setDuration(Duration.millis(4));   //time in ms
             transition.setNode(ball);
             transition.play();
-            centre_y+=20/400;
+            centre_y+=50/400;
         }
         //jump();
     }
@@ -56,11 +56,11 @@ public class Ball {
     public void jump(){
         flag=false;
         TranslateTransition transition = new TranslateTransition();
-        transition.setByY(-1000);                        //upward pixels
-        transition.setDuration(Duration.millis(100));   //time in ms
+        transition.setByY(-500);                        //upward pixels
+        //transition.setDuration(Duration.millis(100));   //time in ms
         transition.setNode(ball);
         transition.play();
-        centre_y-=10;
+        centre_y-=500;
 
     }
     public double getYCoordinate(){
