@@ -17,11 +17,12 @@ public class Ball {
     private boolean flag=true;
     private double velocity=-100;                           //only in +y direction (in pixels/s)
     private final double max_velocity=-400;                 //maximum velocity
-    double y_coordinate=3;
+    double y_coordinate=100;
+    private final double jumpChangeY=-500;
     private final double centre_x=200;                      //middle of pane
     private double centre_y=500;
     private final double radius=10;
-    private final double gravity=50.0;
+    private final double gravity=100;
     int color = rand.nextInt(4);                 //ranges from 0 to 3
     Color[] colors={Color.RED,Color.YELLOW,Color.BLUE,Color.VIOLET};
 
@@ -39,16 +40,13 @@ public class Ball {
         ball.setFill(colors[newColor]);
     }
     public void addGravity(){
-
         if(!flag) {
             TranslateTransition transition = new TranslateTransition();
-            transition.setByY(100);                        //upward pixels
-            //transition.setDuration(Duration.millis(4));   //time in ms
+            transition.setByY(gravity);                        //upward pixels
             transition.setNode(ball);
             transition.play();
-            centre_y+=50/400;
+            y_coordinate-=1;
         }
-        //jump();
     }
     public Circle getBall(){
         return this.ball;
@@ -56,29 +54,16 @@ public class Ball {
     public void jump(){
         flag=false;
         TranslateTransition transition = new TranslateTransition();
-        transition.setByY(-500);                        //upward pixels
-        //transition.setDuration(Duration.millis(100));   //time in ms
+        transition.setByY(jumpChangeY);                        //upward pixels
         transition.setNode(ball);
         transition.play();
-        centre_y-=500;
-
+        y_coordinate+=5;
     }
     public double getYCoordinate(){
-
-        return this.centre_y;
+        return this.y_coordinate;
     }
     public int getColor(){
-
         return this.color;
-    }
-    public void setVelocity(double x){
-        if(this.velocity+x>this.max_velocity){
-            this.velocity=this.max_velocity;
-        }
-        else    this.velocity+=x;
-    }
-    public double getVelocity(){
-        return this.velocity;
     }
 
 }

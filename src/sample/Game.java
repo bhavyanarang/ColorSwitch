@@ -12,6 +12,8 @@ import java.util.Random;
 public class Game {
     Pane pane;
     boolean starHit=false;
+    private double prevPaneTranslate=0;
+    private int timesPaneDown=0;
     boolean colorSwitcherHit=false;
     boolean obstacleHit=false;
     private Scorecard scorecard;
@@ -34,7 +36,7 @@ public class Game {
     }
     public void startNewGame() {
         int Obstaclenumber=new Random().nextInt(8-1)+1;
-        while(Obstaclenumber==6){
+        while(Obstaclenumber==6 || Obstaclenumber==7 || Obstaclenumber==1){
             Obstaclenumber=new Random().nextInt(8-1)+1;
         }
         Obstacle presentOb=Obstacles.get(Obstaclenumber-1);
@@ -50,12 +52,15 @@ public class Game {
             Shape intersection=Shape.intersect(shape,ball.getBall());
 
             if(intersection.getBoundsInParent().getHeight()>0){
-                System.out.println(shape.getStroke());
-                System.out.println(ball.getBall().getFill());
                 if(shape.getStroke()!=ball.getBall().getFill()){
+                    System.out.println(shape.getStroke());
+                    System.out.println(ball.getBall().getFill());
                     System.out.println("hit");
                     AnchorPane pane1= FXMLLoader.load(getClass().getResource("ObstacleHitMenu.fxml"));
                     pane.getChildren().setAll(pane1);
+                    t1.stop();
+
+                    pane.setTranslateY(0);
                 }
                 obstacleHit=true;
             }
@@ -73,10 +78,6 @@ public class Game {
             }
         }
     }
-    private boolean didPause(){
-
-        return false;
-    }
     private void didHitStar(){
         Shape shape=Shape.intersect(ball.getBall(),star.toCheckHit());
         if(shape.getBoundsInParent().getHeight()>=0){
@@ -86,11 +87,29 @@ public class Game {
             starHit=true;
         }
     }
+    private boolean translatePane(){
+        double y=ball.getBall().getTranslateY();
+        double z=-1*y+40;
+//        System.out.println(z);
+//        System.out.println(prevPaneTranslate);
+        if(z<prevPaneTranslate+15){
+            return false;
+        }
+        else{
+            prevPaneTranslate=z;
+            return true;
+        }
+    }
     AnimationTimer t1=new AnimationTimer() {
         @Override
         public void handle(long l) {
-            ball.addGravity();
+            if(!pause.getPauseButton().isPressed())
+                ball.addGravity();
 
+            if(translatePane()){
+                timesPaneDown++;
+                pane.setTranslateY(timesPaneDown*10);
+            }
             if(!starHit)
                 didHitStar();
 
@@ -105,7 +124,7 @@ public class Game {
                 }
             }
             if(jumpPressed){
-                if(jumpCount>10){
+                if(jumpCount>=10){
                     jumpPressed=false;
                     jumpCount=0;
                 }

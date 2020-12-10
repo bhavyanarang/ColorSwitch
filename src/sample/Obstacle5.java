@@ -52,7 +52,7 @@ public class Obstacle5 extends Obstacle {
         rotate2.setAxis(Rotate.Z_AXIS);
         rotate2.setToAngle(720);
         rotate2.setCycleCount(Timeline.INDEFINITE);
-        rotate2.setDuration(Duration.millis(4000));
+        rotate2.setDuration(Duration.millis(6000));
         rotate2.setAutoReverse(false);
         rotate2.setInterpolator(Interpolator.LINEAR);
         rotate2.setNode(group2);
