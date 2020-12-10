@@ -45,7 +45,7 @@ public class Ball {
             transition.setByY(gravity);                        //upward pixels
             transition.setNode(ball);
             transition.play();
-            y_coordinate-=1;
+            //y_coordinate-=1;
         }
     }
     public Circle getBall(){
@@ -57,10 +57,7 @@ public class Ball {
         transition.setByY(jumpChangeY);                        //upward pixels
         transition.setNode(ball);
         transition.play();
-        y_coordinate+=5;
-    }
-    public double getYCoordinate(){
-        return this.y_coordinate;
+        //y_coordinate+=5;
     }
     public int getColor(){
         return this.color;

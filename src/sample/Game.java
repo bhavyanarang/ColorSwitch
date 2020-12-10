@@ -60,7 +60,6 @@ public class Game {
                     pane.getChildren().setAll(pane1);
                     t1.stop();
 
-                    pane.setTranslateY(0);
                 }
                 obstacleHit=true;
             }
@@ -108,7 +107,11 @@ public class Game {
 
             if(translatePane()){
                 timesPaneDown++;
-                pane.setTranslateY(timesPaneDown*10);
+                colorSwitcher.getColorSwitcher().setTranslateY(timesPaneDown*10);
+                star.getImg().setTranslateY(timesPaneDown*10);
+                nakliObstacle.returnObstacle().setTranslateY(timesPaneDown*10);
+                nakliObstacle.returnObstacle2().setTranslateY(timesPaneDown*10);
+//                pane.setTranslateY(timesPaneDown*10);
             }
             if(!starHit)
                 didHitStar();
