@@ -13,9 +13,10 @@ public class Game {
     Pane pane;
     boolean starHit=false;
     private double prevPaneTranslate=0;
-    private int timesPaneDown=0;
+    private int timesPaneDown=1;
     boolean colorSwitcherHit=false;
     boolean obstacleHit=false;
+    boolean moveDown=false;
     private Scorecard scorecard;
     private Star star;
     private Ball ball;
@@ -27,6 +28,7 @@ public class Game {
     private Obstacle nakliObstacle;
     private boolean jumpPressed=false;
     private int jumpCount=0;
+    private int downCount=0;
     public void initialize(){
         colorSwitcher.getColorSwitcher().setLayoutX(0);
         colorSwitcher.getColorSwitcher().setLayoutY(80);
@@ -91,11 +93,12 @@ public class Game {
         double z=-1*y+40;
 //        System.out.println(z);
 //        System.out.println(prevPaneTranslate);
-        if(z<prevPaneTranslate+15){
+        if(z<prevPaneTranslate+75){
             return false;
         }
         else{
             prevPaneTranslate=z;
+            //timesPaneDown++;
             return true;
         }
     }
@@ -105,14 +108,14 @@ public class Game {
             if(!pause.getPauseButton().isPressed())
                 ball.addGravity();
 
-            if(translatePane()){
-                timesPaneDown++;
-                colorSwitcher.getColorSwitcher().setTranslateY(timesPaneDown*10);
-                star.getImg().setTranslateY(timesPaneDown*10);
-                nakliObstacle.returnObstacle().setTranslateY(timesPaneDown*10);
-                nakliObstacle.returnObstacle2().setTranslateY(timesPaneDown*10);
-//                pane.setTranslateY(timesPaneDown*10);
-            }
+//            if(translatePane()){
+//                timesPaneDown++;
+//                moveDown=true;
+////                pane.setTranslateY(timesPaneDown*10);
+//            }
+
+            //moveDown=translatePane();
+
             if(!starHit)
                 didHitStar();
 
@@ -127,7 +130,11 @@ public class Game {
                 }
             }
             if(jumpPressed){
-                if(jumpCount>=10){
+                System.out.println(ball.getBall().getBoundsInParent().getCenterY());
+                if(ball.getBall().getBoundsInParent().getCenterY()<450){
+                    moveDown=true;
+                }
+                if(jumpCount>10){
                     jumpPressed=false;
                     jumpCount=0;
                 }
@@ -136,6 +143,24 @@ public class Game {
                     jumpCount++;
                 }
             }
+            if(moveDown){
+                if(downCount>10){
+                    moveDown=false;
+                    downCount=0;
+                    timesPaneDown++;
+                }
+                else{
+                    downCount+=2;
+                    System.out.println("down " +downCount);
+                    double getDown=(timesPaneDown-1)*20+downCount;
+                    colorSwitcher.getColorSwitcher().setTranslateY(getDown);
+                    star.getImg().setTranslateY(getDown);
+                    star.toCheckHit().setTranslateY(getDown);
+                    nakliObstacle.returnObstacle().setTranslateY(getDown);
+                    nakliObstacle.returnObstacle2().setTranslateY(getDown);
+                }
+            }
+
         }
 
     };

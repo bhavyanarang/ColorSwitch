@@ -22,7 +22,7 @@ public class Ball {
     private final double centre_x=200;                      //middle of pane
     private double centre_y=500;
     private final double radius=10;
-    private final double gravity=100;
+    private final double gravity=200;
     int color = rand.nextInt(4);                 //ranges from 0 to 3
     Color[] colors={Color.RED,Color.YELLOW,Color.BLUE,Color.VIOLET};
 
