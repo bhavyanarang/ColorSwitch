@@ -12,47 +12,33 @@ import java.util.Random;
 public class Game {
     Pane pane;
     boolean starHit=false;
-    private int timesPaneDown=1;
     boolean colorSwitcherHit=false;
     boolean obstacleHit=false;
     boolean moveDown=false;
+    private boolean jumpPressed=false;
+
     private Scorecard scorecard;
-    private Star[] stars;
-    private ColorSwitcher[] colorSwitchers;
     private Star star;
-    private int starsGone=0;
-    private int colorSwitchersGone=0;
     private Ball ball;
     private PauseMenuController pauseMenuController;
     private ColorSwitcher colorSwitcher;
     private Pause pause;
     private Player player;
     private ArrayList<Obstacle> Obstacles;
-    private Obstacle nakliObstacle;
-    private boolean jumpPressed=false;
+    private Obstacle currentObstacle;
+
+    private Star[] stars;
+    private ColorSwitcher[] colorSwitchers;
+    private Obstacle[] onscreenObstacles;
+
     private int jumpCount=0;
     private int downCount=0;
+    private int timesPaneDown=1;
+    private int starsGone=0;
+    private int colorSwitchersGone=0;
+    private int obstaclesGone=0;
 
     public void initialize(){
-        scorecard=new Scorecard();
-        stars=new Star[100];
-        colorSwitchers=new ColorSwitcher[100];
-
-        for(int i=0;i<100;i++){
-            stars[i]=new Star();
-            stars[i].setYCoordinate(-1*150*i+325);
-
-            colorSwitchers[i]=new ColorSwitcher();
-            colorSwitchers[i].setCentre_y(300-150*i);
-        }
-        star=stars[0];
-
-        ball=new Ball();
-        pauseMenuController=new PauseMenuController();
-        pause=new Pause();
-        player=new Player();
-        colorSwitcher=colorSwitchers[0];
-
         Obstacles=new ArrayList<Obstacle>(0);
         Obstacles.add(new Obstacle1(200,200));
         Obstacles.add(new Obstacle2(200,200));
@@ -62,19 +48,68 @@ public class Game {
         Obstacles.add(new Obstacle6(200,200));
         Obstacles.add(new Obstacle7(200,200));
         Obstacles.add(new Obstacle8(200,200));
+        ball=new Ball();
+        scorecard=new Scorecard();
+        stars=new Star[3];
+        colorSwitchers=new ColorSwitcher[3];
+        onscreenObstacles=new Obstacle[3];
+
+        addNewRandomObjects(ball.getBall().getBoundsInParent().getCenterY());
+//        for(int i=0;i<3;i++){
+//            stars[i]=new Star();
+//            stars[i].setYCoordinate(325-200*i);
+//
+//            colorSwitchers[i]=new ColorSwitcher();
+//            colorSwitchers[i].setCentre_y(300-200*i);
+//        }
+        star=stars[0];
+
+        pauseMenuController=new PauseMenuController();
+        pause=new Pause();
+        player=new Player();
+        colorSwitcher=colorSwitchers[0];
+
+    }
+    public void addNewRandomObjects(double ballY){
+        System.out.println(ballY);
+        int randomNumber=new Random().nextInt(8-1)+1;
+        for(int i=1;i<=3;i++){
+            stars[i-1]=new Star();
+            stars[i-1].setYCoordinate(ballY-100-200*i);
+
+            colorSwitchers[i-1]=new ColorSwitcher();
+            colorSwitchers[i-1].setCentre_y(ballY-200-200*i);
+
+            if(i==1){
+                onscreenObstacles[i - 1]=Obstacles.get(randomNumber);
+            }
+            else if(i==2){
+                onscreenObstacles[i-1]=Obstacles.get((i+2)%8);
+            }
+            else{
+                onscreenObstacles[i-1]=Obstacles.get((i-2)%8);
+            }
+            onscreenObstacles[i - 1].returnObstacle().setLayoutY(ballY - 150 - 300 * i);
+            onscreenObstacles[i - 1].returnObstacle2().setLayoutY(ballY - 150 - 300 * i);
+            if(onscreenObstacles[i-1] instanceof Obstacle1){
+                onscreenObstacles[i-1].returnObstacle().setLayoutY(100);
+                onscreenObstacles[i-1].returnObstacle2().setLayoutY(100);
+            }
+        }
     }
     public void startNewGame() {
-        int Obstaclenumber=new Random().nextInt(8-1)+1;
-        Obstacle presentOb=Obstacles.get(Obstaclenumber-1);
-        nakliObstacle=presentOb;
+
         //if(Obstaclenumber==2 || Obstaclenumber==3 || Obstaclenumber==5 || Obstaclenumber==6 || Obstaclenumber==7 || Obstaclenumber==8){
-            this.pane.getChildren().setAll(ball.getBall(), pause.getPauseButton(),scorecard.getLabel(),presentOb.returnObstacle(),presentOb.returnObstacle2());
+            this.pane.getChildren().setAll(ball.getBall(), pause.getPauseButton(),scorecard.getLabel());
         //}
 
-        for(int i=0;i<100;i++){
+        for(int i=0;i<3;i++){
             this.pane.getChildren().add(stars[i].getImg());
             this.pane.getChildren().add(colorSwitchers[i].getColorSwitcher());
+            this.pane.getChildren().add(onscreenObstacles[i].returnObstacle());
+            this.pane.getChildren().add(onscreenObstacles[i].returnObstacle2());
         }
+        currentObstacle=onscreenObstacles[0];
 
     }
 
@@ -94,7 +129,12 @@ public class Game {
                     t1.stop();
                 }
                 obstacleHit=true;
+                for(int i=0;i<3;i++){
+                    this.pane.getChildren().remove(onscreenObstacles[i].returnObstacle());
+                    this.pane.getChildren().remove(onscreenObstacles[i].returnObstacle2());
+                }
             }
+
         }
     }
     private void didHitColorSwitcher(){
@@ -102,7 +142,6 @@ public class Game {
             Shape shape=Shape.intersect(ball.getBall(),colorSwitcher.getArc(i));
             if(shape.getBoundsInParent().getHeight()>=0) {
                 ball.changeColor();
-                //colorSwitcherHit=true;
                 Pane variable= (Pane) colorSwitcher.getColorSwitcher().getParent();
                 if(variable!=null){
                     variable.getChildren().remove(colorSwitcher.getColorSwitcher());
@@ -110,11 +149,12 @@ public class Game {
                 }
             }
         }
-        if(colorSwitchersGone==100){
+        if(colorSwitchersGone==3){
             colorSwitcherHit=true;
         }
         else{
             colorSwitcher=colorSwitchers[colorSwitchersGone];
+            currentObstacle=onscreenObstacles[colorSwitchersGone];
         }
     }
     private void didHitStar(){
@@ -128,7 +168,7 @@ public class Game {
                 starsGone++;
             }
         }
-        if(starsGone==100){
+        if(starsGone==3){
             starHit=true;
         }
         else{
@@ -147,13 +187,13 @@ public class Game {
             if(!colorSwitcherHit)
                 didHitColorSwitcher();
 
-            if(!obstacleHit){
-                try {
-                    checkObstacleHit(nakliObstacle);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+//            if(!obstacleHit){
+//                try {
+//                    checkObstacleHit(currentObstacle);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
 
             if(jumpPressed){
                 if(ball.getBall().getBoundsInParent().getCenterY()<450){
@@ -178,16 +218,18 @@ public class Game {
                     downCount+=2;
                     double getDown=(timesPaneDown-1)*20+downCount;
                     //colorSwitcher.getColorSwitcher().setTranslateY(getDown);
-                    for(int i=0;i<100;i++){
+                    for(int i=0;i<3;i++){
                         stars[i].getImg().setTranslateY(getDown);
                         stars[i].toCheckHit().setTranslateY(getDown);
                         colorSwitchers[i].getColorSwitcher().setTranslateY(getDown);
+                        onscreenObstacles[i].returnObstacle().setTranslateY(getDown);
+                        onscreenObstacles[i].returnObstacle2().setTranslateY(getDown);
+
                     }
-                    nakliObstacle.returnObstacle().setTranslateY(getDown);
-                    nakliObstacle.returnObstacle2().setTranslateY(getDown);
+//                    currentObstacle.returnObstacle().setTranslateY(getDown);
+//                    currentObstacle.returnObstacle2().setTranslateY(getDown);
                 }
             }
-
         }
 
     };

@@ -24,7 +24,6 @@ public class Obstacle1 extends Obstacle {
     @Override
     public void move(){
         group.getChildren().addAll(line1,line2,line3,line4);
-
         rotate.setAxis(Rotate.Z_AXIS);
         rotate.setToAngle(720);
         rotate.setCycleCount(Timeline.INDEFINITE);
