@@ -79,6 +79,11 @@ public class ColorSwitcher {
         rotate.play();
 
         pane.getChildren().add(group);
+
+        group.setLayoutX(0);
+        group.setLayoutY(80);
+        group.setScaleX(0.5);
+        group.setScaleY(0.5);
     }
 
     public Group getColorSwitcher() {

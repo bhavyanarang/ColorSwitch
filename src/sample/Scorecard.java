@@ -8,7 +8,7 @@ import java.awt.*;
 public class Scorecard {
 
     private Label label;
-
+    //private ObstacleHitMenuController obstacleHitMenuController=new ObstacleHitMenuController();
     public Label getLabel(){
         return label;
     }
@@ -16,6 +16,7 @@ public class Scorecard {
         int a=Integer.parseInt(label.getText());
         a+=1;
         label.setText(Integer.toString(a));
+        //obstacleHitMenuController.updatePresentScore(Integer.toString(a));
     }
     public void modifyLabel(){
         label.setTextFill(Color.WHITE);

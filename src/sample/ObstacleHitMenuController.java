@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.transform.Rotate;
@@ -22,9 +23,12 @@ public class ObstacleHitMenuController {
     @FXML private AnchorPane pane;
     //@FXML private Button back;
     //@FXML private Button replay;
+    @FXML private Label presentScore;
+    @FXML private Label highScore;
+    @FXML private Label totalStars;
 
-    Rotate rotate1=new Rotate();
-    Rotate rotate2=new Rotate();
+    Rotate rotate1;
+    Rotate rotate2;
 
     public void rotate() {
 
@@ -45,6 +49,10 @@ public class ObstacleHitMenuController {
 //        st1.setAutoReverse(true);
 //        st1.play();
     }
+    void updatePresentScore(String s1){
+        if(presentScore!=null)
+            presentScore.setText(s1);
+    }
     @FXML
     void goToHome(MouseEvent event) throws IOException {
         AnchorPane pane1= FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
@@ -62,6 +70,8 @@ public class ObstacleHitMenuController {
         }
     };
     public ObstacleHitMenuController(){
+        rotate1=new Rotate();
+        rotate2=new Rotate();
         t1.start();
     }
 

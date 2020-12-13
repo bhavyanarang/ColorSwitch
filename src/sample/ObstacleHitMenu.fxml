@@ -51,13 +51,13 @@
             <Font name="System Bold" size="35.0" />
          </font>
       </Label>
-      <Label layoutX="185.0" layoutY="246.0" text="5" textFill="#f2f2f2">
+      <Label fx:id="presentScore" layoutX="185.0" layoutY="246.0" text="5" textFill="#f2f2f2">
          <font>
             <Font name="System Bold" size="46.0" />
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dd8827" height="56.0" layoutY="314.0" stroke="BLACK" strokeType="INSIDE" width="400.0" />
-      <Label layoutX="171.0" layoutY="370.0" text="85" textFill="#f2ecec">
+      <Label fx:id="highScore" layoutX="171.0" layoutY="370.0" text="85" textFill="#f2ecec">
          <font>
             <Font name="System Bold" size="46.0" />
          </font>
@@ -77,7 +77,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="49.0" layoutY="438.0" text="56" textFill="#e2e239">
+      <Label fx:id="totalStars" layoutX="49.0" layoutY="438.0" text="56" textFill="#e2e239">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
