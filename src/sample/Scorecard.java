@@ -10,8 +10,12 @@ public class Scorecard {
     private Label label;
 
     public Label getLabel(){
-        //modifyLabel();
         return label;
+    }
+    public void setLabel(){
+        int a=Integer.parseInt(label.getText());
+        a+=1;
+        label.setText(Integer.toString(a));
     }
     public void modifyLabel(){
         label.setTextFill(Color.WHITE);

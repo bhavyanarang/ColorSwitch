@@ -61,7 +61,6 @@ public class Game {
                     AnchorPane pane1= FXMLLoader.load(getClass().getResource("ObstacleHitMenu.fxml"));
                     pane.getChildren().setAll(pane1);
                     t1.stop();
-
                 }
                 obstacleHit=true;
             }
@@ -83,23 +82,11 @@ public class Game {
         Shape shape=Shape.intersect(ball.getBall(),star.toCheckHit());
         if(shape.getBoundsInParent().getHeight()>=0){
             Pane variable= (Pane) star.getImg().getParent();
-            if(variable!=null)
+            if(variable!=null) {
                 variable.getChildren().remove(this.star.getImg());
+                scorecard.setLabel();
+            }
             starHit=true;
-        }
-    }
-    private boolean translatePane(){
-        double y=ball.getBall().getTranslateY();
-        double z=-1*y+40;
-//        System.out.println(z);
-//        System.out.println(prevPaneTranslate);
-        if(z<prevPaneTranslate+75){
-            return false;
-        }
-        else{
-            prevPaneTranslate=z;
-            //timesPaneDown++;
-            return true;
         }
     }
     AnimationTimer t1=new AnimationTimer() {
@@ -107,14 +94,6 @@ public class Game {
         public void handle(long l) {
             if(!pause.getPauseButton().isPressed())
                 ball.addGravity();
-
-//            if(translatePane()){
-//                timesPaneDown++;
-//                moveDown=true;
-////                pane.setTranslateY(timesPaneDown*10);
-//            }
-
-            //moveDown=translatePane();
 
             if(!starHit)
                 didHitStar();
