@@ -27,6 +27,14 @@ public class Star {
         view.setFitWidth(rad);
         view.setPreserveRatio(true);
     }
+    public double getY(){
+        return y;
+    }
+    public void setYCoordinate(double y1){
+        y=y1;
+        circle.setCenterY(y);
+        view.setY(y);
+    }
     public ImageView getImg() {
         return view;
     }

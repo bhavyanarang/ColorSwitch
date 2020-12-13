@@ -21,9 +21,10 @@ public class ColorSwitcher {
     Arc arc2=new Arc();
     Arc arc3=new Arc();
     Arc arc4=new Arc();
+    private double centre_y=200;
     ColorSwitcher(){
         arc1.setCenterX(200.0);
-        arc1.setCenterY(200.0f);
+        arc1.setCenterY(centre_y);
         arc1.setRadiusX(30.0f);
         arc1.setRadiusY(30.0f);
         arc1.setStartAngle(0);
@@ -34,7 +35,7 @@ public class ColorSwitcher {
         arc1.setType(ArcType.ROUND);
 
         arc2.setCenterX(200.0);
-        arc2.setCenterY(200.0f);
+        arc2.setCenterY(centre_y);
         arc2.setRadiusX(30.0f);
         arc2.setRadiusY(30.0f);
         arc2.setStartAngle(90);
@@ -45,7 +46,7 @@ public class ColorSwitcher {
         arc2.setType(ArcType.ROUND);
 
         arc3.setCenterX(200.0);
-        arc3.setCenterY(200.0f);
+        arc3.setCenterY(centre_y);
         arc3.setRadiusX(30.0f);
         arc3.setRadiusY(30.0f);
         arc3.setStartAngle(180);
@@ -56,7 +57,7 @@ public class ColorSwitcher {
         arc3.setType(ArcType.ROUND);
 
         arc4.setCenterX(200.0);
-        arc4.setCenterY(200.0f);
+        arc4.setCenterY(centre_y);
         arc4.setRadiusX(30.0f);
         arc4.setRadiusY(30.0f);
         arc4.setStartAngle(270);
@@ -83,6 +84,13 @@ public class ColorSwitcher {
     public Group getColorSwitcher() {
         return this.group;
     }
+    public void setCentre_y(double y1){
+        centre_y=y1;
+        arc1.setCenterY(centre_y);
+        arc2.setCenterY(centre_y);
+        arc3.setCenterY(centre_y);
+        arc4.setCenterY(centre_y);
+    }
     public Shape getArc(int n){
         if(n==1){
             return arc1;
@@ -97,4 +105,5 @@ public class ColorSwitcher {
             return arc4;
         }
     }
+
 }

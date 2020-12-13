@@ -18,7 +18,9 @@ public class Game {
     boolean obstacleHit=false;
     boolean moveDown=false;
     private Scorecard scorecard;
+    private Star[] stars;
     private Star star;
+    private int starsGone=0;
     private Ball ball;
     private PauseMenuController pauseMenuController;
     private ColorSwitcher colorSwitcher;
@@ -44,8 +46,13 @@ public class Game {
         Obstacle presentOb=Obstacles.get(Obstaclenumber-1);
         nakliObstacle=presentOb;
         //if(Obstaclenumber==2 || Obstaclenumber==3 || Obstaclenumber==5 || Obstaclenumber==6 || Obstaclenumber==7 || Obstaclenumber==8){
-            this.pane.getChildren().setAll(colorSwitcher.getColorSwitcher(),ball.getBall(), pause.getPauseButton(), scorecard.getLabel(), star.getImg(),presentOb.returnObstacle(),presentOb.returnObstacle2());
+            this.pane.getChildren().setAll(colorSwitcher.getColorSwitcher(),ball.getBall(), pause.getPauseButton(),scorecard.getLabel(),presentOb.returnObstacle(),presentOb.returnObstacle2());
         //}
+
+        for(int i=0;i<100;i++){
+            //this.pane.getChildren().setAll(stars[i].getImg());
+            this.pane.getChildren().add(stars[i].getImg());
+        }
 
     }
 
@@ -79,14 +86,22 @@ public class Game {
         }
     }
     private void didHitStar(){
-        Shape shape=Shape.intersect(ball.getBall(),star.toCheckHit());
-        if(shape.getBoundsInParent().getHeight()>=0){
-            Pane variable= (Pane) star.getImg().getParent();
-            if(variable!=null) {
-                variable.getChildren().remove(this.star.getImg());
+
+        Shape shape = Shape.intersect(ball.getBall(), star.toCheckHit());
+        if (shape.getBoundsInParent().getHeight() >= 0) {
+            Pane variable = (Pane) star.getImg().getParent();
+            if (variable != null) {
+                variable.getChildren().remove(star.getImg());
                 scorecard.setLabel();
+                starsGone++;
             }
+            //starHit = true;
+        }
+        if(starsGone==100){
             starHit=true;
+        }
+        else{
+            star=stars[starsGone];
         }
     }
     AnimationTimer t1=new AnimationTimer() {
@@ -108,8 +123,9 @@ public class Game {
                     e.printStackTrace();
                 }
             }
+
             if(jumpPressed){
-                System.out.println(ball.getBall().getBoundsInParent().getCenterY());
+                //System.out.println(ball.getBall().getBoundsInParent().getCenterY());
                 if(ball.getBall().getBoundsInParent().getCenterY()<450){
                     moveDown=true;
                 }
@@ -130,11 +146,13 @@ public class Game {
                 }
                 else{
                     downCount+=2;
-                    System.out.println("down " +downCount);
+                    //System.out.println("down " +downCount);
                     double getDown=(timesPaneDown-1)*20+downCount;
                     colorSwitcher.getColorSwitcher().setTranslateY(getDown);
-                    star.getImg().setTranslateY(getDown);
-                    star.toCheckHit().setTranslateY(getDown);
+                    for(int i=0;i<100;i++){
+                        stars[i].getImg().setTranslateY(getDown);
+                        stars[i].toCheckHit().setTranslateY(getDown);
+                    }
                     nakliObstacle.returnObstacle().setTranslateY(getDown);
                     nakliObstacle.returnObstacle2().setTranslateY(getDown);
                 }
@@ -147,7 +165,12 @@ public class Game {
     public Game(Pane p){
         this.pane=p;
         scorecard=new Scorecard();
-        star=new Star();
+        stars=new Star[100];
+        for(int i=0;i<100;i++){
+            stars[i]=new Star();
+            stars[i].setYCoordinate(-1*150*i+325);
+        }
+        star=stars[0];
         ball=new Ball();
         pauseMenuController=new PauseMenuController();
         colorSwitcher=new ColorSwitcher();
