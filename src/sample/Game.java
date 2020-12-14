@@ -50,18 +50,12 @@ public class Game {
         Obstacles.add(new Obstacle8(200,200));
         ball=new Ball();
         scorecard=new Scorecard();
-        stars=new Star[3];
-        colorSwitchers=new ColorSwitcher[3];
-        onscreenObstacles=new Obstacle[3];
+        stars=new Star[100];
+        colorSwitchers=new ColorSwitcher[100];
+        onscreenObstacles=new Obstacle[100];
 
         addNewRandomObjects(ball.getBall().getBoundsInParent().getCenterY());
-//        for(int i=0;i<3;i++){
-//            stars[i]=new Star();
-//            stars[i].setYCoordinate(325-200*i);
-//
-//            colorSwitchers[i]=new ColorSwitcher();
-//            colorSwitchers[i].setCentre_y(300-200*i);
-//        }
+
         star=stars[0];
 
         pauseMenuController=new PauseMenuController();
@@ -71,30 +65,48 @@ public class Game {
 
     }
     public void addNewRandomObjects(double ballY){
-        System.out.println(ballY);
-        int randomNumber=new Random().nextInt(8-1)+1;
-        for(int i=1;i<=3;i++){
+        //System.out.println(ballY);
+
+        for(int i=1;i<=100;i++){
             stars[i-1]=new Star();
             stars[i-1].setYCoordinate(ballY-100-200*i);
 
             colorSwitchers[i-1]=new ColorSwitcher();
             colorSwitchers[i-1].setCentre_y(ballY-200-200*i);
 
-            if(i==1){
-                onscreenObstacles[i - 1]=Obstacles.get(randomNumber);
+
+            int randomNumber=new Random().nextInt(8-1)+1;
+            Obstacle variableObstacle;
+            switch (randomNumber){
+                case 1: variableObstacle=new Obstacle1(200,(int)ballY-150-400*i);
+                        break;
+                case 2: variableObstacle=new Obstacle2(200,(int)ballY-150-300*i);
+                        break;
+                case 3: variableObstacle=new Obstacle3(200,(int)ballY-150-300*i);
+                        break;
+                case 4: variableObstacle=new Obstacle4(200,(int)ballY-150-300*i);
+                        break;
+                case 5: variableObstacle=new Obstacle5(200,(int)ballY-150-300*i);
+                        break;
+                case 6: variableObstacle=new Obstacle6(200,(int)ballY-150-300*i);
+                        break;
+                case 7: variableObstacle=new Obstacle7(200,(int)ballY-150-300*i);
+                        break;
+                case 8: variableObstacle=new Obstacle8(200,(int)ballY-150-300*i);
+                        break;
+
+                default:
+                    throw new IllegalStateException("Unexpected value: " + randomNumber);
             }
-            else if(i==2){
-                onscreenObstacles[i-1]=Obstacles.get((i+2)%8);
+            variableObstacle.returnObstacle().setLayoutY(ballY-150-300*i);
+            variableObstacle.returnObstacle().setLayoutY(ballY-150-300*i);
+
+            if(variableObstacle instanceof Obstacle1){
+                variableObstacle.returnObstacle().setLayoutX(100);
+                variableObstacle.returnObstacle2().setLayoutX(100);
             }
-            else{
-                onscreenObstacles[i-1]=Obstacles.get((i-2)%8);
-            }
-            onscreenObstacles[i - 1].returnObstacle().setLayoutY(ballY - 150 - 300 * i);
-            onscreenObstacles[i - 1].returnObstacle2().setLayoutY(ballY - 150 - 300 * i);
-            if(onscreenObstacles[i-1] instanceof Obstacle1){
-                onscreenObstacles[i-1].returnObstacle().setLayoutY(100);
-                onscreenObstacles[i-1].returnObstacle2().setLayoutY(100);
-            }
+            onscreenObstacles[i-1]=variableObstacle;
+
         }
     }
     public void startNewGame() {
@@ -103,7 +115,7 @@ public class Game {
             this.pane.getChildren().setAll(ball.getBall(), pause.getPauseButton(),scorecard.getLabel());
         //}
 
-        for(int i=0;i<3;i++){
+        for(int i=0;i<100;i++){
             this.pane.getChildren().add(stars[i].getImg());
             this.pane.getChildren().add(colorSwitchers[i].getColorSwitcher());
             this.pane.getChildren().add(onscreenObstacles[i].returnObstacle());
@@ -126,19 +138,20 @@ public class Game {
 
                     AnchorPane pane1= FXMLLoader.load(getClass().getResource("ObstacleHitMenu.fxml"));
                     pane.getChildren().setAll(pane1);
+//                    for(int i=0;i<3;i++){
+//                        this.pane.getChildren().remove(onscreenObstacles[i].returnObstacle());
+//                        this.pane.getChildren().remove(onscreenObstacles[i].returnObstacle2());
+//                    }
                     t1.stop();
                 }
                 obstacleHit=true;
-                for(int i=0;i<3;i++){
-                    this.pane.getChildren().remove(onscreenObstacles[i].returnObstacle());
-                    this.pane.getChildren().remove(onscreenObstacles[i].returnObstacle2());
-                }
+
             }
 
         }
     }
     private void didHitColorSwitcher(){
-        for(int i=1;i<=4;i++){
+        for(int i=1;i<=100;i++){
             Shape shape=Shape.intersect(ball.getBall(),colorSwitcher.getArc(i));
             if(shape.getBoundsInParent().getHeight()>=0) {
                 ball.changeColor();
@@ -149,7 +162,7 @@ public class Game {
                 }
             }
         }
-        if(colorSwitchersGone==3){
+        if(colorSwitchersGone==100){
             colorSwitcherHit=true;
         }
         else{
@@ -168,7 +181,7 @@ public class Game {
                 starsGone++;
             }
         }
-        if(starsGone==3){
+        if(starsGone==100){
             starHit=true;
         }
         else{
@@ -187,13 +200,13 @@ public class Game {
             if(!colorSwitcherHit)
                 didHitColorSwitcher();
 
-//            if(!obstacleHit){
-//                try {
-//                    checkObstacleHit(currentObstacle);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
+            if(!obstacleHit){
+                try {
+                    checkObstacleHit(currentObstacle);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
 
             if(jumpPressed){
                 if(ball.getBall().getBoundsInParent().getCenterY()<450){
@@ -218,7 +231,7 @@ public class Game {
                     downCount+=2;
                     double getDown=(timesPaneDown-1)*20+downCount;
                     //colorSwitcher.getColorSwitcher().setTranslateY(getDown);
-                    for(int i=0;i<3;i++){
+                    for(int i=0;i<100;i++){
                         stars[i].getImg().setTranslateY(getDown);
                         stars[i].toCheckHit().setTranslateY(getDown);
                         colorSwitchers[i].getColorSwitcher().setTranslateY(getDown);
