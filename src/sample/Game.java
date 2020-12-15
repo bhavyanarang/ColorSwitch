@@ -32,6 +32,7 @@ public class Game {
     private Obstacle[] onscreenObstacles;
 
     private int jumpCount=0;
+    private int numberOfObjects=3;
     private int downCount=0;
     private int timesPaneDown=1;
     private int starsGone=0;
@@ -50,9 +51,9 @@ public class Game {
         Obstacles.add(new Obstacle8(200,200));
         ball=new Ball();
         scorecard=new Scorecard();
-        stars=new Star[100];
-        colorSwitchers=new ColorSwitcher[100];
-        onscreenObstacles=new Obstacle[100];
+        stars=new Star[numberOfObjects];
+        colorSwitchers=new ColorSwitcher[numberOfObjects];
+        onscreenObstacles=new Obstacle[numberOfObjects];
 
         addNewRandomObjects(ball.getBall().getBoundsInParent().getCenterY());
 
@@ -67,7 +68,7 @@ public class Game {
     public void addNewRandomObjects(double ballY){
         //System.out.println(ballY);
 
-        for(int i=1;i<=100;i++){
+        for(int i=1;i<=numberOfObjects;i++){
             stars[i-1]=new Star();
             stars[i-1].setYCoordinate(ballY-100-200*i);
 
@@ -99,7 +100,7 @@ public class Game {
                     throw new IllegalStateException("Unexpected value: " + randomNumber);
             }
             variableObstacle.returnObstacle().setLayoutY(ballY-150-300*i);
-            variableObstacle.returnObstacle().setLayoutY(ballY-150-300*i);
+            variableObstacle.returnObstacle2().setLayoutY(ballY-150-300*i);
 
             if(variableObstacle instanceof Obstacle1){
                 variableObstacle.returnObstacle().setLayoutX(100);
@@ -115,16 +116,14 @@ public class Game {
             this.pane.getChildren().setAll(ball.getBall(), pause.getPauseButton(),scorecard.getLabel());
         //}
 
-        for(int i=0;i<100;i++){
+        for(int i=0;i<numberOfObjects;i++){
             this.pane.getChildren().add(stars[i].getImg());
             this.pane.getChildren().add(colorSwitchers[i].getColorSwitcher());
             this.pane.getChildren().add(onscreenObstacles[i].returnObstacle());
             this.pane.getChildren().add(onscreenObstacles[i].returnObstacle2());
         }
         currentObstacle=onscreenObstacles[0];
-
     }
-
     private void checkObstacleHit(Obstacle presentObstacle) throws IOException {
         for(Shape shape:presentObstacle.components){
             Shape intersection=Shape.intersect(shape,ball.getBall());
@@ -143,15 +142,13 @@ public class Game {
 //                        this.pane.getChildren().remove(onscreenObstacles[i].returnObstacle2());
 //                    }
                     t1.stop();
+                    obstacleHit=true;
                 }
-                obstacleHit=true;
-
             }
-
         }
     }
     private void didHitColorSwitcher(){
-        for(int i=1;i<=100;i++){
+        for(int i=1;i<=numberOfObjects;i++){
             Shape shape=Shape.intersect(ball.getBall(),colorSwitcher.getArc(i));
             if(shape.getBoundsInParent().getHeight()>=0) {
                 ball.changeColor();
@@ -162,12 +159,12 @@ public class Game {
                 }
             }
         }
-        if(colorSwitchersGone==100){
+        if(colorSwitchersGone==numberOfObjects){
             colorSwitcherHit=true;
         }
         else{
             colorSwitcher=colorSwitchers[colorSwitchersGone];
-            currentObstacle=onscreenObstacles[colorSwitchersGone];
+            //currentObstacle=onscreenObstacles[colorSwitchersGone];
         }
     }
     private void didHitStar(){
@@ -181,7 +178,7 @@ public class Game {
                 starsGone++;
             }
         }
-        if(starsGone==100){
+        if(starsGone==numberOfObjects){
             starHit=true;
         }
         else{
@@ -231,7 +228,7 @@ public class Game {
                     downCount+=2;
                     double getDown=(timesPaneDown-1)*20+downCount;
                     //colorSwitcher.getColorSwitcher().setTranslateY(getDown);
-                    for(int i=0;i<100;i++){
+                    for(int i=0;i<numberOfObjects;i++){
                         stars[i].getImg().setTranslateY(getDown);
                         stars[i].toCheckHit().setTranslateY(getDown);
                         colorSwitchers[i].getColorSwitcher().setTranslateY(getDown);
