@@ -25,7 +25,7 @@ public class Obstacle4 extends Obstacle {
         rotate.setAxis(Rotate.Z_AXIS);
         rotate.setToAngle(720);
         rotate.setCycleCount(Timeline.INDEFINITE);
-        rotate.setDuration(Duration.millis(6000));
+        rotate.setDuration(Duration.millis(10000));
         rotate.setAutoReverse(false);
         rotate.setInterpolator(Interpolator.LINEAR);
         rotate.setNode(group);

@@ -50,7 +50,7 @@ public class Obstacle3 extends Obstacle{
         translate1.setByX(-400);
 
         //setting the duration for the Translate transition
-        translate1.setDuration(Duration.millis(6000));
+        translate1.setDuration(Duration.millis(10000));
 
         //setting cycle count for the Translate transition
         translate1.setCycleCount(500);
@@ -71,7 +71,7 @@ public class Obstacle3 extends Obstacle{
         translate2.setByX(400);
 
         //setting the duration for the Translate transition
-        translate2.setDuration(Duration.millis(4000));
+        translate2.setDuration(Duration.millis(8000));
 
         //setting cycle count for the Translate transition
         translate2.setCycleCount(500);

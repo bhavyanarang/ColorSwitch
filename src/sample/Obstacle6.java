@@ -41,7 +41,7 @@ public class Obstacle6 extends Obstacle {
         rotate1.setAxis(Rotate.Z_AXIS);
         rotate1.setToAngle(720);
         rotate1.setCycleCount(Timeline.INDEFINITE);
-        rotate1.setDuration(Duration.millis(6000));
+        rotate1.setDuration(Duration.millis(10000));
         rotate1.setAutoReverse(false);
         rotate1.setInterpolator(Interpolator.LINEAR);
         rotate1.setNode(group);
@@ -52,7 +52,7 @@ public class Obstacle6 extends Obstacle {
         rotate2.setAxis(Rotate.Z_AXIS);
         rotate2.setToAngle(720);
         rotate2.setCycleCount(Timeline.INDEFINITE);
-        rotate2.setDuration(Duration.millis(6000));
+        rotate2.setDuration(Duration.millis(10000));
         rotate2.setAutoReverse(false);
         rotate2.setInterpolator(Interpolator.LINEAR);
         rotate2.setNode(group2);
