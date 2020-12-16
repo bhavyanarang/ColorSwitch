@@ -203,7 +203,9 @@ public class Game {
     public void startNewGame() {
 
         //if(Obstaclenumber==2 || Obstaclenumber==3 || Obstaclenumber==5 || Obstaclenumber==6 || Obstaclenumber==7 || Obstaclenumber==8){
-            this.pane.getChildren().setAll(ball.getBall(), pause.getPauseButton(),scorecard.getLabel());
+        pause.getPauseButton().toFront();
+        scorecard.getLabel().toFront();
+        this.pane.getChildren().setAll(ball.getBall(), pause.getPauseButton(),scorecard.getLabel());
         //}
 
         display();
@@ -243,7 +245,7 @@ public class Game {
     }
     private void checkObstacleHit(Obstacle presentObstacle) throws IOException {
         //for(int i=0;i<3;i++){
-          //  presentObstacle=onscreenObstacles[i];
+        //  presentObstacle=onscreenObstacles[i];
 
         ArrayList<Integer> abc=new ArrayList<>();
         if(starsGone==0){

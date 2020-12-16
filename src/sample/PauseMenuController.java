@@ -30,11 +30,13 @@ public class PauseMenuController implements Initializable {
     @FXML private AnchorPane pane;
     @FXML private Button play;
     @FXML private Button home;
+    @FXML private Button save;
     Button button=new Button();
 
     void addScaleTransition() {
         ScaleTransition st1 = new ScaleTransition(Duration.millis(500), play);
         ScaleTransition st2 = new ScaleTransition(Duration.millis(500), home);
+        ScaleTransition st3 = new ScaleTransition(Duration.millis(500), save);
         st1.setByY(0.05);
         st1.setByX(0.05);
         st1.setCycleCount(Timeline.INDEFINITE);
@@ -45,6 +47,11 @@ public class PauseMenuController implements Initializable {
         st2.setCycleCount(Timeline.INDEFINITE);
         st2.setAutoReverse(true);
         st2.play();
+        st3.setByY(0.05);
+        st3.setByX(0.05);
+        st3.setCycleCount(Timeline.INDEFINITE);
+        st3.setAutoReverse(true);
+        st3.play();
     }
 
     @FXML
@@ -54,7 +61,7 @@ public class PauseMenuController implements Initializable {
         pane.getChildren().setAll(pane1);
     }
     @FXML
-    void saveGame(MouseEvent event) throws IOException {
+    void saveGame(ActionEvent event) throws IOException {
         //save this game
         System.out.println("File batao");
         Scanner ins=new Scanner(System.in);
