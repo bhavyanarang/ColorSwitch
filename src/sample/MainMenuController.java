@@ -141,9 +141,13 @@ public class MainMenuController implements Initializable{
             // Reading the object from a file
             FileInputStream file = new FileInputStream("tester.txt");
             ObjectInputStream in = new ObjectInputStream(file);
-
+            System.out.println("chill");
             // Method for deserialization of object
             object1 = (serializehelp) in.readObject();
+            while (object1!=null){
+                object1=(serializehelp) in.readObject();
+            }
+            System.out.println("chill1");
 
             in.close();
             file.close();
