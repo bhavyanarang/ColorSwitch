@@ -150,7 +150,7 @@ public class MainMenuController implements Initializable{
 
             System.out.println("Object has been deserialized ");
             System.out.println("ballY = " + object1.ballY);
-            System.out.println("Coordinate: "+ object1.ObstaclenowY);
+            System.out.println("Coordinate of Obstacle: "+ object1.ObstaclenowY);
             //System.out.println("b = " + object1.b);
             //Parent root=object1.pane;
             //primaryStage.setTitle("Color Switch");

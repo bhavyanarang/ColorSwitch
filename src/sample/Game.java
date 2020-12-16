@@ -10,8 +10,10 @@ import javafx.scene.shape.Shape;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Game {
     Pane pane;
@@ -143,6 +145,7 @@ public class Game {
         ball.setColor(helper.ballcolor);
         System.out.println("ball_ycor: "+ball.getBall().getBoundsInParent().getCenterY());
 
+
         int number=helper.ObstacleNumber;
         Obstacle variableObstacle;
         switch (number){
@@ -167,16 +170,18 @@ public class Game {
                 throw new IllegalStateException("Unexpected value: " + number);
         }
 
-        variableObstacle.returnObstacle().setLayoutY(helper.ballY);
-        variableObstacle.returnObstacle2().setLayoutY(helper.ballY);
+        this.pane.getChildren().setAll(ball.getBall(), pause.getPauseButton(),scorecard.getLabel());
+        this.pane.getChildren().add(variableObstacle.returnObstacle());
+        this.pane.getChildren().add(variableObstacle.returnObstacle2());
+
+        variableObstacle.returnObstacle().setLayoutY(helper.ObstaclenowY-200);
+        variableObstacle.returnObstacle2().setLayoutY(helper.ObstaclenowY-200);
+        System.out.println("obstacle_cor: "+variableObstacle.returnObstacle().getBoundsInParent().getCenterY());
 
         if(variableObstacle instanceof Obstacle1){
             variableObstacle.returnObstacle().setLayoutX(100);
             variableObstacle.returnObstacle2().setLayoutX(100);
         }
-        this.pane.getChildren().setAll(ball.getBall(), pause.getPauseButton(),scorecard.getLabel());
-        this.pane.getChildren().add(variableObstacle.returnObstacle());
-        this.pane.getChildren().add(variableObstacle.returnObstacle2());
         for(int i=0;i<numberOfObjects;i++) {
             //System.out.println("here");
             this.pane.getChildren().add(stars[i].getImg());
@@ -277,23 +282,26 @@ public class Game {
                 // Serialization
                 try
                 {
-                    System.out.println("Heyy");
+                    this.stop();
+                    Scanner in=new Scanner(System.in);
+                    System.out.println("Enter Name to Save As");
+                    String name=in.next();
                     //Saving of object in a file
+                    //FileOutputStream file = new FileOutputStream(filename, true);
                     FileOutputStream file = new FileOutputStream(filename);
                     System.out.println("Obstacle_cor"+currentObstacle.group.getBoundsInParent().getCenterY());
                     ObjectOutputStream out = new ObjectOutputStream(file);
-                    System.out.println("layoutY: "+ ball.getBall().getBoundsInParent().getCenterY());
+                    System.out.println("Ball_cor: "+ ball.getBall().getBoundsInParent().getCenterY());
                     // Method for serialization of object
-                    out.writeObject(new serializehelp(ball.getBall().getBoundsInParent().getCenterX(),ball.getBall().getBoundsInParent().getCenterY(),ball.getColor(),200,200,200,400,currentObstacle.obstacleNumber,currentObstacle.returnObstacle().getBoundsInParent().getCenterX(),currentObstacle.returnObstacle2().getBoundsInParent().getCenterY(),1));
-                    System.out.println("Heyy12");
+                    out.writeObject(new serializehelp(name,ball.getBall().getBoundsInParent().getCenterX(),ball.getBall().getBoundsInParent().getCenterY(),ball.getColor(),200,200,200,400,currentObstacle.obstacleNumber,currentObstacle.group.getBoundsInParent().getCenterX(),currentObstacle.group.getBoundsInParent().getCenterY(),Integer.parseInt(scorecard.getLabel().getText())));
+                    //System.out.println("Heyy12");
 
                     out.close();
                     file.close();
-                    System.out.println("Heyy13");
+                    //System.out.println("Heyy13");
 
                     System.out.println("Object has been serialized");
                     pane.getChildren().removeAll();
-                    this.stop();
                     AnchorPane pane1= FXMLLoader.load(getClass().getResource("PauseMenu.fxml"));
                     pane.getChildren().setAll(pane1);
 
