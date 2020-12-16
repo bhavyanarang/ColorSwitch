@@ -93,6 +93,11 @@ public class Obstacle3 extends Obstacle{
         //group.getChildren().addAll(line11,line12,line13,line14,line15,line16,line17,line18,line21,line22,line23,line24,line25,line26,line27,line28);
     }
 
+    @Override
+    public boolean starOnCentre() {
+        return true;
+    }
+
     Obstacle3(int centerX,int centerY) {
         super(centerX,centerY);
         obstacleNumber=3;

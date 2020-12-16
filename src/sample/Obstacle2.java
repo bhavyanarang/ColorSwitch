@@ -90,6 +90,11 @@ public class Obstacle2 extends Obstacle {
 
     }
 
+    @Override
+    public boolean starOnCentre() {
+        return false;
+    }
+
     Obstacle2(int centerX,int centerY){
         super(centerX,centerY);
         obstacleNumber=2;

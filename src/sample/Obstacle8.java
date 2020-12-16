@@ -64,6 +64,12 @@ public class Obstacle8 extends Obstacle{
 
         pane.getChildren().addAll(group,group2);
     }
+
+    @Override
+    public boolean starOnCentre() {
+        return true;
+    }
+
     @Override
     public Group returnObstacle2(){
         return group2;

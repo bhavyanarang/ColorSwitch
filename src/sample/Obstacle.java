@@ -15,9 +15,10 @@ public abstract class Obstacle {
 
     Obstacle(int centerX,int centerYY){
         this.centerX=centerX;
-        this.centerY=centerY;
+        this.centerY=centerYY;
     }
     public abstract void move();
+    public abstract boolean starOnCentre();
     public Group returnObstacle(){
         return group;
     }

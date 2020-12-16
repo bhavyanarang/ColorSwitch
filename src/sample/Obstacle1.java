@@ -21,6 +21,7 @@ public class Obstacle1 extends Obstacle {
     Line line3=new Line();
     Line line4=new Line();
 
+
     @Override
     public void move(){
         group.getChildren().addAll(line1,line2,line3,line4);
@@ -35,6 +36,10 @@ public class Obstacle1 extends Obstacle {
         pane.getChildren().add(group);
     }
 
+    @Override
+    public boolean starOnCentre() {
+        return true;
+    }
 
     Obstacle1(int centerX,int centerY){
         super(centerX,centerY);
