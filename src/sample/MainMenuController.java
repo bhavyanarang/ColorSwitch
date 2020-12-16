@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Scanner;
+
 public class MainMenuController implements Initializable{
 
     @FXML private Group circle1;
@@ -134,20 +136,26 @@ public class MainMenuController implements Initializable{
         System.out.println("Resume game");
         pane.getChildren().removeAll();
         serializehelp object1 = null;
-
+        System.out.println("Game Name:");
+        Scanner ins=new Scanner(System.in);
+        String check=ins.next();
+        //game.savedgames.contains(check);
         // Deserialization
         try
         {
             // Reading the object from a file
-            FileInputStream file = new FileInputStream("tester.txt");
+            FileInputStream file = new FileInputStream(check+".txt");
             ObjectInputStream in = new ObjectInputStream(file);
-            System.out.println("chill");
+
             // Method for deserialization of object
             object1 = (serializehelp) in.readObject();
-            while (object1!=null){
-                object1=(serializehelp) in.readObject();
-            }
-            System.out.println("chill1");
+            //System.out.println("ok");
+//            while (object1!=null && !(object1.saveAs.equals(check))){
+//                System.out.println(object1.saveAs);
+//                System.out.println("check: "+object1.saveAs.equals(check));
+//                object1=(serializehelp) in.readObject();
+//            }
+            //System.out.println("chill1");
 
             in.close();
             file.close();
@@ -161,7 +169,7 @@ public class MainMenuController implements Initializable{
             //primaryStage.setScene(new Scene(root, 400, 600));
             //primaryStage.show();
 
-            Game game=new Game(pane,object1);
+
             //game.initialise_load(object1);
 
 //            AnchorPane pane1= FXMLLoader.load(getClass().getResource("LoadGame.fxml"));
@@ -177,6 +185,8 @@ public class MainMenuController implements Initializable{
         {
             System.out.println("ClassNotFoundException is caught");
         }
+            Game game = new Game(pane, object1);
+
     }
     @FXML
     void exitGame(MouseEvent event) throws IOException {
