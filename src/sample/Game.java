@@ -7,9 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Random;
@@ -32,6 +30,7 @@ public class Game {
     private Player player;
     private ArrayList<Obstacle> Obstacles;
     private Obstacle currentObstacle;
+    //
 
     private Star[] stars;
     private ColorSwitcher[] colorSwitchers;
@@ -270,30 +269,75 @@ public class Game {
             star=stars[starsGone];
         }
     }
+    public static void appendStrToFile(String fileName,
+                                       String str)
+    {
+        try {
+
+            // Open given file in append mode.
+            BufferedWriter out = new BufferedWriter(
+                    new FileWriter(fileName, true));
+            out.write(str);
+            out.close();
+        }
+        catch (IOException e) {
+            System.out.println("exception occoured" + e);
+        }
+    }
     AnimationTimer t1=new AnimationTimer() {
         @Override
         public void handle(long l) {
-            if(!pause.getPauseButton().isPressed())
+            if (!pause.getPauseButton().isPressed())
                 ball.addGravity();
-            if(pause.getPauseButton().isPressed()){
+            if (pause.getPauseButton().isPressed()) {
 
-                String filename = "tester.txt";
+                //String filename = "tester.txt";
+                this.stop();
+//                Scanner in = new Scanner(System.in);
+//                System.out.println("Enter Name to Save As");
+//                String filename = in.next();
+//                boolean filethere=false;
+//
+//
+//
+//
+//                // Let us print modified file
+//                try {
+//                    BufferedReader ins = new BufferedReader(
+//                            new FileReader("SavedGames.txt"));
+//
+//                    String mystring;
+//                    while ((mystring = ins.readLine()) != null) {
+//                        System.out.println(mystring);
+//                        if(mystring.equals(filename)){
+//                            filethere=true;
+//                        }
+//                    }
+//                } catch (IOException e) {
+//                    System.out.println("Exception Occurred" + e);
+//                }
+//                if(filethere==false){
+//                    String fileName = "SavedGames.txt";
+//                    try {
+//                        BufferedWriter out = new BufferedWriter(
+//                                new FileWriter(fileName));
+//                        //out.write(filename+"\n");
+//                        appendStrToFile(fileName, filename+".txt\n");
+//                        out.close();
+//                    } catch (IOException e) {
+//                        System.out.println("Exception Occurred" + e);
+//                    }
+//                }
 
                 // Serialization
-                try
-                {
-                    this.stop();
-                    Scanner in=new Scanner(System.in);
-                    System.out.println("Enter Name to Save As");
-                    String name=in.next();
-                    //Saving of object in a file
-                    //FileOutputStream file = new FileOutputStream(filename, true);
-                    FileOutputStream file = new FileOutputStream(filename);
-                    System.out.println("Obstacle_cor"+currentObstacle.group.getBoundsInParent().getCenterY());
+                try {
+
+                    FileOutputStream file = new FileOutputStream("Pause.txt");
+                    System.out.println("Obstacle_cor" + currentObstacle.group.getBoundsInParent().getCenterY());
                     ObjectOutputStream out = new ObjectOutputStream(file);
-                    System.out.println("Ball_cor: "+ ball.getBall().getBoundsInParent().getCenterY());
+                    System.out.println("Ball_cor: " + ball.getBall().getBoundsInParent().getCenterY());
                     // Method for serialization of object
-                    out.writeObject(new serializehelp(name,ball.getBall().getBoundsInParent().getCenterX(),ball.getBall().getBoundsInParent().getCenterY(),ball.getColor(),200,200,200,400,currentObstacle.obstacleNumber,currentObstacle.group.getBoundsInParent().getCenterX(),currentObstacle.group.getBoundsInParent().getCenterY(),Integer.parseInt(scorecard.getLabel().getText())));
+                    out.writeObject(new serializehelp(ball.getBall().getBoundsInParent().getCenterX(), ball.getBall().getBoundsInParent().getCenterY(), ball.getColor(), 200, 200, 200, 400, currentObstacle.obstacleNumber, currentObstacle.group.getBoundsInParent().getCenterX(), currentObstacle.group.getBoundsInParent().getCenterY(), Integer.parseInt(scorecard.getLabel().getText())));
                     //System.out.println("Heyy12");
 
                     out.close();
@@ -302,16 +346,16 @@ public class Game {
 
                     System.out.println("Object has been serialized");
                     pane.getChildren().removeAll();
-                    AnchorPane pane1= FXMLLoader.load(getClass().getResource("PauseMenu.fxml"));
+                    AnchorPane pane1 = FXMLLoader.load(getClass().getResource("PauseMenu.fxml"));
                     pane.getChildren().setAll(pane1);
 
-                }
-                catch(IOException ex)
-                {
+                } catch (IOException ex) {
                     System.out.println("IOException is caught");
                     ex.printStackTrace();
                 }
             }
+
+
             if(!starHit)
                 didHitStar();
 
