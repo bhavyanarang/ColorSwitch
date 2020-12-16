@@ -61,6 +61,12 @@ public class Obstacle5 extends Obstacle {
         pane.getChildren().addAll(group,group2);
         //group.getChildren().addAll(arc11,arc12,arc13,arc14,arc21,arc22,arc23,arc24);
     }
+
+    @Override
+    public boolean starOnCentre() {
+        return true;
+    }
+
     Obstacle5(int centerX,int centerY){
         super(centerX,centerY);
         obstacleNumber=5;

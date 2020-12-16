@@ -60,6 +60,12 @@ public class Obstacle6 extends Obstacle {
 
         pane.getChildren().addAll(group,group2);
     }
+
+    @Override
+    public boolean starOnCentre() {
+        return true;
+    }
+
     Obstacle6(int centerX,int centerY){
         super(centerX,centerY);
         obstacleNumber=6;

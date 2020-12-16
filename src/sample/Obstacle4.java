@@ -34,6 +34,11 @@ public class Obstacle4 extends Obstacle {
         pane.getChildren().addAll(group);
     }
 
+    @Override
+    public boolean starOnCentre() {
+        return true;
+    }
+
     Obstacle4(int centerX,int centerY){
         super(centerX,centerY);
         obstacleNumber=4;

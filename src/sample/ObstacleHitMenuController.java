@@ -5,6 +5,7 @@ import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -15,8 +16,10 @@ import javafx.util.Duration;
 
 import java.awt.*;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ObstacleHitMenuController {
+public class ObstacleHitMenuController implements Initializable {
 
     @FXML private Group circle1;
     @FXML private Group circle2;
@@ -29,6 +32,7 @@ public class ObstacleHitMenuController {
 
     Rotate rotate1;
     Rotate rotate2;
+    Game game;
 
     public void rotate() {
 
@@ -49,10 +53,9 @@ public class ObstacleHitMenuController {
 //        st1.setAutoReverse(true);
 //        st1.play();
     }
-    void updatePresentScore(String s1){
-        if(presentScore!=null)
-            presentScore.setText(s1);
-    }
+//    void updatePresentScore(String s1){
+//       this.initialize();
+//    }
     @FXML
     void goToHome(MouseEvent event) throws IOException {
         AnchorPane pane1= FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
@@ -70,10 +73,15 @@ public class ObstacleHitMenuController {
         }
     };
     public ObstacleHitMenuController(){
+        //this.game=game;
+    }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //presentScore.setText(game.scorecard.getLabel().getText());
         rotate1=new Rotate();
         rotate2=new Rotate();
         t1.start();
     }
-
-
 }
