@@ -92,7 +92,7 @@ public class Obstacle2 extends Obstacle {
 
     Obstacle2(int centerX,int centerY){
         super(centerX,centerY);
-
+        obstacleNumber=2;
         components.add(line11);
         components.add(line12);
         components.add(line13);
