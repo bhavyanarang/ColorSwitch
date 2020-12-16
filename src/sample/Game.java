@@ -70,6 +70,7 @@ public class Game {
         player=new Player();
         colorSwitcher=colorSwitchers[0];
 
+
     }
     public void addNewRandomObjects(double ballY){
         //System.out.println(ballY);
@@ -86,21 +87,21 @@ public class Game {
             Obstacle variableObstacle;
             switch (randomNumber){
                 case 1: variableObstacle=new Obstacle1(200,(int)ballY-150-400*i);
-                        break;
+                    break;
                 case 2: variableObstacle=new Obstacle2(200,(int)ballY-150-300*i);
-                        break;
+                    break;
                 case 3: variableObstacle=new Obstacle3(200,(int)ballY-150-300*i);
-                        break;
+                    break;
                 case 4: variableObstacle=new Obstacle4(200,(int)ballY-150-300*i);
-                        break;
+                    break;
                 case 5: variableObstacle=new Obstacle5(200,(int)ballY-150-300*i);
-                        break;
+                    break;
                 case 6: variableObstacle=new Obstacle6(200,(int)ballY-150-300*i);
-                        break;
+                    break;
                 case 7: variableObstacle=new Obstacle7(200,(int)ballY-150-300*i);
-                        break;
+                    break;
                 case 8: variableObstacle=new Obstacle8(200,(int)ballY-150-300*i);
-                        break;
+                    break;
 
                 default:
                     throw new IllegalStateException("Unexpected value: " + randomNumber);
@@ -192,7 +193,7 @@ public class Game {
     public void startNewGame() {
 
         //if(Obstaclenumber==2 || Obstaclenumber==3 || Obstaclenumber==5 || Obstaclenumber==6 || Obstaclenumber==7 || Obstaclenumber==8){
-            this.pane.getChildren().setAll(ball.getBall(), pause.getPauseButton(),scorecard.getLabel());
+        this.pane.getChildren().setAll(ball.getBall(), pause.getPauseButton(),scorecard.getLabel());
         //}
 
         for(int i=0;i<numberOfObjects;i++){
