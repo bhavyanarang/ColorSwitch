@@ -11,19 +11,19 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" prefHeight="599.0" prefWidth="558.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ObstacleHitMenuController">
+<AnchorPane fx:id="pane" prefHeight="599.0" prefWidth="396.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoadGameMenuController">
    <children>
-      <Label layoutX="162.0" layoutY="96.0" prefHeight="94.0" prefWidth="236.0" text=" SWITCH" textFill="#f2eaea">
+      <Label layoutX="82.0" layoutY="97.0" prefHeight="94.0" prefWidth="236.0" text=" SWITCH" textFill="#f2eaea">
          <font>
             <Font size="56.0" />
          </font>
       </Label>
-      <Label layoutX="163.0" layoutY="39.0" prefHeight="83.0" prefWidth="268.0" text="C    L    R" textFill="#fdfdfd">
+      <Label layoutX="89.0" layoutY="39.0" prefHeight="83.0" prefWidth="268.0" text="C    L    R" textFill="#fdfdfd">
          <font>
             <Font size="56.0" />
          </font>
       </Label>
-      <Group fx:id="circle1" layoutX="231.0" layoutY="81.0" scaleX="0.25" scaleY="0.25">
+      <Group fx:id="circle1" layoutX="155.0" layoutY="81.0" scaleX="0.25" scaleY="0.25">
          <children>
             <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
             <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
@@ -32,7 +32,7 @@
             <Circle radius="100.0" scaleX="0.7" scaleY="0.7" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </Group>
-      <Group fx:id="circle2" layoutX="315.0" layoutY="81.0" scaleX="0.25" scaleY="0.25">
+      <Group fx:id="circle2" layoutX="245.0" layoutY="80.0" scaleX="0.25" scaleY="0.25">
          <children>
             <Arc fill="#ff0181" length="90.0" radiusX="100.0" radiusY="100.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
             <Arc fill="#fae100" length="90.0" radiusX="100.0" radiusY="100.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
@@ -41,20 +41,14 @@
             <Circle radius="100.0" scaleX="0.7" scaleY="0.7" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </Group>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#44484c" height="56.0" layoutX="-1.0" layoutY="190.0" stroke="BLACK" strokeType="INSIDE" width="563.0" />
-      <Label layoutX="153.0" layoutY="192.0" text="CHOOSE GAME" textFill="#f2eeee">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#44484c" height="56.0" layoutX="-1.0" layoutY="190.0" stroke="BLACK" strokeType="INSIDE" width="400.0" />
+      <Label layoutX="77.0" layoutY="192.0" text="CHOOSE GAME" textFill="#f2eeee">
          <font>
             <Font name="System Bold" size="35.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dd8827" height="56.0" layoutY="314.0" stroke="BLACK" strokeType="INSIDE" width="563.0" />
-      <Label layoutX="210.0" layoutY="316.0" text="GAME 1" textFill="#f2eeee">
-         <font>
-            <Font name="System Bold" size="35.0" />
-         </font>
-      </Label>
-      <Button fx:id="replay" layoutX="197.0" layoutY="408.0" mnemonicParsing="false" onMouseClicked="#replayAgain" prefHeight="158.0" prefWidth="158.0" scaleX="0.4" scaleY="0.4" style="-fx-background-color: #000000;" />
-      <Button fx:id="back" layoutX="-25.0" layoutY="-31.0" mnemonicParsing="false" onMouseClicked="#goToHome" scaleX="0.4" scaleY="0.4" style="-fx-background-color: #000000;">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dd8827" height="56.0" layoutY="314.0" stroke="BLACK" strokeType="INSIDE" width="400.0" />
+      <Button fx:id="back" layoutX="-60.0" layoutY="-31.0" mnemonicParsing="false" onMouseClicked="#goToHome" scaleX="0.4" scaleY="0.4" style="-fx-background-color: #000000;">
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -63,17 +57,22 @@
             </ImageView>
          </graphic>
       </Button>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dd8827" height="56.0" layoutY="385.0" stroke="BLACK" strokeType="INSIDE" width="563.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dd8827" height="56.0" layoutY="459.0" stroke="BLACK" strokeType="INSIDE" width="563.0" />
-      <Label layoutX="212.0" layoutY="390.0" text="GAME 2" textFill="#f2eeee">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dd8827" height="56.0" layoutY="385.0" stroke="BLACK" strokeType="INSIDE" width="400.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dd8827" height="56.0" layoutY="459.0" stroke="BLACK" strokeType="INSIDE" width="400.0" />
+      <Button fx:id="game1" layoutX="136.0" layoutY="316.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="126.0" style="-fx-background-color: #dd8827;" text="GAME 1" textFill="#eae5e5">
          <font>
-            <Font name="System Bold" size="35.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
-      </Label>
-      <Label layoutX="210.0" layoutY="461.0" text="GAME 3" textAlignment="CENTER" textFill="#f2eeee">
+      </Button>
+      <Button fx:id="game2" layoutX="136.0" layoutY="387.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="126.0" style="-fx-background-color: #dd8827;" text="GAME 2" textFill="#eae5e5">
          <font>
-            <Font name="System Bold" size="35.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
-      </Label>
+      </Button>
+      <Button fx:id="game3" layoutX="140.0" layoutY="461.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="126.0" style="-fx-background-color: #dd8827;" text="GAME 3" textFill="#eae5e5">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -133,59 +133,63 @@ public class MainMenuController implements Initializable{
     }
     @FXML
     void resumeOldGame(MouseEvent event) throws IOException {
-        System.out.println("Resume game");
-        pane.getChildren().removeAll();
-        serializehelp object1 = null;
-        System.out.println("Game Name:");
-        Scanner ins=new Scanner(System.in);
-        String check=ins.next();
-        //game.savedgames.contains(check);
-        // Deserialization
-        try
-        {
-            // Reading the object from a file
-            FileInputStream file = new FileInputStream(check+".txt");
-            ObjectInputStream in = new ObjectInputStream(file);
 
-            // Method for deserialization of object
-            object1 = (serializehelp) in.readObject();
-            //System.out.println("ok");
-//            while (object1!=null && !(object1.saveAs.equals(check))){
-//                System.out.println(object1.saveAs);
-//                System.out.println("check: "+object1.saveAs.equals(check));
-//                object1=(serializehelp) in.readObject();
-//            }
-            //System.out.println("chill1");
+        AnchorPane pane1= FXMLLoader.load(getClass().getResource("LoadGame.fxml"));
+        pane.getChildren().setAll(pane1);
 
-            in.close();
-            file.close();
-
-            System.out.println("Object has been deserialized ");
-            System.out.println("ballY = " + object1.ballY);
-            //System.out.println("Coordinate of Obstacle: "+ object1.ObstaclenowY);
-            //System.out.println("b = " + object1.b);
-            //Parent root=object1.pane;
-            //primaryStage.setTitle("Color Switch");
-            //primaryStage.setScene(new Scene(root, 400, 600));
-            //primaryStage.show();
-
-
-            //game.initialise_load(object1);
-
-//            AnchorPane pane1= FXMLLoader.load(getClass().getResource("LoadGame.fxml"));
-//            pane.getChildren().setAll(pane1);
-        }
-
-        catch(IOException ex)
-        {
-            System.out.println("IOException is caught");
-        }
-
-        catch(ClassNotFoundException ex)
-        {
-            System.out.println("ClassNotFoundException is caught");
-        }
-            Game game = new Game(pane, object1);
+//        System.out.println("Resume game");
+//        //pane.getChildren().removeAll();
+//        serializehelp object1 = null;
+//        System.out.println("Game Name:");
+//        Scanner ins=new Scanner(System.in);
+//        String check=ins.next();
+//        //game.savedgames.contains(check);
+//        // Deserialization
+//        try
+//        {
+//            // Reading the object from a file
+//            FileInputStream file = new FileInputStream(check+".txt");
+//            ObjectInputStream in = new ObjectInputStream(file);
+//
+//            // Method for deserialization of object
+//            object1 = (serializehelp) in.readObject();
+//            //System.out.println("ok");
+////            while (object1!=null && !(object1.saveAs.equals(check))){
+////                System.out.println(object1.saveAs);
+////                System.out.println("check: "+object1.saveAs.equals(check));
+////                object1=(serializehelp) in.readObject();
+////            }
+//            //System.out.println("chill1");
+//
+//            in.close();
+//            file.close();
+//
+//            System.out.println("Object has been deserialized ");
+//            System.out.println("ballY = " + object1.ballY);
+//            //System.out.println("Coordinate of Obstacle: "+ object1.ObstaclenowY);
+//            //System.out.println("b = " + object1.b);
+//            //Parent root=object1.pane;
+//            //primaryStage.setTitle("Color Switch");
+//            //primaryStage.setScene(new Scene(root, 400, 600));
+//            //primaryStage.show();
+//
+//
+//            //game.initialise_load(object1);
+//
+////            AnchorPane pane1= FXMLLoader.load(getClass().getResource("LoadGame.fxml"));
+////            pane.getChildren().setAll(pane1);
+//        }
+//
+//        catch(IOException ex)
+//        {
+//            System.out.println("IOException is caught");
+//        }
+//
+//        catch(ClassNotFoundException ex)
+//        {
+//            System.out.println("ClassNotFoundException is caught");
+//        }
+//            Game game = new Game(pane, object1);
 
     }
     @FXML

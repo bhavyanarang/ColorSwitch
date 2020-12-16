@@ -67,8 +67,15 @@
             <Font name="System Bold" size="35.0" />
          </font>
       </Label>
-      <Button fx:id="replay" layoutX="118.0" layoutY="413.0" mnemonicParsing="false" onMouseClicked="#replayAgain" prefHeight="158.0" prefWidth="158.0" scaleX="0.4" scaleY="0.4" style="-fx-background-color: #000000;" />
-      <Button fx:id="back" layoutX="-50.0" layoutY="-31.0" mnemonicParsing="false" onMouseClicked="#goToHome" scaleX="0.4" scaleY="0.4" style="-fx-background-color: #000000;">
+      <Button fx:id="replay1" layoutX="118.0" layoutY="413.0" mnemonicParsing="false" onMouseClicked="#replayAgain" prefHeight="158.0" prefWidth="158.0" scaleX="0.4" scaleY="0.4" style="-fx-background-color: #000000;">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/star.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="back1" layoutX="-50.0" layoutY="-31.0" mnemonicParsing="false" onMouseClicked="#goToHome" scaleX="0.4" scaleY="0.4" style="-fx-background-color: #000000;">
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -82,11 +89,6 @@
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="123.0" layoutY="417.0" pickOnBounds="true" preserveRatio="true" scaleX="0.4" scaleY="0.4">
-         <image>
-            <Image url="@../Assets/star.png" />
-         </image>
-      </ImageView>
       <Label layoutX="99.0" layoutY="519.0" text="USE STARS" textFill="#fffbfb">
          <font>
             <Font name="System Bold" size="39.0" />

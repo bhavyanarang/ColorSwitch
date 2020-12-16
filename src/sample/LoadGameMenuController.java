@@ -29,21 +29,18 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-public class ObstacleHitMenuController implements Initializable {
+public class LoadGameMenuController implements Initializable {
 
     @FXML private Group circle1;
     @FXML private Group circle2;
     @FXML private AnchorPane pane;
     @FXML private Button back;
-    @FXML private Button replay;
-    @FXML private Label presentScore;
-    @FXML private Label highScore;
-    @FXML private Label totalStars;
-
+    @FXML private Button game1;
+    @FXML private Button game2;
+    @FXML private Button game3;
 
     Rotate rotate1;
     Rotate rotate2;
-    Game game;
 
     public void rotate() {
 
@@ -57,37 +54,14 @@ public class ObstacleHitMenuController implements Initializable {
         rotate2.setAngle(-5);
         circle2.getTransforms().addAll(rotate2);
 
-        ScaleTransition st1 = new ScaleTransition(Duration.millis(500), replay);
-        st1.setByY(0.05);
-        st1.setByX(0.05);
-        st1.setCycleCount(Timeline.INDEFINITE);
-        st1.setAutoReverse(true);
-        st1.play();
-
-        ScaleTransition st2 = new ScaleTransition(Duration.millis(500), back);
-        st2.setByY(0.05);
-        st2.setByX(0.05);
-        st2.setCycleCount(Timeline.INDEFINITE);
-        st2.setAutoReverse(true);
-        st2.play();
-
     }
-    //    void updatePresentScore(String s1){
-//       this.initialize();
-//    }
+
     @FXML
     void goToHome(MouseEvent event) throws IOException {
         AnchorPane pane1= FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         pane.getChildren().setAll(pane1);
     }
-    @FXML
-    void replayAgain(MouseEvent event) throws  IOException{
-        Ball b1=new Ball();
-        pane.getChildren().setAll(b1.getBall());
-    }
-    public ObstacleHitMenuController(){
-        t1.start();
-    }
+
     AnimationTimer t1=new AnimationTimer() {
         @Override
         public void handle(long l) {
