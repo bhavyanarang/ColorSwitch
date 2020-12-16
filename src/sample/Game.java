@@ -269,6 +269,9 @@ public class Game {
                         System.out.println("hit");
 
                         AnchorPane pane1 = FXMLLoader.load(getClass().getResource("ObstacleHitMenu.fxml"));
+                        FXMLLoader loader=new FXMLLoader(getClass().getResource("ObstacleHitMenu.fxml"));
+                        ObstacleHitMenuController controller=loader.getController();
+                        //controller.initData(scorecard.getLabel().getText());
                         pane.getChildren().setAll(pane1);
 
                         t1.stop();

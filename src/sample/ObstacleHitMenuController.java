@@ -34,8 +34,8 @@ public class ObstacleHitMenuController implements Initializable {
     @FXML private Group circle1;
     @FXML private Group circle2;
     @FXML private AnchorPane pane;
-    @FXML private Button back;
-    @FXML private Button replay;
+    @FXML private Button back1;
+    @FXML private Button replay1;
     @FXML private Label presentScore;
     @FXML private Label highScore;
     @FXML private Label totalStars;
@@ -57,14 +57,14 @@ public class ObstacleHitMenuController implements Initializable {
         rotate2.setAngle(-5);
         circle2.getTransforms().addAll(rotate2);
 
-        ScaleTransition st1 = new ScaleTransition(Duration.millis(500), replay);
+        ScaleTransition st1 = new ScaleTransition(Duration.millis(500), replay1);
         st1.setByY(0.05);
         st1.setByX(0.05);
         st1.setCycleCount(Timeline.INDEFINITE);
         st1.setAutoReverse(true);
         st1.play();
 
-        ScaleTransition st2 = new ScaleTransition(Duration.millis(500), back);
+        ScaleTransition st2 = new ScaleTransition(Duration.millis(500), back1);
         st2.setByY(0.05);
         st2.setByX(0.05);
         st2.setCycleCount(Timeline.INDEFINITE);
@@ -95,6 +95,11 @@ public class ObstacleHitMenuController implements Initializable {
         }
     };
 
+    void initData(String abc){
+        //String a=Integer.toString(abc);
+        this.presentScore.setText(abc);
+
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //presentScore.setText(game.scorecard.getLabel().getText());
