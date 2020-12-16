@@ -36,6 +36,7 @@ public class Obstacle4 extends Obstacle {
 
     Obstacle4(int centerX,int centerY){
         super(centerX,centerY);
+        obstacleNumber=4;
         components.add(arc1);
         components.add(arc2);
         components.add(arc3);

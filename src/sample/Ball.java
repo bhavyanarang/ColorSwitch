@@ -63,4 +63,8 @@ public class Ball {
         return this.color;
     }
 
+    public void setColor(int color) {
+        this.color = color;
+        ball.setFill(colors[color]);
+    }
 }

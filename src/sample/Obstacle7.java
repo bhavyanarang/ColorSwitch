@@ -62,6 +62,7 @@ public class Obstacle7 extends Obstacle {
     }
     Obstacle7(int centerX,int centerY){
         super(centerX,centerY);
+        obstacleNumber=7;
         components.add(arc11);
         components.add(arc12);
         components.add(arc13);

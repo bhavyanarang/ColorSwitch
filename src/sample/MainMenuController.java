@@ -2,6 +2,7 @@ package sample;
 import javafx.animation.AnimationTimer;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.fxml.FXML;
@@ -10,7 +11,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
+
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 public class MainMenuController implements Initializable{
@@ -128,6 +132,47 @@ public class MainMenuController implements Initializable{
     @FXML
     void resumeOldGame(MouseEvent event) throws IOException {
         System.out.println("Resume game");
+        pane.getChildren().removeAll();
+        serializehelp object1 = null;
+
+        // Deserialization
+        try
+        {
+            // Reading the object from a file
+            FileInputStream file = new FileInputStream("tester.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+
+            // Method for deserialization of object
+            object1 = (serializehelp) in.readObject();
+
+            in.close();
+            file.close();
+
+            System.out.println("Object has been deserialized ");
+            System.out.println("ballY = " + object1.ballY);
+            System.out.println("Coordinate: "+ object1.ObstaclenowY);
+            //System.out.println("b = " + object1.b);
+            //Parent root=object1.pane;
+            //primaryStage.setTitle("Color Switch");
+            //primaryStage.setScene(new Scene(root, 400, 600));
+            //primaryStage.show();
+
+            Game game=new Game(pane,object1);
+            //game.initialise_load(object1);
+
+//            AnchorPane pane1= FXMLLoader.load(getClass().getResource("LoadGame.fxml"));
+//            pane.getChildren().setAll(pane1);
+        }
+
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+        }
+
+        catch(ClassNotFoundException ex)
+        {
+            System.out.println("ClassNotFoundException is caught");
+        }
     }
     @FXML
     void exitGame(MouseEvent event) throws IOException {
