@@ -48,11 +48,6 @@
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dd8827" height="56.0" layoutY="314.0" stroke="BLACK" strokeType="INSIDE" width="563.0" />
-      <Label layoutX="210.0" layoutY="316.0" text="GAME 1" textFill="#f2eeee">
-         <font>
-            <Font name="System Bold" size="35.0" />
-         </font>
-      </Label>
       <Button fx:id="replay" layoutX="197.0" layoutY="408.0" mnemonicParsing="false" onMouseClicked="#replayAgain" prefHeight="158.0" prefWidth="158.0" scaleX="0.4" scaleY="0.4" style="-fx-background-color: #000000;" />
       <Button fx:id="back" layoutX="-25.0" layoutY="-31.0" mnemonicParsing="false" onMouseClicked="#goToHome" scaleX="0.4" scaleY="0.4" style="-fx-background-color: #000000;">
          <graphic>
@@ -65,15 +60,20 @@
       </Button>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dd8827" height="56.0" layoutY="385.0" stroke="BLACK" strokeType="INSIDE" width="563.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dd8827" height="56.0" layoutY="459.0" stroke="BLACK" strokeType="INSIDE" width="563.0" />
-      <Label layoutX="212.0" layoutY="390.0" text="GAME 2" textFill="#f2eeee">
+      <Button fx:id="game1" layoutX="223.0" layoutY="316.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="126.0" style="-fx-background-color: #dd8827;" text="GAME 1" textFill="#eae5e5">
          <font>
-            <Font name="System Bold" size="35.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
-      </Label>
-      <Label layoutX="210.0" layoutY="461.0" text="GAME 3" textAlignment="CENTER" textFill="#f2eeee">
+      </Button>
+      <Button fx:id="game2" layoutX="223.0" layoutY="387.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="126.0" style="-fx-background-color: #dd8827;" text="GAME 2" textFill="#eae5e5">
          <font>
-            <Font name="System Bold" size="35.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
-      </Label>
+      </Button>
+      <Button fx:id="game3" layoutX="226.0" layoutY="461.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="126.0" style="-fx-background-color: #dd8827;" text="GAME 3" textFill="#eae5e5">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
