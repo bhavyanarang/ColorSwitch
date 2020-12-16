@@ -37,7 +37,7 @@ public class Game {
     private Obstacle[] onscreenObstacles;
 
     private int jumpCount=0;
-    private int numberOfObjects=3;
+    private int numberOfObjects=1;
     private int downCount=0;
     private int timesPaneDown=1;
     private int starsGone=0;
@@ -45,15 +45,7 @@ public class Game {
     private int obstaclesGone=0;
 
     public void initialize(){
-        Obstacles=new ArrayList<Obstacle>(0);
-        Obstacles.add(new Obstacle1(200,200));
-        Obstacles.add(new Obstacle2(200,200));
-        Obstacles.add(new Obstacle3(200,200));
-        Obstacles.add(new Obstacle4(200,200));
-        Obstacles.add(new Obstacle5(200,200));
-        Obstacles.add(new Obstacle6(200,200));
-        Obstacles.add(new Obstacle7(200,200));
-        Obstacles.add(new Obstacle8(200,200));
+
         ball=new Ball();
         scorecard=new Scorecard();
         stars=new Star[numberOfObjects];
@@ -71,41 +63,55 @@ public class Game {
 
     }
     public void addNewRandomObjects(double ballY){
-        //System.out.println(ballY);
 
         for(int i=1;i<=numberOfObjects;i++){
             stars[i-1]=new Star();
-            stars[i-1].setYCoordinate(ballY-100-200*i);
-
             colorSwitchers[i-1]=new ColorSwitcher();
-            colorSwitchers[i-1].setCentre_y(ballY-200-200*i);
-
 
             int randomNumber=new Random().nextInt(8-1)+1;
+            //randomNumber=7;
+            System.out.println(randomNumber);
             Obstacle variableObstacle;
             switch (randomNumber){
-                case 1: variableObstacle=new Obstacle1(200,(int)ballY-150-400*i);
-                        break;
+                case 1: variableObstacle=new Obstacle1(200,(int)ballY-150-300*i);
+                    //stars[i-1].setYCoordinate(variableObstacle.returnObstacle().getLayoutY()+20);
+                    break;
                 case 2: variableObstacle=new Obstacle2(200,(int)ballY-150-300*i);
-                        break;
+                    break;
                 case 3: variableObstacle=new Obstacle3(200,(int)ballY-150-300*i);
-                        break;
+                    //stars[i-1].setYCoordinate(variableObstacle.returnObstacle().getLayoutY()+20);
+                    break;
                 case 4: variableObstacle=new Obstacle4(200,(int)ballY-150-300*i);
-                        break;
+                    break;
                 case 5: variableObstacle=new Obstacle5(200,(int)ballY-150-300*i);
-                        break;
+                    break;
                 case 6: variableObstacle=new Obstacle6(200,(int)ballY-150-300*i);
-                        break;
+                    break;
                 case 7: variableObstacle=new Obstacle7(200,(int)ballY-150-300*i);
-                        break;
+                    break;
                 case 8: variableObstacle=new Obstacle8(200,(int)ballY-150-300*i);
-                        break;
+                    break;
 
                 default:
                     throw new IllegalStateException("Unexpected value: " + randomNumber);
             }
-            variableObstacle.returnObstacle().setLayoutY(ballY-150-300*i);
-            variableObstacle.returnObstacle2().setLayoutY(ballY-150-300*i);
+            variableObstacle.returnObstacle().setLayoutY(ballY-300*i);
+            variableObstacle.returnObstacle2().setLayoutY(ballY-300*i);
+            System.out.println(variableObstacle.starOnCentre());
+            System.out.println(variableObstacle.returnObstacle().getLayoutY());
+            System.out.println(variableObstacle.returnObstacle2().getLayoutY());
+
+            if(variableObstacle.starOnCentre() && randomNumber!=7){
+                stars[i-1].setYCoordinate(variableObstacle.returnObstacle().getLayoutY()+25);
+            }
+            else if(randomNumber==7){
+                stars[i-1].setYCoordinate(variableObstacle.returnObstacle().getLayoutY()+90);
+            }
+            else{
+                stars[i-1].setYCoordinate(variableObstacle.returnObstacle().getLayoutY()+150);
+            }
+            System.out.println(stars[i-1].getY());
+            colorSwitchers[i-1].setCentre_y((int)ballY - 300-300*i);
 
             if(variableObstacle instanceof Obstacle1){
                 variableObstacle.returnObstacle().setLayoutX(100);
