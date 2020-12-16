@@ -1,6 +1,7 @@
 package sample;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class serializehelp implements Serializable {
     //String saveAs;
@@ -9,34 +10,29 @@ public class serializehelp implements Serializable {
     double ballY;
     int ballcolor;
 
-    double starX;
-    double starY;
 
-    double colorswitcherX;
-    double colorswitcherY;
+    ArrayList<Integer> ObstacleNumber;
+    ArrayList<Double> ObstacleY;
+//    double ObstaclenowX;
+//    double ObstaclenowY;
 
-    int ObstacleNumber;
-    double ObstaclenowX;
-    double ObstaclenowY;
+    Double[] starss;
+    Double[] colorswitcherss;
 
     int presentscore;
 
-    serializehelp(double ballX,double ballY,int ballcolor,double starX,double starY,double colorswitcherX,double colorswitcherY,int ObstacleNumber,
-                  double ObstaclenowX,double ObstaclenowY,int presentscore){
+    serializehelp(double ballX,double ballY,int ballcolor,Double[] starss,Double[] colorswitcherss,ArrayList<Integer> ObstacleNumber,ArrayList<Double> ObstacleY,int presentscore){
         //this.saveAs=saveAs;
         this.ballX=ballX;
         this.ballY=ballY;
         this.ballcolor=ballcolor;
 
-        this.starX=starX;
-        this.starY=starY;
 
-        this.colorswitcherX=colorswitcherX;
-        this.colorswitcherY=colorswitcherY;
+        this.starss=starss;
+        this.colorswitcherss=colorswitcherss;
 
         this.ObstacleNumber=ObstacleNumber;
-        this.ObstaclenowX=ObstaclenowX;
-        this.ObstaclenowY=ObstaclenowY;
+        this.ObstacleY=ObstacleY;
 
         this.presentscore=presentscore;
     }

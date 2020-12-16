@@ -21,11 +21,10 @@ public class Game {
     boolean moveDown=false;
     private boolean jumpPressed=false;
 
-    public Scorecard scorecard;
+    private Scorecard scorecard;
     private Star star;
     private Ball ball;
     private PauseMenuController pauseMenuController;
-    //private ObstacleHitMenuController obstacleHitMenuController=new ObstacleHitMenuController(this);
     private ColorSwitcher colorSwitcher;
     private Pause pause;
     private Player player;
@@ -151,75 +150,79 @@ public class Game {
     public void initialise_load(serializehelp helper){
         ball=new Ball();
         scorecard=new Scorecard();
-
         stars=new Star[numberOfObjects];
         colorSwitchers=new ColorSwitcher[numberOfObjects];
         onscreenObstacles=new Obstacle[numberOfObjects];
-        Obstacles=new ArrayList<>();
         pauseMenuController=new PauseMenuController();
         pause=new Pause();
         player=new Player();
-
-
-        for(int i=1;i<=numberOfObjects;i++) {
-            stars[i - 1] = new Star();
-            stars[i - 1].setYCoordinate(helper.ballY - 100 - 200 * i);
-
-            colorSwitchers[i - 1] = new ColorSwitcher();
-            colorSwitchers[i - 1].setCentre_y(helper.ballY - 200 - 200 * i);
+        Obstacles=new ArrayList<Obstacle>(0);
+       for(int i=0;i<numberOfObjects;i++) {
+           stars[i]=new Star();
+           stars[i].setYCoordinate(helper.starss[i]);
+           colorSwitchers[i]=new ColorSwitcher();
+           colorSwitchers[i].setCentre_y(helper.colorswitcherss[i]);
         }
-
-        star=stars[0];
-        colorSwitcher=colorSwitchers[0];
-
         ball.getBall().setCenterY(helper.ballY);
         ball.getBall().setCenterX(200);
         ball.setColor(helper.ballcolor);
         System.out.println("ball_ycor: "+ball.getBall().getBoundsInParent().getCenterY());
+        this.pane.getChildren().setAll(ball.getBall(), pause.getPauseButton(), scorecard.getLabel());
+        for (int i=0;i<helper.ObstacleY.size();i++) {
 
+            int number = helper.ObstacleNumber.get(i);
+            Obstacle variableObstacle=null;
+            switch (number) {
+                case 1:
+                    variableObstacle = new Obstacle1(200, 200);
+                    break;
+                case 2:
+                    variableObstacle = new Obstacle2(200, 200);
+                    break;
+                case 3:
+                    variableObstacle = new Obstacle3(200, 200);
+                    break;
+                case 4:
+                    variableObstacle = new Obstacle4(200, 200);
+                    break;
+                case 5:
+                    variableObstacle = new Obstacle5(200, 200);
+                    break;
+                case 6:
+                    variableObstacle = new Obstacle6(200, 200);
+                    break;
+                case 7:
+                    variableObstacle = new Obstacle7(200, 200);
+                    break;
+                case 8:
+                    variableObstacle = new Obstacle8(200, 200);
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + number);
+            }
 
-        int number=helper.ObstacleNumber;
-        Obstacle variableObstacle;
-        switch (number){
-            case 1: variableObstacle=new Obstacle1(200,200);
-                break;
-            case 2: variableObstacle=new Obstacle2(200,200);
-                break;
-            case 3: variableObstacle=new Obstacle3(200,200);
-                break;
-            case 4: variableObstacle=new Obstacle4(200,200);
-                break;
-            case 5: variableObstacle=new Obstacle5(200,200);
-                break;
-            case 6: variableObstacle=new Obstacle6(200,200);
-                break;
-            case 7: variableObstacle=new Obstacle7(200,200);
-                break;
-            case 8: variableObstacle=new Obstacle8(200,200);
-                break;
+            this.pane.getChildren().add(variableObstacle.returnObstacle());
+            this.pane.getChildren().add(variableObstacle.returnObstacle2());
+            variableObstacle.returnObstacle().setLayoutY(helper.ObstacleY.get(i) - 200);
+            variableObstacle.returnObstacle2().setLayoutY(helper.ObstacleY.get(i) - 200);
+            System.out.println("obstacle_cor: " + variableObstacle.returnObstacle().getBoundsInParent().getCenterY());
 
-            default:
-                throw new IllegalStateException("Unexpected value: " + number);
-        }
-
-        this.pane.getChildren().setAll(ball.getBall(), pause.getPauseButton(),scorecard.getLabel());
-        this.pane.getChildren().add(variableObstacle.returnObstacle());
-        this.pane.getChildren().add(variableObstacle.returnObstacle2());
-
-        variableObstacle.returnObstacle().setLayoutY(helper.ObstaclenowY-200);
-        variableObstacle.returnObstacle2().setLayoutY(helper.ObstaclenowY-200);
-        System.out.println("obstacle_cor: "+variableObstacle.returnObstacle().getBoundsInParent().getCenterY());
-
-        if(variableObstacle instanceof Obstacle1){
-            variableObstacle.returnObstacle().setLayoutX(100);
-            variableObstacle.returnObstacle2().setLayoutX(100);
+            if (variableObstacle instanceof Obstacle1) {
+                variableObstacle.returnObstacle().setLayoutX(100);
+                variableObstacle.returnObstacle2().setLayoutX(100);
+            }
+            System.out.println(variableObstacle.obstacleNumber);
+            Obstacles.add(variableObstacle);
         }
         for(int i=0;i<numberOfObjects;i++) {
             //System.out.println("here");
             this.pane.getChildren().add(stars[i].getImg());
             this.pane.getChildren().add(colorSwitchers[i].getColorSwitcher());
         }
-        currentObstacle=variableObstacle;
+
+        currentObstacle=Obstacles.get(0);
+        star=stars[0];
+        colorSwitcher=colorSwitchers[0];
     }
     public void startNewGame() {
 
@@ -286,7 +289,6 @@ public class Game {
                     System.out.println("hit");
 
                     AnchorPane pane1 = FXMLLoader.load(getClass().getResource("ObstacleHitMenu.fxml"));
-                    //obstacleHitMenuController=new ObstacleHitMenuController().initialize();
                     pane.getChildren().setAll(pane1);
 //                    for(int i=0;i<3;i++){
 //                        this.pane.getChildren().remove(onscreenObstacles[i].returnObstacle());
@@ -406,13 +408,27 @@ public class Game {
 
                 // Serialization
                 try {
+                    ArrayList<Integer> Obstaclenumber=new ArrayList<Integer>(Obstacles.size());
+                    ArrayList<Double> ObstacleY=new ArrayList<Double>(Obstacles.size());
+                    Double[] starss=new Double[numberOfObjects];
+                    Double[] colorSwitcherss=new Double[numberOfObjects];
 
+                    for(int i=0;i<Obstacles.size();i++){
+                        Obstaclenumber.add(0);
+                        ObstacleY.add(0.0);
+                        Obstaclenumber.set(i,Obstacles.get(i).obstacleNumber);
+                        ObstacleY.set(i,Obstacles.get(i).group.getBoundsInParent().getCenterY());
+                    }
+                    for (int i=0;i<numberOfObjects;i++){
+                        starss[i]=stars[i].getImg().getBoundsInParent().getCenterY();
+                        colorSwitcherss[i]=colorSwitchers[i].getColorSwitcher().getBoundsInParent().getCenterY();
+                    }
                     FileOutputStream file = new FileOutputStream("Pause.txt");
                     System.out.println("Obstacle_cor" + currentObstacle.group.getBoundsInParent().getCenterY());
                     ObjectOutputStream out = new ObjectOutputStream(file);
                     System.out.println("Ball_cor: " + ball.getBall().getBoundsInParent().getCenterY());
                     // Method for serialization of object
-                    out.writeObject(new serializehelp(ball.getBall().getBoundsInParent().getCenterX(), ball.getBall().getBoundsInParent().getCenterY(), ball.getColor(), 200, 200, 200, 400, currentObstacle.obstacleNumber, currentObstacle.group.getBoundsInParent().getCenterX(), currentObstacle.group.getBoundsInParent().getCenterY(), Integer.parseInt(scorecard.getLabel().getText())));
+                    out.writeObject(new serializehelp(ball.getBall().getBoundsInParent().getCenterX(), ball.getBall().getBoundsInParent().getCenterY(), ball.getColor(),starss,colorSwitcherss, Obstaclenumber,ObstacleY, Integer.parseInt(scorecard.getLabel().getText())));
                     //System.out.println("Heyy12");
 
                     out.close();
