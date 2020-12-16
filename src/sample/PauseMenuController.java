@@ -18,7 +18,9 @@ import javafx.scene.shape.SVGPath;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -60,6 +62,7 @@ public class PauseMenuController implements Initializable {
         //resume the game
         AnchorPane pane1= FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         pane.getChildren().setAll(pane1);
+
     }
 
     @Override

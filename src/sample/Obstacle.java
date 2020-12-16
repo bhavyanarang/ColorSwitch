@@ -6,6 +6,7 @@ import javafx.scene.shape.Shape;
 import java.util.ArrayList;
 
 public abstract class Obstacle {
+    int obstacleNumber;
     int centerX;
     int centerY;
     ArrayList<Shape> components=new ArrayList<Shape>(0);
