@@ -57,14 +57,106 @@ public class LoadGameMenuController implements Initializable {
     }
     @FXML
     void game1(){
+        pane.getChildren().removeAll();
+        serializehelp object1 = null;
 
+        try {
+            // Reading the object from a file
+            FileInputStream file = new FileInputStream("1.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+
+            // Method for deserialization of object
+            object1 = (serializehelp) in.readObject();
+            System.out.println("ok");
+//            }
+            System.out.println("chill1");
+
+            in.close();
+            file.close();
+
+            System.out.println("Object has been deserialized ");
+            System.out.println("ballY = " + object1.ballY);
+        }
+
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+        }
+
+        catch(ClassNotFoundException ex)
+        {
+            System.out.println("ClassNotFoundException is caught");
+        }
+        Game game = new Game(pane, object1);
     }
     @FXML
     void game2(){
+        pane.getChildren().removeAll();
+        serializehelp object1 = null;
+
+        try {
+            // Reading the object from a file
+            FileInputStream file = new FileInputStream("2.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+
+            // Method for deserialization of object
+            object1 = (serializehelp) in.readObject();
+            System.out.println("ok");
+//            }
+            System.out.println("chill1");
+
+            in.close();
+            file.close();
+
+            System.out.println("Object has been deserialized ");
+            System.out.println("ballY = " + object1.ballY);
+        }
+
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+        }
+
+        catch(ClassNotFoundException ex)
+        {
+            System.out.println("ClassNotFoundException is caught");
+        }
+        Game game = new Game(pane, object1);
 
     }
     @FXML
     void game3(){
+        pane.getChildren().removeAll();
+        serializehelp object1 = null;
+
+        try {
+            // Reading the object from a file
+            FileInputStream file = new FileInputStream("3.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+
+            // Method for deserialization of object
+            object1 = (serializehelp) in.readObject();
+            System.out.println("ok");
+//            }
+            System.out.println("chill1");
+
+            in.close();
+            file.close();
+
+            System.out.println("Object has been deserialized ");
+            System.out.println("ballY = " + object1.ballY);
+        }
+
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+        }
+
+        catch(ClassNotFoundException ex)
+        {
+            System.out.println("ClassNotFoundException is caught");
+        }
+        Game game = new Game(pane, object1);
 
     }
 

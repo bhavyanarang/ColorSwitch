@@ -80,61 +80,98 @@ public class PauseMenuController implements Initializable {
     }
     @FXML
     void game1(MouseEvent event) throws IOException{
-
-    }
-    @FXML
-    void game2(MouseEvent event) throws IOException{
-
-    }
-    @FXML
-    void game3(MouseEvent event) throws IOException{
-
-    }
-
-    void saveGame(ActionEvent event) throws IOException {
-        //save this game
-        System.out.println("File batao");
-        Scanner ins=new Scanner(System.in);
-        String check=ins.next();
-
-        FileReader fileReader
-                = new FileReader(
-                "SavedGames.txt");
-
-        // Convert fileReader to
-        // bufferedReader
-        //int c=0;
-        String names;
-        BufferedReader buffReader
-                = new BufferedReader(
-                fileReader);
-
-        while (buffReader.ready()) {
-            names = buffReader.readLine();
-            if(names.equals(ins)){
-                System.out.println("Same name game already exists, Give new Name:");
-                break;
-            }
-        }
-        check=ins.next();
         File oldName =
                 new File("Pause.txt");
         File newName =
-                new File(check+".txt");
+                new File(1+".txt");
 
         if (oldName.renameTo(newName))
             System.out.println("Renamed successfully");
         else
             System.out.println("Error");
 
-        String fileName = "SavedGames.txt";
-        appendStrToFile(fileName, check+"\n");
-        System.out.println("Successful");
+
+        AnchorPane pane1= FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        pane.getChildren().setAll(pane1);
+
+    }
+    @FXML
+    void game2(MouseEvent event) throws IOException{
+        File oldName =
+                new File("Pause.txt");
+        File newName =
+                new File(2+".txt");
+
+        if (oldName.renameTo(newName))
+            System.out.println("Renamed successfully");
+        else
+            System.out.println("Error");
 
 
         AnchorPane pane1= FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         pane.getChildren().setAll(pane1);
     }
+    @FXML
+    void game3(MouseEvent event) throws IOException{
+        File oldName =
+                new File("Pause.txt");
+        File newName =
+                new File(3+".txt");
+
+        if (oldName.renameTo(newName))
+            System.out.println("Renamed successfully");
+        else
+            System.out.println("Error");
+
+
+        AnchorPane pane1= FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        pane.getChildren().setAll(pane1);
+    }
+
+//    void saveGame(ActionEvent event) throws IOException {
+//        //save this game
+//        System.out.println("File batao");
+//        Scanner ins=new Scanner(System.in);
+//        String check=ins.next();
+//
+//        FileReader fileReader
+//                = new FileReader(
+//                "SavedGames.txt");
+//
+//        // Convert fileReader to
+//        // bufferedReader
+//        //int c=0;
+//        String names;
+//        BufferedReader buffReader
+//                = new BufferedReader(
+//                fileReader);
+//
+//        while (buffReader.ready()) {
+//            names = buffReader.readLine();
+//            if(names.equals(ins)){
+//                System.out.println("Same name game already exists, Give new Name:");
+//                break;
+//            }
+//        }
+//        check=ins.next();
+//        File oldName =
+//                new File("Pause.txt");
+//        File newName =
+//                new File(check+".txt");
+//
+//        if (oldName.renameTo(newName))
+//            System.out.println("Renamed successfully");
+//        else
+//            System.out.println("Error");
+//
+//        String fileName = "SavedGames.txt";
+//        appendStrToFile(fileName, check+"\n");
+//        System.out.println("Successful");
+//
+//
+//        AnchorPane pane1= FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+//        pane.getChildren().setAll(pane1);
+ //   }
     @FXML
     void resumeGame(MouseEvent event) throws IOException {
         //resume the game

@@ -166,6 +166,7 @@ public class Game {
         ball.getBall().setCenterY(helper.ballY);
         ball.getBall().setCenterX(200);
         ball.setColor(helper.ballcolor);
+
         pause.getPauseButton().toFront();
         scorecard.getLabel().toFront();
         passed= helper.passed;
@@ -312,8 +313,7 @@ public class Game {
 
     }
     private void checkObstacleHit(Obstacle presentObstacle) throws IOException {
-        //for(int i=0;i<3;i++){
-        //  presentObstacle=onscreenObstacles[i];
+
 
         ArrayList<Integer> abc=new ArrayList<>();
         if(starsGone==0){
@@ -425,7 +425,7 @@ public class Game {
                             System.out.println("Ball_cor: " + ball.getBall().getBoundsInParent().getCenterY());
                             // Method for serialization of object
                             //out.writeObject(new serializehelp("Delete",ball.getBall().getBoundsInParent().getCenterX(), ball.getBall().getBoundsInParent().getCenterY()-50, ball.getColor(), starss,colorSwitcherss,Obstaclenumber,ObstacleY, Integer.parseInt(scorecard.getLabel().getText()),jumpCount,downCount,timesPaneDown,starsGone,colorSwitchersGone,onscreen,start,end));
-                            out.writeObject(new serializehelp("Pause",ball.getBall().getBoundsInParent().getCenterX(), ball.getBall().getBoundsInParent().getCenterY(), ball.getColor(), starss,colorSwitcherss,Obstaclenumber,ObstacleY, Integer.parseInt(scorecard.getLabel().getText()),jumpCount,downCount,timesPaneDown,starsGone,colorSwitchersGone,onscreen,start,end,passed,starsPassed,colorSwitchersPassed));
+                            out.writeObject(new serializehelp("Pause",ball.getBall().getBoundsInParent().getCenterX(), ball.getBall().getBoundsInParent().getCenterY()-50, ball.getColor(), starss,colorSwitcherss,Obstaclenumber,ObstacleY, Integer.parseInt(scorecard.getLabel().getText()),jumpCount,downCount,timesPaneDown,starsGone,colorSwitchersGone,onscreen,start,end,passed,starsPassed,colorSwitchersPassed));
                             //chnged coordiantes of ball since it hit an obstacle
 
                             out.close();
@@ -514,42 +514,6 @@ public class Game {
 
                 //String filename = "tester.txt";
                 this.stop();
-//                Scanner in = new Scanner(System.in);
-//                System.out.println("Enter Name to Save As");
-//                String filename = in.next();
-//                boolean filethere=false;
-//
-//
-//
-//
-//                // Let us print modified file
-//                try {
-//                    BufferedReader ins = new BufferedReader(
-//                            new FileReader("SavedGames.txt"));
-//
-//                    String mystring;
-//                    while ((mystring = ins.readLine()) != null) {
-//                        System.out.println(mystring);
-//                        if(mystring.equals(filename)){
-//                            filethere=true;
-//                        }
-//                    }
-//                } catch (IOException e) {
-//                    System.out.println("Exception Occurred" + e);
-//                }
-//                if(filethere==false){
-//                    String fileName = "SavedGames.txt";
-//                    try {
-//                        BufferedWriter out = new BufferedWriter(
-//                                new FileWriter(fileName));
-//                        //out.write(filename+"\n");
-//                        appendStrToFile(fileName, filename+".txt\n");
-//                        out.close();
-//                    } catch (IOException e) {
-//                        System.out.println("Exception Occurred" + e);
-//                    }
-//                }
-
                 // Serialization
                 try {
                     int[] Obstaclenumber=new int[numberOfObjects];
