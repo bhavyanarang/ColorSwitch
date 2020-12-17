@@ -75,6 +75,6 @@ public class LoadGameMenuController implements Initializable {
         rotate1=new Rotate();
         rotate2=new Rotate();
         //rotate();
-        //t1.start();
+        t1.start();
     }
 }

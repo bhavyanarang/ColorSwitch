@@ -31,13 +31,16 @@ public class Game {
     private Player player;
     private ArrayList<Obstacle> Obstacles;
     private Obstacle currentObstacle;
-
+    private int numberOfObjects=50;
     private Star[] stars;
     private ColorSwitcher[] colorSwitchers;
     private Obstacle[] onscreenObstacles;
+    private boolean[] passed;
+    private boolean[] starsPassed;
+    private boolean[] colorSwitchersPassed;
 
     private int jumpCount=0;
-    private int numberOfObjects=50;
+
     private int downCount=0;
     private int timesPaneDown=1;
     private int starsGone=0;
@@ -45,8 +48,7 @@ public class Game {
     private int onscreen=0;
     private int start=0;
     private int end=0;
-    private boolean loadgame=false;
-    private Game game=this;
+
 
     public void initialize(){
 
@@ -55,6 +57,9 @@ public class Game {
         stars=new Star[numberOfObjects];
         colorSwitchers=new ColorSwitcher[numberOfObjects];
         onscreenObstacles=new Obstacle[numberOfObjects];
+        passed=new boolean[numberOfObjects];
+        colorSwitchersPassed=new boolean[numberOfObjects];
+        starsPassed=new boolean[numberOfObjects];
 
         addNewRandomObjects(ball.getBall().getBoundsInParent().getCenterY());
 
@@ -70,7 +75,9 @@ public class Game {
 
         for(int i=1;i<=numberOfObjects;i++){
             stars[i-1]=new Star();
-
+            passed[i-1]=false;
+            starsPassed[i-1]=false;
+            colorSwitchersPassed[i-1]=false;
             colorSwitchers[i-1]=new ColorSwitcher();
 
             int randomNumber=new Random().nextInt(8-1)+1;
@@ -107,7 +114,9 @@ public class Game {
 
             variableObstacle.returnObstacle().setLayoutY(-200+ballY-275*i/2);
             variableObstacle.returnObstacle2().setLayoutY(-200+ballY-275*i/2);
-
+            if(i<8){
+                System.out.println("obs y " + i+" " +variableObstacle.returnObstacle().getBoundsInParent().getCenterY());
+            }
 
             if(randomNumber==2){
                 stars[i-1].setYCoordinate(-60+variableObstacle.returnObstacle().getBoundsInParent().getCenterY());
@@ -125,7 +134,6 @@ public class Game {
                 colorSwitchers[i-1].setCentre_y(abc);
             }
 
-
             if(variableObstacle instanceof Obstacle1){
                 variableObstacle.returnObstacle().setLayoutX(100);
                 variableObstacle.returnObstacle2().setLayoutX(100);
@@ -135,7 +143,6 @@ public class Game {
         }
     }
     public void initialise_load(serializehelp helper){
-        loadgame=true;
         ball=new Ball();
         scorecard=new Scorecard();
 
@@ -156,24 +163,23 @@ public class Game {
         start=helper.start;
         end=helper.end;
 
-
-
         ball.getBall().setCenterY(helper.ballY);
         ball.getBall().setCenterX(200);
         ball.setColor(helper.ballcolor);
-        System.out.println("ball_ycor: "+ball.getBall().getBoundsInParent().getCenterY());
-        //this.pane.getChildren().setAll(ball.getBall(), pause.getPauseButton(), scorecard.getLabel());
-        //startNewGame();
         pause.getPauseButton().toFront();
         scorecard.getLabel().toFront();
-
+        passed= helper.passed;
+        colorSwitchersPassed=helper.colorSwitchersPassed;
+        starsPassed=helper.starsPassed;
+        int counter=0;
+        boolean abc=false;
         this.pane.getChildren().setAll(ball.getBall(), pause.getPauseButton(),scorecard.getLabel());
         for(int i=1;i<=numberOfObjects;i++) {
             stars[i - 1] = new Star();
             stars[i - 1].setYCoordinate(helper.starss[i-1]);
 
             colorSwitchers[i - 1] = new ColorSwitcher();
-            colorSwitchers[i - 1].setCentre_y(helper.colorswitcherss[i-1]);
+            colorSwitchers[i - 1].setCentre_y(helper.colorswitcherss[i-1]-80);
 
             int number=helper.ObstacleNumber[i-1];
             Obstacle variableObstacle;
@@ -199,31 +205,49 @@ public class Game {
                     throw new IllegalStateException("Unexpected value: " + number);
             }
 
+//            variableObstacle.returnObstacle().setLayoutY(-200+ballY-275*i/2);
+//            variableObstacle.returnObstacle2().setLayoutY(-200+ballY-275*i/2);
 
-            variableObstacle.returnObstacle().setLayoutY(helper.obstacless[i-1]-200);
-            variableObstacle.returnObstacle2().setLayoutY(helper.obstacless[i-1]-200);
-            System.out.println("obstacle_cor: "+variableObstacle.returnObstacle().getBoundsInParent().getCenterY());
+            variableObstacle.returnObstacle().setLayoutY(helper.obstacless[i-1]);
+            variableObstacle.returnObstacle2().setLayoutY(helper.obstacless[i-1]);
+            //System.out.println("obstacle_cor: "+variableObstacle.returnObstacle().getBoundsInParent().getCenterY());
 
             if(variableObstacle instanceof Obstacle1){
                 variableObstacle.returnObstacle().setLayoutX(100);
                 variableObstacle.returnObstacle2().setLayoutX(100);
             }
 
-            if(i-1<=(helper.onscreen+helper.start) && i-1>helper.start) {
-                this.pane.getChildren().add(variableObstacle.returnObstacle());
-                this.pane.getChildren().add(variableObstacle.returnObstacle2());
 
-                this.pane.getChildren().add(stars[i-1].getImg());
-                this.pane.getChildren().add(colorSwitchers[i-1].getColorSwitcher());
+            if(passed[i-1]==true && i!=numberOfObjects && passed[i]==false){
+                abc=true;
+                counter=i;
             }
+
             onscreenObstacles[i-1]=variableObstacle;
         }
+        for(int i=counter;i<counter+4;i++){
 
-        currentObstacle=onscreenObstacles[0];
-        star=stars[0];
-        colorSwitcher=colorSwitchers[0];
+            this.pane.getChildren().add(onscreenObstacles[i].returnObstacle());
+            this.pane.getChildren().add(onscreenObstacles[i].returnObstacle2());
+            if(!starsPassed[i])
+                this.pane.getChildren().add(stars[i].getImg());
+            if(!colorSwitchersPassed[i])
+                this.pane.getChildren().add(colorSwitchers[i].getColorSwitcher());
+        }
+        onscreen=4;
+        if(counter==0){
+            start=counter;
+            end=counter+4;
+        }
+        else{
+            start=counter-1;
+            end=counter+3;
+        }
+        currentObstacle=onscreenObstacles[start];
+        star=stars[starsGone];
+        colorSwitcher=colorSwitchers[colorSwitchersGone];
+        System.out.println("ball"+ball.getBall().getBoundsInParent().getCenterY());
 
-        //display();
 
     }
     public void startNewGame() {
@@ -238,29 +262,45 @@ public class Game {
         currentObstacle=onscreenObstacles[0];
     }
     public void display(){
+
         while(onscreen<4 ){
             //loadgame=false;
+            //System.out.println("display");
             int i=onscreen+start;
-            System.out.println("no of stars"+i);
-            this.pane.getChildren().add(onscreenObstacles[i].returnObstacle());
-            this.pane.getChildren().add(onscreenObstacles[i].returnObstacle2());
+            //System.out.println("no of stars"+i);
+            try {
+                this.pane.getChildren().add(onscreenObstacles[i].returnObstacle());
+                this.pane.getChildren().add(onscreenObstacles[i].returnObstacle2());
+                System.out.println("obs no"+onscreenObstacles[i].obstacleNumber);
+                this.pane.getChildren().add(stars[i].getImg());
 
-            this.pane.getChildren().add(stars[i].getImg());
-
-            this.pane.getChildren().add(colorSwitchers[i].getColorSwitcher());
-            System.out.println("good");
-            onscreen++;
-            end++;
+                this.pane.getChildren().add(colorSwitchers[i].getColorSwitcher());
+                //System.out.println("good");
+                onscreen++;
+                end++;
+            }
+            catch (IllegalArgumentException e){
+                System.out.println("children present");
+                onscreen++;
+            }
         }
     }
     public void remove(double getDown){
+
         for(int i=start;i<end;i++){
             if(this.pane.getChildren().contains(onscreenObstacles[i].returnObstacle()) || this.pane.getChildren().contains(onscreenObstacles[i].returnObstacle())){
                 if(onscreenObstacles[i].returnObstacle().getBoundsInParent().getMinY()>600 || onscreenObstacles[i].returnObstacle2().getBoundsInParent().getMinY()>600){
-                    this.pane.getChildren().remove(onscreenObstacles[i].returnObstacle());
-                    this.pane.getChildren().remove(onscreenObstacles[i].returnObstacle2());
-                    onscreen--;
-                    start++;
+                    try{
+                           // System.out.println("remove");
+                            this.pane.getChildren().remove(onscreenObstacles[i].returnObstacle());
+                            this.pane.getChildren().remove(onscreenObstacles[i].returnObstacle2());
+                            passed[i] = true;
+                            onscreen--;
+                            start++;
+                    }
+                    catch (IllegalArgumentException e){
+                        System.out.println("removed");
+                    }
                 }
                 else{
                     onscreenObstacles[i].returnObstacle().setTranslateY(getDown);
@@ -268,6 +308,7 @@ public class Game {
                 }
             }
         }
+
 
     }
     private void checkObstacleHit(Obstacle presentObstacle) throws IOException {
@@ -383,7 +424,8 @@ public class Game {
                             ObjectOutputStream out = new ObjectOutputStream(file);
                             System.out.println("Ball_cor: " + ball.getBall().getBoundsInParent().getCenterY());
                             // Method for serialization of object
-                            out.writeObject(new serializehelp("Delete",ball.getBall().getBoundsInParent().getCenterX(), ball.getBall().getBoundsInParent().getCenterY()-50, ball.getColor(), starss,colorSwitcherss,Obstaclenumber,ObstacleY, Integer.parseInt(scorecard.getLabel().getText()),jumpCount,downCount,timesPaneDown,starsGone,colorSwitchersGone,onscreen,start,end));
+                            //out.writeObject(new serializehelp("Delete",ball.getBall().getBoundsInParent().getCenterX(), ball.getBall().getBoundsInParent().getCenterY()-50, ball.getColor(), starss,colorSwitcherss,Obstaclenumber,ObstacleY, Integer.parseInt(scorecard.getLabel().getText()),jumpCount,downCount,timesPaneDown,starsGone,colorSwitchersGone,onscreen,start,end));
+                            out.writeObject(new serializehelp("Pause",ball.getBall().getBoundsInParent().getCenterX(), ball.getBall().getBoundsInParent().getCenterY(), ball.getColor(), starss,colorSwitcherss,Obstaclenumber,ObstacleY, Integer.parseInt(scorecard.getLabel().getText()),jumpCount,downCount,timesPaneDown,starsGone,colorSwitchersGone,onscreen,start,end,passed,starsPassed,colorSwitchersPassed));
                             //chnged coordiantes of ball since it hit an obstacle
 
                             out.close();
@@ -412,6 +454,7 @@ public class Game {
                 Pane variable= (Pane) colorSwitcher.getColorSwitcher().getParent();
                 if(variable!=null){
                     variable.getChildren().remove(colorSwitcher.getColorSwitcher());
+                    colorSwitchersPassed[colorSwitchersGone]=true;
                     colorSwitchersGone++;
                 }
             }
@@ -433,6 +476,7 @@ public class Game {
             if (variable != null) {
                 variable.getChildren().remove(star.getImg());
                 scorecard.setLabel();
+                starsPassed[starsGone]=true;
                 starsGone++;
             }
         }
@@ -462,8 +506,8 @@ public class Game {
         @Override
         public void handle(long l) {
             display();
-
-
+//            System.out.println("start:" +start);
+//            System.out.println("end: "+end);
             if (!pause.getPauseButton().isPressed())
                 ball.addGravity();
             if (pause.getPauseButton().isPressed()) {
@@ -515,9 +559,10 @@ public class Game {
 
                     for(int i=0;i<numberOfObjects;i++){
                         Obstaclenumber[i]=onscreenObstacles[i].obstacleNumber;
-                        ObstacleY[i]=onscreenObstacles[i].group.getBoundsInParent().getCenterY();
+                        ObstacleY[i]=onscreenObstacles[i].returnObstacle().getBoundsInParent().getCenterY();
                         starss[i]=stars[i].getImg().getBoundsInParent().getCenterY();
                         colorSwitcherss[i]=colorSwitchers[i].getColorSwitcher().getBoundsInParent().getCenterY();
+                        //System.out.println("here"+colorSwitcherss[i]);
                     }
 
                     FileOutputStream file = new FileOutputStream("Pause.txt");
@@ -525,13 +570,13 @@ public class Game {
                     ObjectOutputStream out = new ObjectOutputStream(file);
                     System.out.println("Ball_cor: " + ball.getBall().getBoundsInParent().getCenterY());
                     // Method for serialization of object
-                    out.writeObject(new serializehelp("Pause",ball.getBall().getBoundsInParent().getCenterX(), ball.getBall().getBoundsInParent().getCenterY(), ball.getColor(), starss,colorSwitcherss,Obstaclenumber,ObstacleY, Integer.parseInt(scorecard.getLabel().getText()),jumpCount,downCount,timesPaneDown,starsGone,colorSwitchersGone,onscreen,start,end));
+                    out.writeObject(new serializehelp("Pause",ball.getBall().getBoundsInParent().getCenterX(), ball.getBall().getBoundsInParent().getCenterY(), ball.getColor(), starss,colorSwitcherss,Obstaclenumber,ObstacleY, Integer.parseInt(scorecard.getLabel().getText()),jumpCount,downCount,timesPaneDown,starsGone,colorSwitchersGone,onscreen,start,end,passed,starsPassed,colorSwitchersPassed));
                     //System.out.println("Heyy12");
 
                     out.close();
                     file.close();
                     //System.out.println("Heyy13");
-
+                    pane.getChildren().removeAll();
                     System.out.println("Object has been serialized");
 //                    FXMLLoader loader=new FXMLLoader(getClass().getResource("PauseMenu.fxml"));
 //                    Parent root=loader.load();
@@ -596,7 +641,7 @@ public class Game {
                         //onscreenObstacles[i].returnObstacle2().setTranslateY(getDown);
 
                     }
-                    remove(getDown);
+                        remove(getDown);
                     currentObstacle.returnObstacle().setTranslateY(getDown);
                     currentObstacle.returnObstacle2().setTranslateY(getDown);
                 }
@@ -616,10 +661,12 @@ public class Game {
     }
     public Game(Pane p,serializehelp helper){
         this.pane=p;
+
         initialise_load(helper);
 
         t1.start();
         pane.setOnMouseClicked(event->{
+            System.out.println("in jump"+ball.getBall().getBoundsInParent().getCenterY());
             jumpPressed=true;
         });
     }

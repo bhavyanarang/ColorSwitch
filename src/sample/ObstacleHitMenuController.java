@@ -69,9 +69,7 @@ public class ObstacleHitMenuController implements Initializable {
         st2.play();
 
     }
-    //    void updatePresentScore(String s1){
-//       this.initialize();
-//    }
+
     void initHighScore(String abc) {
         highScore.setText(abc);
     }
