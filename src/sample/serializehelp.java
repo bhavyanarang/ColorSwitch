@@ -3,7 +3,7 @@ package sample;
 import java.io.Serializable;
 
 public class serializehelp implements Serializable {
-    //String saveAs;
+    String saveAs;
 
     double ballX;
     double ballY;
@@ -11,34 +11,51 @@ public class serializehelp implements Serializable {
 
     double starX;
     double starY;
+//
+//    double colorswitcherX;
+//    double colorswitcherY;
 
-    double colorswitcherX;
-    double colorswitcherY;
-
-    int ObstacleNumber;
-    double ObstaclenowX;
-    double ObstaclenowY;
+    int[] ObstacleNumber;
+//    double ObstaclenowX;
+//    double ObstaclenowY;
+    Double[] starss;
+    Double[] colorswitcherss;
+    Double[] obstacless;
 
     int presentscore;
 
-    serializehelp(double ballX,double ballY,int ballcolor,double starX,double starY,double colorswitcherX,double colorswitcherY,int ObstacleNumber,
-                  double ObstaclenowX,double ObstaclenowY,int presentscore){
-        //this.saveAs=saveAs;
+    int jumpCount;
+    int downCount;
+    int timesPaneDown;
+    int starsGone;
+    int colorSwitchersGone;
+    int onscreen;
+    int start;
+    int end;
+
+    serializehelp(String saveAs,double ballX,double ballY,int ballcolor,Double[] starss,Double[] colorswitcherss,int[] ObstacleNumber,
+                  Double[] obstacless,int presentscore,int jumpCount,int downCount,int timesPaneDown,int starsGone,int colorSwitchersGone,
+                  int onscreen,int start,int end){
+        this.saveAs=saveAs;
         this.ballX=ballX;
         this.ballY=ballY;
         this.ballcolor=ballcolor;
 
-        this.starX=starX;
-        this.starY=starY;
-
-        this.colorswitcherX=colorswitcherX;
-        this.colorswitcherY=colorswitcherY;
 
         this.ObstacleNumber=ObstacleNumber;
-        this.ObstaclenowX=ObstaclenowX;
-        this.ObstaclenowY=ObstaclenowY;
+        this.starss=starss;
+        this.colorswitcherss=colorswitcherss;
+        this.obstacless=obstacless;
 
         this.presentscore=presentscore;
+        this.jumpCount=jumpCount;
+        this.downCount=downCount;
+        this.timesPaneDown=timesPaneDown;
+        this.starsGone=starsGone;
+        this.colorSwitchersGone=colorSwitchersGone;
+        this.onscreen=onscreen;
+        this.end=end;
+        this.start=start;
     }
 
 

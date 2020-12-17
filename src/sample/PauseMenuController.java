@@ -31,6 +31,8 @@ public class PauseMenuController implements Initializable {
     @FXML private Button play;
     @FXML private Button home;
     @FXML private Button save;
+
+    private Game game;
     Button button=new Button();
 
     void addScaleTransition() {
@@ -109,7 +111,7 @@ public class PauseMenuController implements Initializable {
 
             System.out.println("Object has been deserialized ");
             System.out.println("ballY = " + object1.ballY);
-            System.out.println("Coordinate of Obstacle: "+ object1.ObstaclenowY);
+            //System.out.println("Coordinate of Obstacle: "+ object1.ObstaclenowY);
             //System.out.println("b = " + object1.b);
             //Parent root=object1.pane;
             //primaryStage.setTitle("Color Switch");
@@ -136,7 +138,9 @@ public class PauseMenuController implements Initializable {
 
 
     }
-
+    void setGame(Game game){
+        this.game=game;
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addScaleTransition();

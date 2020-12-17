@@ -97,8 +97,11 @@ public class ObstacleHitMenuController implements Initializable {
 
     void initData(String abc){
         //String a=Integer.toString(abc);
-        this.presentScore.setText(abc);
+        presentScore.setText(abc);
 
+    }
+    void setGame(Game game){
+        this.game=game;
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
