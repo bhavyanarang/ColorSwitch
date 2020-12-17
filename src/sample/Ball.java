@@ -2,11 +2,13 @@ package sample;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Circle;
 import javafx.scene.paint.Color;
 import javafx.animation.TranslateTransition;
 import javafx.util.Duration;
 
+import java.net.URL;
 import java.util.Random;
 
 public class Ball {
@@ -57,6 +59,9 @@ public class Ball {
         transition.setByY(jumpChangeY);                        //upward pixels
         transition.setNode(ball);
         transition.play();
+        URL path = getClass().getResource("/Assets/jump.wav");
+        AudioClip ac = new AudioClip(path.toString());
+        ac.play();
         //y_coordinate+=5;
     }
     public int getColor(){
@@ -65,6 +70,7 @@ public class Ball {
 
     public void setColor(int color) {
         this.color = color;
+
         ball.setFill(colors[color]);
     }
 }

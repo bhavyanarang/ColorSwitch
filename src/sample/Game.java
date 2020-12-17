@@ -4,11 +4,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
 import java.io.*;
+import java.net.URL;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Random;
@@ -331,7 +333,9 @@ public class Game {
 
                 if (intersection.getBoundsInParent().getHeight() > 0) {
                     if (shape.getStroke() != ball.getBall().getFill()) {
-
+                        URL path = getClass().getResource("/Assets/dead.wav");
+                        AudioClip ac = new AudioClip(path.toString());
+                        ac.play();
                         System.out.println(shape.getStroke());
                         System.out.println(ball.getBall().getFill());
                         System.out.println("hit");
@@ -450,6 +454,9 @@ public class Game {
         for(int i=0;i<=3;i++){
             Shape shape=Shape.intersect(ball.getBall(),colorSwitcher.getArc(i));
             if(shape.getBoundsInParent().getHeight()>=0) {
+                URL path = getClass().getResource("/Assets/colorswitch.wav");
+                AudioClip ac = new AudioClip(path.toString());
+                ac.play();
                 ball.changeColor();
                 Pane variable= (Pane) colorSwitcher.getColorSwitcher().getParent();
                 if(variable!=null){
@@ -472,6 +479,9 @@ public class Game {
 
         Shape shape = Shape.intersect(ball1, star1);
         if (shape.getBoundsInParent().getHeight() >= 0) {
+            URL path = getClass().getResource("/Assets/victory.wav");
+            AudioClip ac = new AudioClip(path.toString());
+            ac.play();
             Pane variable = (Pane) star.getImg().getParent();
             if (variable != null) {
                 variable.getChildren().remove(star.getImg());
