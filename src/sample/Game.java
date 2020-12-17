@@ -441,14 +441,14 @@ public class Game {
                     //System.out.println("Heyy13");
 
                     System.out.println("Object has been serialized");
-                    FXMLLoader loader=new FXMLLoader(getClass().getResource("PauseMenu.fxml"));
-                    Parent root=loader.load();
-                    PauseMenuController controller=(PauseMenuController) loader.getController();
-                    //Object o=loader.getController();
-                    //controller.initData(scorecard.getLabel().getText());
-                    controller.setGame(game);
-                    //AnchorPane pane1 = FXMLLoader.
-                    pane.getChildren().removeAll();
+//                    FXMLLoader loader=new FXMLLoader(getClass().getResource("PauseMenu.fxml"));
+//                    Parent root=loader.load();
+//                    PauseMenuController controller=(PauseMenuController) loader.getController();
+//                    //Object o=loader.getController();
+//                    //controller.initData(scorecard.getLabel().getText());
+//                    controller.setGame(game);
+//                    //AnchorPane pane1 = FXMLLoader.
+//                    pane.getChildren().removeAll();
                     AnchorPane pane1 = FXMLLoader.load(getClass().getResource("PauseMenu.fxml"));
                     pane.getChildren().setAll(pane1);
 
