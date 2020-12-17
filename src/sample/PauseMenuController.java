@@ -55,7 +55,10 @@ public class PauseMenuController implements Initializable {
 //        st3.setAutoReverse(true);
 //        st3.play();
     }
+    @FXML
+    void extraStars() throws IOException{
 
+    }
     public static void appendStrToFile(String fileName,
                                        String str)
     {

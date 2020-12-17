@@ -19,11 +19,6 @@
                 </ImageView>
             </graphic>
         </Button>
-        <Label layoutX="95.0" layoutY="152.0" text="PAUSE" textFill="#fff70b">
-            <font>
-                <Font name="System Bold" size="67.0" />
-            </font>
-        </Label>
         <Group fx:id="resume" accessibleRole="BUTTON" layoutX="243.0" layoutY="306.0" onMouseClicked="#resumeGame" />
         <Button fx:id="home" mnemonicParsing="false" onMouseClicked="#home" scaleX="0.5" scaleY="0.5" style="-fx-shape: &quot;        M 100, 100        m -75, 0        a 75,75 0 1,0 150,0        a 75,75 0 1,0 -150,0        &quot;;">
             <graphic>
@@ -49,5 +44,11 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
+      <Button fx:id="bonus" layoutX="84.0" layoutY="168.0" mnemonicParsing="false" onMouseClicked="#extraStars" prefHeight="66.0" prefWidth="228.0" textFill="#110e0e" />
+        <Label layoutX="95.0" layoutY="152.0" text="PAUSE" textFill="#fff70b">
+            <font>
+                <Font name="System Bold" size="67.0" />
+            </font>
+        </Label>
     </children>
 </AnchorPane>
