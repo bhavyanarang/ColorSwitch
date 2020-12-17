@@ -21,10 +21,7 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -75,6 +72,12 @@ public class ObstacleHitMenuController implements Initializable {
     //    void updatePresentScore(String s1){
 //       this.initialize();
 //    }
+    void initHighScore(String abc) {
+        highScore.setText(abc);
+    }
+    void initstars(String abc){
+        totalStars.setText(abc);
+    }
     @FXML
     void goToHome(MouseEvent event) throws IOException {
         AnchorPane pane1= FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
@@ -82,8 +85,77 @@ public class ObstacleHitMenuController implements Initializable {
     }
     @FXML
     void replayAgain(MouseEvent event) throws  IOException{
-        Ball b1=new Ball();
-        pane.getChildren().setAll(b1.getBall());
+        //revivegame check
+        String allstars="";
+        boolean revive=false;
+        try{
+            FileReader fileReader
+                    = new FileReader(
+                    "allstars.txt");
+
+            BufferedReader buffReader
+                    = new BufferedReader(
+                    fileReader);
+
+            while (buffReader.ready()) {
+                allstars=buffReader.readLine();
+                System.out.println(allstars);
+            }
+            // close the file
+            fileReader.close();
+            //ch-=48;
+        }
+        catch (IOException ex)
+        {
+            System.out.println("Cannot read");
+        }
+        int stars=Integer.parseInt(allstars);
+
+
+        if(stars>=30){
+            stars=stars-30;
+            revive=true;
+            Writer wr = new FileWriter("allstars.txt");
+            wr.write(new Integer(stars).toString());
+            wr.close();
+        }
+        if(revive==true){
+
+            pane.getChildren().removeAll();
+            serializehelp object1 = null;
+
+            try
+            {
+                // Reading the object from a file
+                FileInputStream file = new FileInputStream("Pause.txt");
+                ObjectInputStream in = new ObjectInputStream(file);
+
+                // Method for deserialization of object
+                object1 = (serializehelp) in.readObject();
+                System.out.println("ok");
+
+                System.out.println("chill1");
+
+                in.close();
+                file.close();
+
+                System.out.println("Object has been deserialized ");
+                System.out.println("ballY = " + object1.ballY);
+
+            }
+
+            catch(IOException ex)
+            {
+                System.out.println("IOException is caught");
+            }
+
+            catch(ClassNotFoundException ex)
+            {
+                System.out.println("ClassNotFoundException is caught");
+            }
+            Game game = new Game(pane, object1);
+        }
+
     }
     public ObstacleHitMenuController(){
         t1.start();
@@ -108,6 +180,7 @@ public class ObstacleHitMenuController implements Initializable {
         //presentScore.setText(game.scorecard.getLabel().getText());
         rotate1=new Rotate();
         rotate2=new Rotate();
+        //HighScore();
         //rotate();
         //t1.start();
     }

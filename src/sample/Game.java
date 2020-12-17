@@ -302,11 +302,103 @@ public class Game {
                         //Object o=loader.getController();
                         controller.initData(scorecard.getLabel().getText());
                         controller.setGame(this);
+                        int ch=0;
+                        String highscore="";
+                        String allstars="";
+
+                        try {
+
+                            FileReader fileReader
+                                    = new FileReader(
+                                    "info.txt");
+                            BufferedReader buffReader
+                                    = new BufferedReader(
+                                    fileReader);
+
+                            while (buffReader.ready()) {
+                                    highscore=buffReader.readLine();
+                                    System.out.println(highscore);
+                            }
+                            // close the file
+                            fileReader.close();
+                            //ch-=48;
+                        }
+                        catch (IOException e)
+                        {
+                            System.out.println("Cannot read");
+                        }
+
+                        try{
+                        FileReader fileReader
+                                = new FileReader(
+                                "allstars.txt");
+
+                        BufferedReader buffReader
+                                = new BufferedReader(
+                                fileReader);
+
+                        while (buffReader.ready()) {
+                                allstars=buffReader.readLine();
+                                System.out.println(allstars);
+                        }
+                        // close the file
+                        fileReader.close();
+                        //ch-=48;
+                    }
+                        catch (IOException ex)
+                    {
+                        System.out.println("Cannot read");
+                    }
+
+                        int Highscore=Integer.parseInt(highscore);
+                        int Totalstars=Integer.parseInt(allstars);
+                        int presentscore=Integer.parseInt(scorecard.getLabel().getText());
+                        Totalstars+=presentscore;
+                        if(presentscore>Highscore){
+                            Highscore=presentscore;
+                        }
+                        controller.initHighScore(highscore);
+                        controller.initstars(allstars);
                         //AnchorPane pane1 = FXMLLoader.load(getClass().getResource("ObstacleHitMenu.fxml"));
                         pane.getChildren().setAll(root);
 
                         t1.stop();
                         obstacleHit = true;
+                        // Serialization
+                        try {
+                            int[] Obstaclenumber=new int[numberOfObjects];
+                            Double[] ObstacleY=new Double[numberOfObjects];
+                            Double[] starss=new Double[numberOfObjects];
+                            Double[] colorSwitcherss=new Double[numberOfObjects];
+
+                            for(int j=0;j<numberOfObjects;j++){
+                                Obstaclenumber[j]=onscreenObstacles[j].obstacleNumber;
+                                ObstacleY[j]=onscreenObstacles[j].group.getBoundsInParent().getCenterY();
+                                starss[j]=stars[j].getImg().getBoundsInParent().getCenterY();
+                                colorSwitcherss[j]=colorSwitchers[j].getColorSwitcher().getBoundsInParent().getCenterY();
+                            }
+
+                            FileOutputStream file = new FileOutputStream("Pause.txt");
+                            System.out.println("Obstacle_cor" + currentObstacle.group.getBoundsInParent().getCenterY());
+                            ObjectOutputStream out = new ObjectOutputStream(file);
+                            System.out.println("Ball_cor: " + ball.getBall().getBoundsInParent().getCenterY());
+                            // Method for serialization of object
+                            out.writeObject(new serializehelp("Delete",ball.getBall().getBoundsInParent().getCenterX(), ball.getBall().getBoundsInParent().getCenterY()-50, ball.getColor(), starss,colorSwitcherss,Obstaclenumber,ObstacleY, Integer.parseInt(scorecard.getLabel().getText()),jumpCount,downCount,timesPaneDown,starsGone,colorSwitchersGone,onscreen,start,end));
+                            //chnged coordiantes of ball since it hit an obstacle
+
+                            out.close();
+                            file.close();
+                            //System.out.println("Heyy13");
+
+                            System.out.println("Object has been serialized");
+
+//                            AnchorPane pane1 = FXMLLoader.load(getClass().getResource("PauseMenu.fxml"));
+//                            pane.getChildren().setAll(pane1);
+
+                        } catch (IOException ex) {
+                            System.out.println("IOException is caught");
+                            ex.printStackTrace();
+                        }
                     }
                 }
             }

@@ -18,10 +18,7 @@ import javafx.scene.shape.SVGPath;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -56,6 +53,22 @@ public class PauseMenuController implements Initializable {
         st3.play();
     }
 
+    public static void appendStrToFile(String fileName,
+                                       String str)
+    {
+        try {
+
+            // Open given file in append mode.
+            BufferedWriter out = new BufferedWriter(
+                    new FileWriter(fileName, true));
+            out.write(str);
+            out.close();
+        }
+        catch (IOException e) {
+            System.out.println("exception occoured" + e);
+        }
+    }
+
     @FXML
     void home(MouseEvent event) throws IOException {
         //go to home
@@ -68,6 +81,27 @@ public class PauseMenuController implements Initializable {
         System.out.println("File batao");
         Scanner ins=new Scanner(System.in);
         String check=ins.next();
+
+        FileReader fileReader
+                = new FileReader(
+                "SavedGames.txt");
+
+        // Convert fileReader to
+        // bufferedReader
+        //int c=0;
+        String names;
+        BufferedReader buffReader
+                = new BufferedReader(
+                fileReader);
+
+        while (buffReader.ready()) {
+            names = buffReader.readLine();
+            if(names.equals(ins)){
+                System.out.println("Same name game already exists, Give new Name:");
+                break;
+            }
+        }
+        check=ins.next();
         File oldName =
                 new File("Pause.txt");
         File newName =
@@ -77,6 +111,12 @@ public class PauseMenuController implements Initializable {
             System.out.println("Renamed successfully");
         else
             System.out.println("Error");
+
+        String fileName = "SavedGames.txt";
+        appendStrToFile(fileName, check+"\n");
+        System.out.println("Successful");
+
+
         AnchorPane pane1= FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         pane.getChildren().setAll(pane1);
     }
