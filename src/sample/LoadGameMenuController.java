@@ -55,6 +55,19 @@ public class LoadGameMenuController implements Initializable {
         circle2.getTransforms().addAll(rotate2);
 
     }
+    @FXML
+    void game1(){
+
+    }
+    @FXML
+    void game2(){
+
+    }
+    @FXML
+    void game3(){
+
+    }
+
 
     @FXML
     void goToHome(MouseEvent event) throws IOException {

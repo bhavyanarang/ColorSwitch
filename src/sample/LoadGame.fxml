@@ -59,17 +59,17 @@
       </Button>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dd8827" height="56.0" layoutY="385.0" stroke="BLACK" strokeType="INSIDE" width="400.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dd8827" height="56.0" layoutY="459.0" stroke="BLACK" strokeType="INSIDE" width="400.0" />
-      <Button fx:id="game1" layoutX="136.0" layoutY="316.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="126.0" style="-fx-background-color: #dd8827;" text="GAME 1" textFill="#eae5e5">
+      <Button fx:id="game1" layoutX="136.0" layoutY="316.0" mnemonicParsing="false" onMouseClicked="#game1" prefHeight="51.0" prefWidth="126.0" style="-fx-background-color: #dd8827;" text="GAME 1" textFill="#eae5e5">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="game2" layoutX="136.0" layoutY="387.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="126.0" style="-fx-background-color: #dd8827;" text="GAME 2" textFill="#eae5e5">
+      <Button fx:id="game2" layoutX="136.0" layoutY="387.0" mnemonicParsing="false" onMouseClicked="#game2" prefHeight="51.0" prefWidth="126.0" style="-fx-background-color: #dd8827;" text="GAME 2" textFill="#eae5e5">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="game3" layoutX="140.0" layoutY="461.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="126.0" style="-fx-background-color: #dd8827;" text="GAME 3" textFill="#eae5e5">
+      <Button fx:id="game3" layoutX="140.0" layoutY="461.0" mnemonicParsing="false" onMouseClicked="#game3" prefHeight="51.0" prefWidth="126.0" style="-fx-background-color: #dd8827;" text="GAME 3" textFill="#eae5e5">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
